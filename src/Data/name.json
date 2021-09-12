@@ -1,0 +1,23 @@
+{
+  "prefix": {
+  "english.super1": "Test1",
+  "english.super2": "Test2",
+  "english.super3": "Test3",
+  "english.super4": "Test4",
+  "spanish.super1": "Test1sp",
+  "spanish.super2": "Test2sp",
+  "portuguese.super1": "Test1port",
+  "portuguese.super2": "Test2port"
+},
+
+  "suffix": {
+    "english.name1": "Test1",
+    "english.name2": "Test2",
+    "english.name3": "Test3",
+    "english.name4": "Test4",
+    "spanish.name1": "Test1sp",
+    "spanish.name2": "Test2sp",
+    "portuguese.name1": "Test1port",
+    "portuguese.name2": "Test2port"
+  }
+}
