@@ -1,0 +1,22 @@
+.name-generator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .name-options-container {
+        display: flex;
+        width: 400px;
+        justify-content: space-around;
+        select {
+            width: 175px;
+        }
+        .prefix-container,
+        .suffix-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+    button {
+        margin-top: 20px;
+    }
+}
