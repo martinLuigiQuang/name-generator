@@ -3,7 +3,7 @@ import name from '../Data/name.json';
 import './NameGenerator.scss';
 
 const NameGenerator = (props) => {
-  const { language, gender } = props;
+  const { language, gender, handlePrefix, handleSuffix } = props;
   const PREFIX_ARRAY = Object.keys(name.prefix).filter(item => item.includes("english"));
   const SUFFIX_ARRAY = Object.keys(name.suffix).filter(item => item.includes("english"));
 
@@ -11,9 +11,11 @@ const NameGenerator = (props) => {
   const [suffix, setSuffix] = React.useState(name.suffix[SUFFIX_ARRAY[0]]);
   const handlePrefixChange = (e) => {
     setPrefix(e.target.value);
+    handlePrefix(e.target.value);
   };
   const handleSuffixChange = (e) => {
     setSuffix(e.target.value);
+    handleSuffix(e.target.value);
   };
   const randomizer = () => {
     const prefixLength = PREFIX_ARRAY.length;
@@ -21,7 +23,9 @@ const NameGenerator = (props) => {
     const randomPrefixNumber = Math.floor(Math.random() * prefixLength);
     const randomSuffixNumber = Math.floor(Math.random() * suffixLength);
     setPrefix(name.prefix[PREFIX_ARRAY[randomPrefixNumber]]);
+    handlePrefix(name.prefix[PREFIX_ARRAY[randomPrefixNumber]]);
     setSuffix(name.suffix[SUFFIX_ARRAY[randomSuffixNumber]]);
+    handleSuffix(name.suffix[SUFFIX_ARRAY[randomSuffixNumber]]);
   };
 
   return (
