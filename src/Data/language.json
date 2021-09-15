@@ -1,0 +1,39 @@
+{
+  "english": {
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "neutral": "Neutral",
+    "generate": "Generate Random Name",
+    "modifier": "Pick your modifier",
+    "heroic": "Pick your heroic name",
+    "firstName": "First name",
+    "lastName": "Last name"
+  },
+
+    "spanish": {
+    "gender": "GenderSP",
+    "male": "MaleSP",
+    "female": "FemaleSP",
+    "neutral": "NeutralSP",
+    "generate": "Generate Random NameSP",
+    "modifier": "Pick your modifierSP",
+    "heroic": "Pick your heroic nameSP",
+    "firstName": "First nameSP",
+    "lastName": "Last nameSP"
+  },
+
+    "portuguese": {
+    "gender": "GenderPORT",
+    "male": "MalePORT",
+    "female": "FemalePORT",
+    "neutral": "NeutralPORT",
+    "generate": "Generate Random NamePORT",
+    "modifier": "Pick your modifierPORT",
+    "heroic": "Pick your heroic namePORT",
+    "firstName": "First namePORT",
+    "lastName": "Last namePORT"
+  }
+
+
+}
