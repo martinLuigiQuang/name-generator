@@ -1,20 +1,17 @@
 import * as React from 'react';
 import name from '../Data/name.json';
+import locale from '../Data/language.json';
 import './NameGenerator.scss';
 
 const NameGenerator = (props) => {
-  const { language, gender, handlePrefix, handleSuffix } = props;
-  const PREFIX_ARRAY = Object.keys(name.prefix).filter(item => item.includes("english"));
-  const SUFFIX_ARRAY = Object.keys(name.suffix).filter(item => item.includes("english"));
+  const { language, gender, handlePrefix, handleSuffix, prefix, suffix } = props;
+  const PREFIX_ARRAY = Object.keys(name.prefix).filter(item => item.includes(language) && item.includes(gender));
+  const SUFFIX_ARRAY = Object.keys(name.suffix).filter(item => item.includes(language) && item.includes(gender));
 
-  const [prefix, setPrefix] = React.useState(name.prefix[PREFIX_ARRAY[0]]);
-  const [suffix, setSuffix] = React.useState(name.suffix[SUFFIX_ARRAY[0]]);
   const handlePrefixChange = (e) => {
-    setPrefix(e.target.value);
     handlePrefix(e.target.value);
   };
   const handleSuffixChange = (e) => {
-    setSuffix(e.target.value);
     handleSuffix(e.target.value);
   };
   const randomizer = () => {
@@ -22,9 +19,7 @@ const NameGenerator = (props) => {
     const suffixLength = SUFFIX_ARRAY.length;
     const randomPrefixNumber = Math.floor(Math.random() * prefixLength);
     const randomSuffixNumber = Math.floor(Math.random() * suffixLength);
-    setPrefix(name.prefix[PREFIX_ARRAY[randomPrefixNumber]]);
     handlePrefix(name.prefix[PREFIX_ARRAY[randomPrefixNumber]]);
-    setSuffix(name.suffix[SUFFIX_ARRAY[randomSuffixNumber]]);
     handleSuffix(name.suffix[SUFFIX_ARRAY[randomSuffixNumber]]);
   };
 
@@ -32,7 +27,7 @@ const NameGenerator = (props) => {
     <div className="name-generator-container">
       <div className="name-options-container">
         <div className="prefix-container">
-          <label htmlFor="prefix">Pick your modifier</label>
+          <label htmlFor="prefix">{locale[language].modifier}</label>
           <select
             onChange={handlePrefixChange}
             name="prefix"
@@ -45,7 +40,6 @@ const NameGenerator = (props) => {
                   <option
                     value={value}
                     key={value}
-                    selected={prefix === value}
                   >
                     {value}
                   </option>
@@ -55,7 +49,7 @@ const NameGenerator = (props) => {
           </select>
         </div>
         <div className="suffix-container">
-          <label htmlFor="suffix">Pick your heroic name</label>
+          <label htmlFor="suffix">{locale[language].heroic}</label>
           <select
             onChange={handleSuffixChange}
             name="suffix"
@@ -68,7 +62,6 @@ const NameGenerator = (props) => {
                   <option
                     value={value}
                     key={value}
-                    selected={suffix === value}
                   >
                     {value}
                   </option>
@@ -79,7 +72,7 @@ const NameGenerator = (props) => {
         </div>
       </div>
       <button onClick={randomizer}>
-        Generate Random Name
+        {locale[language].generate}
       </button>
       <h1>
         {prefix} {suffix}
