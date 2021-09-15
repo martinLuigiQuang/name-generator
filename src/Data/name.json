@@ -1,7 +1,7 @@
 {
   "prefix": {
-  "english.super1": "Test1",
-  "english.super2": "Test2",
+  "english.M.super1": "Test1",
+  "english.F.super2": "Test2",
   "english.super3": "Test3",
   "english.super4": "Test4",
   "spanish.super1": "Test1sp",
@@ -21,3 +21,4 @@
     "portuguese.name2": "Test2port"
   }
 }
+
