@@ -18,5 +18,8 @@
     }
     button {
         margin-top: 20px;
+        &.disabled {
+            color: gray;
+        }
     }
 }

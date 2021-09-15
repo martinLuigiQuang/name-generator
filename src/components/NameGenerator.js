@@ -4,9 +4,17 @@ import locale from '../Data/language.json';
 import './NameGenerator.scss';
 
 const NameGenerator = (props) => {
-  const { language, gender, handlePrefix, handleSuffix, prefix, suffix } = props;
+  const { language, gender, handlePrefix, handleSuffix, prefix, suffix, handleSubmit, isSubmitBtnDisabled } = props;
   const PREFIX_ARRAY = Object.keys(name.prefix).filter(item => item.includes(language) && item.includes(gender));
   const SUFFIX_ARRAY = Object.keys(name.suffix).filter(item => item.includes(language) && item.includes(gender));
+  
+  React.useEffect(
+    () => {
+      handlePrefix(name.prefix[PREFIX_ARRAY[0]]);
+      handleSuffix(name.suffix[SUFFIX_ARRAY[0]]);
+    }, 
+    [PREFIX_ARRAY, SUFFIX_ARRAY]
+  );
 
   const handlePrefixChange = (e) => {
     handlePrefix(e.target.value);
@@ -32,6 +40,7 @@ const NameGenerator = (props) => {
             onChange={handlePrefixChange}
             name="prefix"
             id="prefix"
+            value={prefix ? prefix : name.prefix[SUFFIX_ARRAY[0]]}
           >
             {
               PREFIX_ARRAY.map(item => {
@@ -54,6 +63,7 @@ const NameGenerator = (props) => {
             onChange={handleSuffixChange}
             name="suffix"
             id="suffix"
+            value={suffix ? suffix : name.prefix[SUFFIX_ARRAY[0]]}
           >
             {
               SUFFIX_ARRAY.map(item => {
@@ -77,6 +87,13 @@ const NameGenerator = (props) => {
       <h1>
         {prefix} {suffix}
       </h1>
+      <button 
+        onClick={handleSubmit}
+        disabled={isSubmitBtnDisabled()}
+        className={isSubmitBtnDisabled() ? 'disabled' : ''}
+      >
+        {locale[language].submit}
+      </button>
     </div>
   );
 };
