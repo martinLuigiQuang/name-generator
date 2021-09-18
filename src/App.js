@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 import Header from './components/Header';
 import NameGenerator from './components/NameGenerator';
 import GenderSelector from './components/Gender';
@@ -26,6 +27,22 @@ function App() {
     },
     [prefix, suffix, firstName, lastName]
   );
+  
+  const spreadsheetId = '1BTURDifek4AARMnFAli_amsUkXS8wqM-8kZJXBbn1ko';
+  axios({
+    url: `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:json`,
+    method: 'GET',
+    responseType: 'jsonp',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+    }
+  }).then(result => {
+    console.log(result);
+  }).catch(error => {
+    console.log(error);
+  })
+  
 
   const handlePrefix = (name) => {
     setPrefix(name);
