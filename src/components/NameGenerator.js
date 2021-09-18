@@ -1,10 +1,23 @@
 import * as React from 'react';
+import SuccessModal from './SuccessModal';
 import name from '../Data/name.json';
 import locale from '../Data/language.json';
 import './NameGenerator.scss';
 
 const NameGenerator = (props) => {
-  const { language, gender, handlePrefix, handleSuffix, prefix, suffix, handleSubmit, isSubmitBtnDisabled } = props;
+  const { 
+    language, 
+    gender, 
+    handlePrefix, 
+    handleSuffix, 
+    prefix, 
+    suffix, 
+    handleSubmit, 
+    isSubmitBtnDisabled,
+    returnToHomePage,
+    isModalOpen
+  } = props;
+
   const PREFIX_ARRAY = Object.keys(name.prefix).filter(item => item.includes(language) && item.includes(gender));
   const SUFFIX_ARRAY = Object.keys(name.suffix).filter(item => item.includes(language) && item.includes(gender));
   
@@ -89,11 +102,16 @@ const NameGenerator = (props) => {
       </h1>
       <button 
         onClick={handleSubmit}
-        disabled={isSubmitBtnDisabled()}
-        className={isSubmitBtnDisabled() ? 'disabled' : ''}
+        disabled={isSubmitBtnDisabled}
+        className={isSubmitBtnDisabled ? 'disabled' : ''}
       >
         {locale[language].submit}
       </button>
+      <SuccessModal 
+        isModalOpen={isModalOpen}
+        returnToHomePage={returnToHomePage}
+        language={language}
+      />
     </div>
   );
 };
