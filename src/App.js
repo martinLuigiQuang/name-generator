@@ -18,6 +18,7 @@ function App() {
   const [lastName, setLastName] = React.useState('');
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isSubmitBtnDisabled, setIsSubmitBtnDisabled] = React.useState(true);
+  require('dotenv').config()
 
   React.useEffect(
     () => {
@@ -28,21 +29,19 @@ function App() {
     [prefix, suffix, firstName, lastName]
   );
   
-  const spreadsheetId = '1BTURDifek4AARMnFAli_amsUkXS8wqM-8kZJXBbn1ko';
+const postData = (requestBody) => {
   axios({
-    url: `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:json`,
-    method: 'GET',
-    responseType: 'jsonp',
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
-    }
+    url: process.env.sheetsUrl,
+    method: 'POST',
+    data: requestBody,
   }).then(result => {
     console.log(result);
   }).catch(error => {
     console.log(error);
   })
-  
+}
+
+
 
   const handlePrefix = (name) => {
     setPrefix(name);
@@ -60,12 +59,12 @@ function App() {
     setLanguage(e.target.value);
   };
 
-  const handleFirstName = (e) => {
-    setFirstName(e.target.value);
+  const handleFirstName = (name) => {
+    setFirstName(name);
   };
 
-  const handleLastName = (e) => {
-    setLastName(e.target.value);
+  const handleLastName = (name) => {
+    setLastName(name);
   };
 
   const reset = () => {
@@ -88,7 +87,7 @@ function App() {
     reset();
     setIsSubmitBtnDisabled(true);
     setIsModalOpen(true);
-    return {
+    const requestBody = {
       language,
       gender,
       firstName,
@@ -97,6 +96,8 @@ function App() {
       suffix,
       timeStamp: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
     };
+    console.log(requestBody);
+    postData(requestBody);
   };
 
   return (
@@ -120,8 +121,6 @@ function App() {
           <EnterName 
             handleFirstName={handleFirstName} 
             handleLastName={handleLastName} 
-            firstName={firstName} 
-            lastName={lastName} 
             language={language}
           />
         }/>
