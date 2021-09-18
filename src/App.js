@@ -5,10 +5,11 @@ import NameGenerator from './components/NameGenerator';
 import GenderSelector from './components/Gender';
 import LanguageSelector from './components/Languages';
 import EnterName from './components/EnterName';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 function App() {
 
-  const [gender, setGender] = React.useState('neutral');
+  const [gender, setGender] = React.useState('');
   const [prefix, setPrefix] = React.useState('');
   const [suffix, setSuffix] = React.useState('');
   const [language, setLanguage] = React.useState('english');
@@ -24,29 +25,42 @@ function App() {
 
   const handlePrefix = (name) => {
     setPrefix(name);
-  }
+  };
 
   const handleSuffix = (name) => {
     setSuffix(name);
-  }
+  };
 
   const handleGenderSelection = (e) => {
     setGender(e.target.value);
-  }
+  };
 
   const handleLanguageSelector = (e) => {
     setLanguage(e.target.value);
-  }
+  };
 
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
-  }
+  };
 
   const handleLastName = (e) => {
     setLastName(e.target.value);
-  }
+  };
+
+  const reset = () => {
+    setFirstName('');
+    setLastName('');
+    setPrefix('');
+    setSuffix('');
+    setGender('');
+  };
+
+  const returnToHomePage = () => {
+    window.location.href = '/';
+  };
 
   const handleSubmit = () => {
+    reset();
     return {
       language,
       gender,
@@ -59,38 +73,53 @@ function App() {
   }
 
   const isSubmitBtnDisabled = () => {
-    if (prefix === '' || suffix === '' || firstName === '' || lastName === '') {
+    if (!prefix || !suffix || !firstName || !lastName) {
       return true;
     }
     return false;
   }
 
   return (
-    <div className="App">
-      <Header/>
-      <LanguageSelector handleLanguageSelector={handleLanguageSelector}/>
-      <GenderSelector 
-        handleGenderSelection={handleGenderSelection} 
-        language={language}
-      />
-      <EnterName 
-        handleFirstName={handleFirstName} 
-        handleLastName={handleLastName} 
-        firstName={firstName} 
-        lastName={lastName} 
-        language={language}
-      />
-      <NameGenerator 
-        handlePrefix={handlePrefix} 
-        handleSuffix={handleSuffix} 
-        gender={gender} 
-        language={language} 
-        prefix={prefix} 
-        suffix={suffix}
-        handleSubmit={handleSubmit} 
-        isSubmitBtnDisabled={isSubmitBtnDisabled} 
-      />
-    </div>
+    <Router basename={process.env.PUBLIC_URL}>
+      <div className="App">
+        <Header/>
+        <Route exact path="/" component={() =>
+          <LanguageSelector
+            language={language}
+            handleLanguageSelector={handleLanguageSelector}
+          />
+        }/>
+        <Route path="/gender" component={() =>
+          <GenderSelector 
+            handleGenderSelection={handleGenderSelection} 
+            language={language}
+            gender={gender}
+          />
+        }/>
+        <Route path="/name" component={() =>
+          <EnterName 
+            handleFirstName={handleFirstName} 
+            handleLastName={handleLastName} 
+            firstName={firstName} 
+            lastName={lastName} 
+            language={language}
+          />
+        }/>
+        <Route path="/hero-name" component={() => 
+          <NameGenerator 
+            handlePrefix={handlePrefix} 
+            handleSuffix={handleSuffix} 
+            gender={gender} 
+            language={language} 
+            prefix={prefix} 
+            suffix={suffix}
+            handleSubmit={handleSubmit} 
+            isSubmitBtnDisabled={isSubmitBtnDisabled} 
+            returnToHomePage={returnToHomePage}
+          />
+        }/>
+      </div>
+    </Router>
   );
 }
 

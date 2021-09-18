@@ -4,7 +4,17 @@ import locale from '../Data/language.json';
 import './NameGenerator.scss';
 
 const NameGenerator = (props) => {
-  const { language, gender, handlePrefix, handleSuffix, prefix, suffix, handleSubmit, isSubmitBtnDisabled } = props;
+  const { 
+    language, 
+    gender, 
+    handlePrefix, 
+    handleSuffix, 
+    prefix, 
+    suffix, 
+    handleSubmit, 
+    isSubmitBtnDisabled,
+    returnToHomePage
+  } = props;
   const PREFIX_ARRAY = Object.keys(name.prefix).filter(item => item.includes(language) && item.includes(gender));
   const SUFFIX_ARRAY = Object.keys(name.suffix).filter(item => item.includes(language) && item.includes(gender));
   
