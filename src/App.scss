@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+  &.modal-open:after {
+    position: absolute;
+    content: "";
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: #D8D8D8D8;
+  }
+}
+
+.invisible {
+    display: none;
+}

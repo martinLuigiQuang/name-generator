@@ -1,11 +1,11 @@
 import * as React from 'react';
-import './App.css';
 import Header from './components/Header';
 import NameGenerator from './components/NameGenerator';
 import GenderSelector from './components/Gender';
 import LanguageSelector from './components/Languages';
 import EnterName from './components/EnterName';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import './App.scss';
 
 function App() {
 
@@ -15,10 +15,14 @@ function App() {
   const [language, setLanguage] = React.useState('english');
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isSubmitBtnDisabled, setIsSubmitBtnDisabled] = React.useState(true);
 
   React.useEffect(
     () => {
-      isSubmitBtnDisabled();
+      if (prefix !== '' && suffix !== '' && (lastName !== '' || firstName !== '')) {
+        setIsSubmitBtnDisabled(false);
+      }
     },
     [prefix, suffix, firstName, lastName]
   );
@@ -53,14 +57,20 @@ function App() {
     setPrefix('');
     setSuffix('');
     setGender('');
+    setIsModalOpen(false);
   };
 
   const returnToHomePage = () => {
     window.location.href = '/';
   };
-
+  
   const handleSubmit = () => {
+    if (!prefix || !suffix || !firstName && !lastName) {
+      return null;
+    }
     reset();
+    setIsSubmitBtnDisabled(true);
+    setIsModalOpen(true);
     return {
       language,
       gender,
@@ -70,18 +80,11 @@ function App() {
       suffix,
       timeStamp: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
     };
-  }
-
-  const isSubmitBtnDisabled = () => {
-    if (!prefix || !suffix || !firstName || !lastName) {
-      return true;
-    }
-    return false;
-  }
+  };
 
   return (
     <Router basename={process.env.PUBLIC_URL}>
-      <div className="App">
+      <div className={`App ${isModalOpen ? 'modal-open' : ''}`}>
         <Header/>
         <Route exact path="/" component={() =>
           <LanguageSelector
@@ -116,6 +119,7 @@ function App() {
             handleSubmit={handleSubmit} 
             isSubmitBtnDisabled={isSubmitBtnDisabled} 
             returnToHomePage={returnToHomePage}
+            isModalOpen={isModalOpen}
           />
         }/>
       </div>

@@ -4,7 +4,7 @@ import locale from '../Data/language.json';
 
 const EnterName = (props) => {
   const { language, firstName, lastName, handleFirstName, handleLastName } = props;
-  const isNextLinkVisible = firstName !== '' && lastName !== '';
+  const isNextLinkVisible = firstName !== '' || lastName !== '';
 
   return (
     <div>
