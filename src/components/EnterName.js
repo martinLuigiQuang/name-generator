@@ -4,11 +4,12 @@ import locale from '../Data/language.json';
 
 const EnterName = (props) => {
   const { language, handleFirstName, handleLastName } = props;
-  
+
   const [currentFirstName, setCurrentFirstName] = React.useState('');
   const [currentLastName, setCurrentLastName] = React.useState('');
   
   const isNextLinkVisible = currentFirstName !== '' || currentLastName !== '';
+  
   return (
     <div>
       <div onChange={(e)=> {
@@ -30,7 +31,7 @@ const EnterName = (props) => {
         Next
       </Link>
     </div>
-  )
-}
+  );
+};
 
 export default EnterName;

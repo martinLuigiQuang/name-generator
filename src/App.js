@@ -1,4 +1,6 @@
 import * as React from 'react';
+import firebase from './firebaseConfig/firebaseConfig';
+import { getDatabase, ref, push } from 'firebase/database';
 import axios from 'axios';
 import Header from './components/Header';
 import NameGenerator from './components/NameGenerator';
@@ -9,7 +11,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.scss';
 
 function App() {
-
+  const DB_REF = getDatabase(firebase);
   const [gender, setGender] = React.useState('');
   const [prefix, setPrefix] = React.useState('');
   const [suffix, setSuffix] = React.useState('');
@@ -18,7 +20,7 @@ function App() {
   const [lastName, setLastName] = React.useState('');
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isSubmitBtnDisabled, setIsSubmitBtnDisabled] = React.useState(true);
-  require('dotenv').config()
+  require('dotenv').config();
 
   React.useEffect(
     () => {
@@ -29,19 +31,18 @@ function App() {
     [prefix, suffix, firstName, lastName]
   );
   
-const postData = (requestBody) => {
-  axios({
-    url: process.env.sheetsUrl,
-    method: 'POST',
-    data: requestBody,
-  }).then(result => {
-    console.log(result);
-  }).catch(error => {
-    console.log(error);
-  })
-}
-
-
+  const postData = (requestBody) => {
+    push(ref(DB_REF), requestBody);
+    axios({
+      url: process.env.sheetsUrl,
+      method: 'POST',
+      data: requestBody,
+    }).then(result => {
+      console.log(result);
+    }).catch(error => {
+      console.log(error);
+    });
+  };
 
   const handlePrefix = (name) => {
     setPrefix(name);
@@ -96,7 +97,6 @@ const postData = (requestBody) => {
       suffix,
       timeStamp: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
     };
-    console.log(requestBody);
     postData(requestBody);
   };
 
@@ -141,6 +141,6 @@ const postData = (requestBody) => {
       </div>
     </Router>
   );
-}
+};
 
 export default App;
