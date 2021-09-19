@@ -17,7 +17,7 @@ const LanguageSelector = (props) => {
       </div>
       <Link to="/gender">Next</Link>
     </>
-  )
+  );
 };
 
 export default LanguageSelector;

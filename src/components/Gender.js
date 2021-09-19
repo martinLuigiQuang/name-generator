@@ -21,7 +21,7 @@ const GenderSelector = (props) => {
         Next
       </Link>
     </>
-  )
+  );
 };
 
 export default GenderSelector;
