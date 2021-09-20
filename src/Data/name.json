@@ -1,8 +1,8 @@
 {
   "prefix": {
   "english.M.super1": "Test1pre",
-  "english.F.super2": "Test2",
-  "english.super3": "Test3",
+  "english.M.super2": "Test2",
+  "english.M.super3": "Test3",
   "english.super4": "Test4",
   "spanish.super1": "Test1sp",
   "spanish.super2": "Test2sp",
@@ -12,8 +12,8 @@
 
   "suffix": {
     "english.M.name1": "Test1suf",
-    "english.name2": "Test2",
-    "english.name3": "Test3",
+    "english.M.name2": "Test2",
+    "english.M.name3": "Test3",
     "english.name4": "Test4",
     "spanish.name1": "Test1sp",
     "spanish.name2": "Test2sp",
