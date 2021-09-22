@@ -3,7 +3,7 @@ import locale from '../Data/language.json';
 import './SuccessModal.scss';
 
 const SuccessModal = (props) => {
-    const { returnToHomePage, isModalOpen, language } = props;
+    const { returnToHomePage, isModalOpen, language, reset } = props;
     return (
         <div className={`success-modal ${isModalOpen ? '' : 'invisible'}`}>
             <p>Your selections were successfully saved</p>
