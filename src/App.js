@@ -9,9 +9,14 @@ import LanguageSelector from './components/Languages';
 import EnterName from './components/EnterName';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.scss';
+require('dotenv').config();
+
+const url = process.env.REACT_APP_SHEETS_URL;
+
+console.log(url)
 
 function App() {
-  const DB_REF = getDatabase(firebase);
+  const DB_REF = ref(getDatabase(firebase));
   const [gender, setGender] = React.useState('');
   const [prefix, setPrefix] = React.useState('');
   const [suffix, setSuffix] = React.useState('');
@@ -20,7 +25,6 @@ function App() {
   const [lastName, setLastName] = React.useState('');
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isSubmitBtnDisabled, setIsSubmitBtnDisabled] = React.useState(true);
-  require('dotenv').config();
 
   React.useEffect(
     () => {
@@ -32,9 +36,9 @@ function App() {
   );
   
   const postData = (requestBody) => {
-    push(ref(DB_REF), requestBody);
+    push(DB_REF, requestBody);
     axios({
-      url: process.env.sheetsUrl,
+      url: process.env['REACT_APP_SHEETS_URL'],
       method: 'POST',
       data: requestBody,
     }).then(result => {
@@ -82,7 +86,7 @@ function App() {
   };
   
   const handleSubmit = () => {
-    if (!prefix || !suffix || !firstName && !lastName) {
+    if (!prefix || !suffix || (!firstName && !lastName)) {
       return null;
     }
     reset();

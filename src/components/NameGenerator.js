@@ -20,14 +20,10 @@ const NameGenerator = (props) => {
 
   const PREFIX_ARRAY = Object.keys(name.prefix).filter(item => item.includes(language) && item.includes(gender));
   const SUFFIX_ARRAY = Object.keys(name.suffix).filter(item => item.includes(language) && item.includes(gender));
-  
-  React.useEffect(
-    () => {
-      handlePrefix(name.prefix[PREFIX_ARRAY[0]]);
-      handleSuffix(name.suffix[SUFFIX_ARRAY[0]]);
-    }, 
-    [PREFIX_ARRAY, SUFFIX_ARRAY]
-  );
+
+  if (!prefix) {
+    handlePrefix(name.prefix[PREFIX_ARRAY[0]])
+  }
 
   const handlePrefixChange = (e) => {
     handlePrefix(e.target.value);
