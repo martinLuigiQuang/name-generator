@@ -9,6 +9,11 @@ import LanguageSelector from './components/Languages';
 import EnterName from './components/EnterName';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.scss';
+require('dotenv').config();
+
+console.log(process.env.REACT_APP_SHEETSURL, 'env');
+const sheetsUrl = process.env.REACT_APP_SHEETSURL;
+ console.log(sheetsUrl, 'sheetsurl')
 
 function App() {
   const DB_REF = getDatabase(firebase);
@@ -20,8 +25,8 @@ function App() {
   const [lastName, setLastName] = React.useState('');
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isSubmitBtnDisabled, setIsSubmitBtnDisabled] = React.useState(true);
-  require('dotenv').config();
 
+  
   React.useEffect(
     () => {
       if (prefix !== '' && suffix !== '' && (lastName !== '' || firstName !== '')) {
@@ -32,9 +37,10 @@ function App() {
   );
   
   const postData = (requestBody) => {
+    
     push(ref(DB_REF), requestBody);
     axios({
-      url: process.env.sheetsUrl,
+      url: sheetsUrl,
       method: 'POST',
       data: requestBody,
     }).then(result => {
@@ -82,10 +88,9 @@ function App() {
   };
   
   const handleSubmit = () => {
-    if (!prefix || !suffix || !firstName && !lastName) {
+    if (!prefix || !suffix || (!firstName && !lastName)) {
       return null;
     }
-    reset();
     setIsSubmitBtnDisabled(true);
     setIsModalOpen(true);
     const requestBody = {
@@ -130,12 +135,15 @@ function App() {
             handleSuffix={handleSuffix} 
             gender={gender} 
             language={language} 
+            firstName={firstName}
+            lastName={lastName}
             prefix={prefix} 
             suffix={suffix}
             handleSubmit={handleSubmit} 
             isSubmitBtnDisabled={isSubmitBtnDisabled} 
             returnToHomePage={returnToHomePage}
             isModalOpen={isModalOpen}
+            reset={reset}
           />
         }/>
       </div>

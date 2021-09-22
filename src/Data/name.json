@@ -2,23 +2,23 @@
   "prefix": {
   "english.M.super1": "Test1pre",
   "english.M.super2": "Test2",
-  "english.M.super3": "Test3",
-  "english.super4": "Test4",
-  "spanish.super1": "Test1sp",
-  "spanish.super2": "Test2sp",
-  "portuguese.super1": "Test1port",
-  "portuguese.super2": "Test2port"
+  "english.F.super3": "Test3",
+  "english.F.super4": "Test4",
+  "spanish.M.super1": "Test1sp",
+  "spanish.F.super2": "Test2sp",
+  "portuguese.M.super1": "Test1port",
+  "portuguese.F.super2": "Test2port"
 },
 
   "suffix": {
     "english.M.name1": "Test1suf",
     "english.M.name2": "Test2",
     "english.M.name3": "Test3",
-    "english.name4": "Test4",
-    "spanish.name1": "Test1sp",
-    "spanish.name2": "Test2sp",
-    "portuguese.name1": "Test1port",
-    "portuguese.name2": "Test2port"
+    "english.F.name4": "Test4",
+    "spanish.M.name1": "Test1sp",
+    "spanish.F.name2": "Test2sp",
+    "portuguese.M.name1": "Test1port",
+    "portuguese.F.name2": "Test2port"
   }
 }
 

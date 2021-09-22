@@ -10,24 +10,27 @@ const NameGenerator = (props) => {
     gender, 
     handlePrefix, 
     handleSuffix, 
+    firstName,
+    lastName,
     prefix, 
     suffix, 
     handleSubmit, 
     isSubmitBtnDisabled,
     returnToHomePage,
-    isModalOpen
+    isModalOpen,
+    reset
   } = props;
 
   const PREFIX_ARRAY = Object.keys(name.prefix).filter(item => item.includes(language) && item.includes(gender));
   const SUFFIX_ARRAY = Object.keys(name.suffix).filter(item => item.includes(language) && item.includes(gender));
   
-  React.useEffect(
-    () => {
-      handlePrefix(name.prefix[PREFIX_ARRAY[0]]);
-      handleSuffix(name.suffix[SUFFIX_ARRAY[0]]);
-    }, 
-    [PREFIX_ARRAY, SUFFIX_ARRAY]
-  );
+  
+  if (!prefix) {
+    handlePrefix(name.prefix[PREFIX_ARRAY[0]])
+  };
+  if (!suffix) {
+    handleSuffix(name.suffix[SUFFIX_ARRAY[0]])
+  }
 
   const handlePrefixChange = (e) => {
     handlePrefix(e.target.value);
@@ -43,6 +46,9 @@ const NameGenerator = (props) => {
     handlePrefix(name.prefix[PREFIX_ARRAY[randomPrefixNumber]]);
     handleSuffix(name.suffix[SUFFIX_ARRAY[randomSuffixNumber]]);
   };
+
+
+  console.log(firstName, lastName);
 
   return (
     <div className="name-generator-container">
@@ -111,6 +117,11 @@ const NameGenerator = (props) => {
         isModalOpen={isModalOpen}
         returnToHomePage={returnToHomePage}
         language={language}
+        firstName={firstName}
+        lastName={lastName}
+        prefix={prefix}
+        suffix={suffix}
+        reset={reset}
       />
     </div>
   );
