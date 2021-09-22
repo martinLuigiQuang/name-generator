@@ -1,50 +1,78 @@
 import * as React from 'react';
 import SuccessModal from './SuccessModal';
-import name from '../Data/name.json';
+import Button from '@material-ui/core/Button';
+import superheroNames from '../Data/superhero_names.json';
 import locale from '../Data/language.json';
 import './NameGenerator.scss';
+
+const WAITING_MESSAGES = ['OPENING EINSTEIN-ROSEN BRIDGE', 'WORMHOLE STABILIZED', 'ANALYSING RESULTS FROM ALTERNATE REALITIES', 'RESOLVING TIME TRAVEL PARADOXES', 'AND YOUR HERO NAME IS ...'];
 
 const NameGenerator = (props) => {
   const { 
     language, 
     gender, 
-    handlePrefix, 
-    handleSuffix, 
+    handleHeroName,
+    heroName, 
     firstName,
     lastName,
-    prefix, 
-    suffix, 
     handleSubmit, 
-    isSubmitBtnDisabled,
     returnToHomePage,
     isModalOpen,
     reset
   } = props;
+  const [ counter, setCounter ] = React.useState(-1);
+  const [ displayText, setDisplayText ] = React.useState('');
+  const isSubmitBtnDisabled = displayText !== '' || heroName === '' || (firstName === '' && lastName === '');
+  const isGenerateBtnDisabled = counter > -1 || language === '' || gender === '';
+  const superheroNamesArr = superheroNames[language];
 
-  const PREFIX_ARRAY = Object.keys(name.prefix).filter(item => item.includes(language) && item.includes(gender));
-  const SUFFIX_ARRAY = Object.keys(name.suffix).filter(item => item.includes(language) && item.includes(gender));
-  
-  
-  if (!prefix) {
-    handlePrefix(name.prefix[PREFIX_ARRAY[0]])
-  };
-  if (!suffix) {
-    handleSuffix(name.suffix[SUFFIX_ARRAY[0]])
+  if (superheroNames) {
+    console.log(superheroNames[language][12])
   }
 
-  const handlePrefixChange = (e) => {
-    handlePrefix(e.target.value);
-  };
-  const handleSuffixChange = (e) => {
-    handleSuffix(e.target.value);
-  };
+  React.useEffect(
+    () => {
+      if (counter > 0) {
+        setDisplayText(WAITING_MESSAGES[counter]);
+      }
+    },
+    [counter]
+  );
+
   const randomizer = () => {
-    const prefixLength = PREFIX_ARRAY.length;
-    const suffixLength = SUFFIX_ARRAY.length;
-    const randomPrefixNumber = Math.floor(Math.random() * prefixLength);
-    const randomSuffixNumber = Math.floor(Math.random() * suffixLength);
-    handlePrefix(name.prefix[PREFIX_ARRAY[randomPrefixNumber]]);
-    handleSuffix(name.suffix[SUFFIX_ARRAY[randomSuffixNumber]]);
+    const index1 = Math.floor(Math.random() * superheroNamesArr.length);
+    const index2 = Math.floor(Math.random() * superheroNamesArr.length);
+    const randomNumber = Math.floor(Math.random() * 100);
+    let sex = gender;
+    if (gender === 'N') {
+      sex = randomNumber % 2 ? 'F' : 'M';
+    }
+    const descriptor = superheroNamesArr[index1][`descriptor.${sex}`];
+    const title = superheroNamesArr[index2][`title.${sex}`];
+    handleHeroName(language === 'english' ? `${descriptor} ${title}` : `${title} ${descriptor}`);
+  };
+
+  const displayProgress = () => {
+    setCounter((counter) => counter + 1);
+    setDisplayText(WAITING_MESSAGES[0]);
+    const timerOut = setTimeout(
+      () => {
+        clearTimeout(timerOut);
+        randomizer();
+      },
+      7500
+    );
+    if (counter < 3) {
+      const timer = setInterval(
+        () => {
+          if (counter >= 3) {
+            clearInterval(timer);
+          }
+          setCounter((counter) => counter + 1);
+        },
+        1500
+      );
+    };
   };
 
 
@@ -52,75 +80,37 @@ const NameGenerator = (props) => {
 
   return (
     <div className="name-generator-container">
-      <div className="name-options-container">
-        <div className="prefix-container">
-          <label htmlFor="prefix">{locale[language].modifier}</label>
-          <select
-            onChange={handlePrefixChange}
-            name="prefix"
-            id="prefix"
-            value={prefix ? prefix : name.prefix[SUFFIX_ARRAY[0]]}
-          >
-            {
-              PREFIX_ARRAY.map(item => {
-                const value = name.prefix[item];
-                return (
-                  <option
-                    value={value}
-                    key={value}
-                  >
-                    {value}
-                  </option>
-                );
-              })
-            }
-          </select>
-        </div>
-        <div className="suffix-container">
-          <label htmlFor="suffix">{locale[language].heroic}</label>
-          <select
-            onChange={handleSuffixChange}
-            name="suffix"
-            id="suffix"
-            value={suffix ? suffix : name.prefix[SUFFIX_ARRAY[0]]}
-          >
-            {
-              SUFFIX_ARRAY.map(item => {
-                const value = name.suffix[item];
-                return (
-                  <option
-                    value={value}
-                    key={value}
-                  >
-                    {value}
-                  </option>
-                );
-              })
-            }
-          </select>
-        </div>
-      </div>
-      <button onClick={randomizer}>
+      <h2>Hi {firstName} {lastName}!</h2>
+      <h3>Let's get your hero name!</h3>
+      <Button 
+        onClick={displayProgress}
+        disabled={isGenerateBtnDisabled}
+      >
         {locale[language].generate}
-      </button>
-      <h1>
-        {prefix} {suffix}
-      </h1>
-      <button 
+      </Button>
+        {
+          displayText ? 
+          (
+            <>
+              <h3>{displayText}</h3>
+              <div className={`progress_${(counter + 1) * 100 / 5}`}></div>
+            </>
+          ) : 
+          <h1>{heroName}</h1>
+        }
+      <Button 
         onClick={handleSubmit}
         disabled={isSubmitBtnDisabled}
-        className={isSubmitBtnDisabled ? 'disabled' : ''}
       >
         {locale[language].submit}
-      </button>
+      </Button>
       <SuccessModal 
         isModalOpen={isModalOpen}
         returnToHomePage={returnToHomePage}
         language={language}
         firstName={firstName}
         lastName={lastName}
-        prefix={prefix}
-        suffix={suffix}
+        heroName={heroName}
         reset={reset}
       />
     </div>

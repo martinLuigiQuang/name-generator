@@ -11,34 +11,19 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.scss';
 require('dotenv').config();
 
-console.log(process.env.REACT_APP_SHEETSURL, 'env');
 const sheetsUrl = process.env.REACT_APP_SHEETSURL;
- console.log(sheetsUrl, 'sheetsurl')
 
 function App() {
-  const DB_REF = getDatabase(firebase);
+  const DB_REF = ref(getDatabase(firebase));
   const [gender, setGender] = React.useState('');
-  const [prefix, setPrefix] = React.useState('');
-  const [suffix, setSuffix] = React.useState('');
+  const [heroName, setHeroName] = React.useState('');
   const [language, setLanguage] = React.useState('english');
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [isSubmitBtnDisabled, setIsSubmitBtnDisabled] = React.useState(true);
-
-  
-  React.useEffect(
-    () => {
-      if (prefix !== '' && suffix !== '' && (lastName !== '' || firstName !== '')) {
-        setIsSubmitBtnDisabled(false);
-      }
-    },
-    [prefix, suffix, firstName, lastName]
-  );
   
   const postData = (requestBody) => {
-    
-    push(ref(DB_REF), requestBody);
+    push(DB_REF, requestBody);
     axios({
       url: sheetsUrl,
       method: 'POST',
@@ -50,12 +35,8 @@ function App() {
     });
   };
 
-  const handlePrefix = (name) => {
-    setPrefix(name);
-  };
-
-  const handleSuffix = (name) => {
-    setSuffix(name);
+  const handleHeroName = (name) => {
+    setHeroName(name);
   };
 
   const handleGenderSelection = (e) => {
@@ -77,8 +58,7 @@ function App() {
   const reset = () => {
     setFirstName('');
     setLastName('');
-    setPrefix('');
-    setSuffix('');
+    setHeroName('');
     setGender('');
     setIsModalOpen(false);
   };
@@ -88,18 +68,16 @@ function App() {
   };
   
   const handleSubmit = () => {
-    if (!prefix || !suffix || (!firstName && !lastName)) {
+    if (!heroName || (!firstName && !lastName)) {
       return null;
     }
-    setIsSubmitBtnDisabled(true);
     setIsModalOpen(true);
     const requestBody = {
       language,
       gender,
       firstName,
       lastName,
-      prefix,
-      suffix,
+      heroName,
       timeStamp: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
     };
     postData(requestBody);
@@ -131,16 +109,13 @@ function App() {
         }/>
         <Route path="/hero-name" component={() => 
           <NameGenerator 
-            handlePrefix={handlePrefix} 
-            handleSuffix={handleSuffix} 
+            handleHeroName={handleHeroName}
             gender={gender} 
             language={language} 
+            heroName={heroName}
             firstName={firstName}
             lastName={lastName}
-            prefix={prefix} 
-            suffix={suffix}
-            handleSubmit={handleSubmit} 
-            isSubmitBtnDisabled={isSubmitBtnDisabled} 
+            handleSubmit={handleSubmit}
             returnToHomePage={returnToHomePage}
             isModalOpen={isModalOpen}
             reset={reset}

@@ -2,24 +2,53 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    .name-options-container {
-        display: flex;
-        width: 400px;
-        justify-content: space-around;
-        select {
-            width: 175px;
-        }
-        .prefix-container,
-        .suffix-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
+    .progress_20,
+    .progress_40,
+    .progress_60,
+    .progress_80,
+    .progress_100 {
+        content: '';
+        height: 20px;
+        background-color: cadetblue;
+        align-self: flex-start;
+        margin-left: calc(50vw - 125px);
+        border-radius: 10px;
     }
-    button {
-        margin-top: 20px;
-        &.disabled {
-            color: gray;
-        }
+    .progress_20 {
+        animation: progress_20 1.5s linear;
     }
+    .progress_40 {
+        animation: progress_40 1.5s linear;
+    }
+    .progress_60 {
+        animation: progress_60 1.5s linear;
+    }
+    .progress_80 {
+        animation: progress_80 1.5s linear;
+    }
+    .progress_100 {
+        width: 250px;
+        animation: progress_100 1.2s linear;
+    }
+}
+
+@keyframes progress_20 {
+    0% { width: 0px; }
+    100% { width: 50px; }
+}
+@keyframes progress_40 {
+    0% { width: 50px; }
+    100% { width: 100px; }
+}
+@keyframes progress_60 {
+    0% { width: 100px; }
+    100% { width: 150px; }
+}
+@keyframes progress_80 {
+    0% { width: 150px; }
+    100% { width: 200px; }
+}
+@keyframes progress_100 {
+    0% { width: 200px; }
+    100% { width: 250px; }
 }
