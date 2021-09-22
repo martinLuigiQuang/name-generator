@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SuccessModal from './SuccessModal';
 import Button from '@material-ui/core/Button';
-import name from '../Data/name.json';
+import superheroNames from '../Data/superhero_names.json';
 import locale from '../Data/language.json';
 import './NameGenerator.scss';
 
@@ -23,10 +23,12 @@ const NameGenerator = (props) => {
   const [ counter, setCounter ] = React.useState(-1);
   const [ displayText, setDisplayText ] = React.useState('');
   const isSubmitBtnDisabled = displayText !== '' || heroName === '' || (firstName === '' && lastName === '');
-  const PREFIX_ARRAY = Object.keys(name.prefix).filter(item => item.includes(language) && item.includes(gender));
-  const SUFFIX_ARRAY = Object.keys(name.suffix).filter(item => item.includes(language) && item.includes(gender));
-  const prefixLength = PREFIX_ARRAY.length;
-  const suffixLength = SUFFIX_ARRAY.length;
+  const isGenerateBtnDisabled = counter > -1 || language === '' || gender === '';
+  const superheroNamesArr = superheroNames[language];
+
+  if (superheroNames) {
+    console.log(superheroNames[language][12])
+  }
 
   React.useEffect(
     () => {
@@ -38,11 +40,16 @@ const NameGenerator = (props) => {
   );
 
   const randomizer = () => {
-    const randomPrefixNumber = Math.floor(Math.random() * prefixLength);
-    const randomSuffixNumber = Math.floor(Math.random() * suffixLength);
-    const heroName1 = name.prefix[PREFIX_ARRAY[randomPrefixNumber]];
-    const heroName2 = name.suffix[SUFFIX_ARRAY[randomSuffixNumber]];
-    handleHeroName(`${heroName1} ${heroName2}`);
+    const index1 = Math.floor(Math.random() * superheroNamesArr.length);
+    const index2 = Math.floor(Math.random() * superheroNamesArr.length);
+    const randomNumber = Math.floor(Math.random() * 100);
+    let sex = gender;
+    if (gender === 'N') {
+      sex = randomNumber % 2 ? 'F' : 'M';
+    }
+    const descriptor = superheroNamesArr[index1][`descriptor.${sex}`];
+    const title = superheroNamesArr[index2][`title.${sex}`];
+    handleHeroName(language === 'english' ? `${descriptor} ${title}` : `${title} ${descriptor}`);
   };
 
   const displayProgress = () => {
@@ -77,7 +84,7 @@ const NameGenerator = (props) => {
       <h3>Let's get your hero name!</h3>
       <Button 
         onClick={displayProgress}
-        disabled={counter > -1}
+        disabled={isGenerateBtnDisabled}
       >
         {locale[language].generate}
       </Button>

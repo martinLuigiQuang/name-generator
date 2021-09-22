@@ -11,9 +11,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.scss';
 require('dotenv').config();
 
-console.log(process.env.REACT_APP_SHEETSURL, 'env');
 const sheetsUrl = process.env.REACT_APP_SHEETSURL;
- console.log(sheetsUrl, 'sheetsurl')
 
 function App() {
   const DB_REF = ref(getDatabase(firebase));
