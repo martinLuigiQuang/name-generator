@@ -11,9 +11,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.scss';
 require('dotenv').config();
 
-const url = process.env.REACT_APP_SHEETS_URL;
-
-console.log(url)
+console.log(process.env.REACT_APP_SHEETSURL, 'env');
+const sheetsUrl = process.env.REACT_APP_SHEETSURL;
+ console.log(sheetsUrl, 'sheetsurl')
 
 function App() {
   const DB_REF = ref(getDatabase(firebase));
@@ -23,13 +23,12 @@ function App() {
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-
-  console.log(heroName, firstName, lastName)
   
   const postData = (requestBody) => {
-    push(DB_REF, requestBody);
+    
+    push(ref(DB_REF), requestBody);
     axios({
-      url: process.env['REACT_APP_SHEETS_URL'],
+      url: sheetsUrl,
       method: 'POST',
       data: requestBody,
     }).then(result => {

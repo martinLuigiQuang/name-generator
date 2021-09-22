@@ -68,6 +68,9 @@ const NameGenerator = (props) => {
     };
   };
 
+
+  console.log(firstName, lastName);
+
   return (
     <div className="name-generator-container">
       <h2>Hi {firstName} {lastName}!</h2>
@@ -98,6 +101,9 @@ const NameGenerator = (props) => {
         isModalOpen={isModalOpen}
         returnToHomePage={returnToHomePage}
         language={language}
+        firstName={firstName}
+        lastName={lastName}
+        heroName={heroName}
         reset={reset}
       />
     </div>
