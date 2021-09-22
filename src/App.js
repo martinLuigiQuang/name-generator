@@ -25,8 +25,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   
   const postData = (requestBody) => {
-    
-    push(ref(DB_REF), requestBody);
+    push(DB_REF, requestBody);
     axios({
       url: sheetsUrl,
       method: 'POST',
