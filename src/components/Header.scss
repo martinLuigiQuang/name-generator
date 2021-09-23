@@ -1,13 +1,21 @@
 header {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 30px;
     .company-name {
-        height: 50px;
-        // border: 1px solid blue;
-        // background-color: rgba(0, 0, 255, 0.372);
+        display: flex;
+        justify-content: space-between;
+        margin: 35px;
+        img {
+            width: 100px;
+            align-self: center;
+            z-index: 99;
+        }
     }
-    .event-banner {
-        height: 120px;
-        // border: 1px dashed green;
-        // background-color: rgba(127, 255, 189, 0.562);
+    .comic-bubble {
+        img {
+            min-width: 500px;
+            width: 40%;
+        }
     }
 }

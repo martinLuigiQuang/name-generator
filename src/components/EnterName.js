@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import locale from '../Data/language.json';
+import './EnterName.scss';
 
 const EnterName = (props) => {
   const { 
@@ -40,14 +41,14 @@ const EnterName = (props) => {
   };
   
   return (
-    <div>
-      <div onChange={saveCurrentFirstName}>
+    <div className="name-container">
+      <div>
         <label htmlFor="firstName">{locale[language].firstName}</label>
-        <input type="text" id="firstName" value={currentFirstName}/>
+        <input type="text" id="firstName" value={currentFirstName} onChange={saveCurrentFirstName}/>
       </div>
-      <div onChange={saveCurrentLastName}>
+      <div>
         <label htmlFor="lastName">{locale[language].lastName}</label>
-        <input type="text" id="lastName" value={currentLastName}/>
+        <input type="text" id="lastName" value={currentLastName} onChange={saveCurrentLastName}/>
       </div>
       <Link 
         to="/code-name" 

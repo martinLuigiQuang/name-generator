@@ -1,0 +1,66 @@
+.language-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-around;
+    label {
+        position: relative;
+        &[for="english"],
+        &[for="portuguese"] {
+            transform: rotate(180deg);
+            top: -300px;
+            h2 {
+                transform: rotate(180deg);
+            }
+        }
+        &[for="english"] img {
+            transform: rotateY(180deg);
+        }
+        &[for="spanish"] {
+            img:hover {
+                background: radial-gradient(#030097 20%, #00000000 70%);
+            }
+            input:checked ~ img {
+                background: radial-gradient(#030097 20%, #00000000 70%);
+            }
+        }
+        img {
+            position: absolute;
+            content: url("../assets/speech_bubble_1.png");
+            top: -150px;
+            left: calc(50% - 250px);
+            &:hover {
+                border-radius: 50%;
+                background: radial-gradient(#AA0061 20%, #00000000 70%);
+            }
+            &:hover ~ h2 {
+                color: #AA0061;
+            }
+        }
+        h2 {
+            position: absolute;
+            z-index: 1;
+            top: -50px;
+            left: calc(50% - 100px);
+            width: 200px;
+            font-size: 36px;
+            &:hover {
+                color: #AA0061;
+            }
+        }
+        input {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            appearance: none;                                   
+            top: -150px;
+            left: calc(50% - 250px);
+            &:checked ~ h2 {
+                color: #009231;
+            }
+            &:checked ~ img {
+                border-radius: 50%;
+                background: radial-gradient(#AA0061 20%, #00000000 70%);
+            }
+        }
+    }
+}

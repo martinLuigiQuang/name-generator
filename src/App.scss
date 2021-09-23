@@ -1,21 +1,20 @@
-body {
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100vh;
-  font-family: Komika;
-  background: linear-gradient(80deg, #470A68 49.5%, black 49.5%, black 49.75%, blanchedalmond 49.75%, blanchedalmond 50.25%, black 50.25%, black 50.5%, #AA0061 50.5%);
-  .App {
-    text-align: center;
-    &.modal-open:after {
-      position: absolute;
-      content: "";
-      width: 100vw;
-      height: 100vh;
-      top: 0;
-      left: 0;
-      background-color: #D8D8D8D8;
-    }
+  text-align: center;
+  &.modal-open:after {
+    position: absolute;
+    content: "";
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: #D8D8D8D8;
   }
-  
-  .invisible {
-      display: none !important;
-  }
+}
+
+.invisible {
+    display: none !important;
 }

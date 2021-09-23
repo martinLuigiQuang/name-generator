@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import './LandingPage.scss';
 
 const LandingPage = (props) => {
@@ -13,10 +12,11 @@ const LandingPage = (props) => {
         }
     );
     return (
-        <div className="start-button-container">
-            <Link to="/origin">
-                Chapter 1: Origin
-            </Link>
+        <div className="landing-page-container">
+            <div>
+                <h2>The beginning</h2>
+            </div>
+            <h1>SUPERHEROES</h1>
         </div>
     );
 };

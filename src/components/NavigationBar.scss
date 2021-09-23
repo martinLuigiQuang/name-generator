@@ -1,5 +1,6 @@
 .chapters-container {
     position: absolute;
+    z-index: 99;
     display: flex;
     overflow-x: visible;
     bottom: 50px;
@@ -60,81 +61,81 @@
     }
 }
 
-.progress-bar {
-    position: absolute;
-    z-index: 1;
-    display: flex;
-    overflow-x: visible;
-    bottom: 62px;
-    left: calc(50vw - 80px);
-    height: 4px;
-    background-color: crimson;
-    &.progress-1 {
-        width: 0;
-    }
-    &.progress-2 {
-        width: 75px;
-        animation: progress_2 0.5s linear
-    }
-    &.progress-3 {
-        width: 150px;
-        animation: progress_3 0.5s linear
-    }
-    &.progress-4 {
-        width: 225px;
-        animation: progress_4 0.5s linear
-    }
-    &.progress-5 {
-        width: 300px;
-        animation: progress_5 0.5s linear
-    }
-    &.progress-1-back {
-        width: 0px;
-        animation: progress_1_back 0.5s linear
-    }
-    &.progress-2-back {
-        width: 75px;
-        animation: progress_2_back 0.5s linear
-    }
-    &.progress-3-back {
-        width: 150px;
-        animation: progress_3_back 0.5s linear
-    }
-    &.progress-4-back {
-        width: 225px;
-        animation: progress_4_back 0.5s linear
-    }
-}
+// .progress-bar {
+//     position: absolute;
+//     z-index: 1;
+//     display: flex;
+//     overflow-x: visible;
+//     bottom: 62px;
+//     left: calc(50vw - 80px);
+//     height: 4px;
+//     background-color: crimson;
+//     &.progress-1 {
+//         width: 0;
+//     }
+//     &.progress-2 {
+//         width: 75px;
+//         animation: progress_2 0.5s linear
+//     }
+//     &.progress-3 {
+//         width: 150px;
+//         animation: progress_3 0.5s linear
+//     }
+//     &.progress-4 {
+//         width: 225px;
+//         animation: progress_4 0.5s linear
+//     }
+//     &.progress-5 {
+//         width: 300px;
+//         animation: progress_5 0.5s linear
+//     }
+//     &.progress-1-back {
+//         width: 0px;
+//         animation: progress_1_back 0.5s linear
+//     }
+//     &.progress-2-back {
+//         width: 75px;
+//         animation: progress_2_back 0.5s linear
+//     }
+//     &.progress-3-back {
+//         width: 150px;
+//         animation: progress_3_back 0.5s linear
+//     }
+//     &.progress-4-back {
+//         width: 225px;
+//         animation: progress_4_back 0.5s linear
+//     }
+// }
 
-@keyframes progress_2 {
-    0% { width: 0px; }
-    100% { width: 75px; }
-}
-@keyframes progress_3 {
-    0% { width: 75px; }
-    100% { width: 150px; }
-}
-@keyframes progress_4 {
-    0% { width: 150px; }
-    100% { width: 225px; }
-}
-@keyframes progress_5 {
-    0% { width: 225px; }
-    100% { width: 300px; }
-}
-@keyframes progress_1_back {
-    0% { width: 75px; }
-    100% { width: 0; }
-}
-@keyframes progress_2_back {
-    0% { width: 150px; }
-    100% { width: 75px; }
-}
-@keyframes progress_3_back {
-    0% { width: 225px; }
-    100% { width: 150px; }
-}
-@keyframes progress_4_back {
-    0% { width: 300px; }
-    100% { width: 225px; }
-}
+// @keyframes progress_2 {
+//     0% { width: 0px; }
+//     100% { width: 75px; }
+// }
+// @keyframes progress_3 {
+//     0% { width: 75px; }
+//     100% { width: 150px; }
+// }
+// @keyframes progress_4 {
+//     0% { width: 150px; }
+//     100% { width: 225px; }
+// }
+// @keyframes progress_5 {
+//     0% { width: 225px; }
+//     100% { width: 300px; }
+// }
+// @keyframes progress_1_back {
+//     0% { width: 75px; }
+//     100% { width: 0; }
+// }
+// @keyframes progress_2_back {
+//     0% { width: 150px; }
+//     100% { width: 75px; }
+// }
+// @keyframes progress_3_back {
+//     0% { width: 225px; }
+//     100% { width: 150px; }
+// }
+// @keyframes progress_4_back {
+//     0% { width: 300px; }
+//     100% { width: 225px; }
+// }

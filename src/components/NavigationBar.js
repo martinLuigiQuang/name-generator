@@ -13,7 +13,6 @@ const NavigationBar = (props) => {
         },
         0
     );
-    console.log(prevProgress, readingProgress)
     return (
         <>
             <div className={`progress-bar progress-${readingProgress}${prevProgress === readingProgress ? '-back' : ''}`}></div>
@@ -21,8 +20,8 @@ const NavigationBar = (props) => {
                 {
                     progress.map((isAtChapter, index) => {
                         return (
-                            <Link to={LINKS[index]}>
-                                <div className={isAtChapter ? 'visited' : 'remaining'} key={index}>
+                            <Link to={LINKS[index]} key={index}>
+                                <div className={isAtChapter ? 'visited' : 'remaining'}>
                                     <p>{CHAPTERS[index]}</p>
                                 </div>
                             </Link>
