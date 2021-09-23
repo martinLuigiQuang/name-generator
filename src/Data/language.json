@@ -1,9 +1,9 @@
 {
   "english": {
     "gender": "Gender",
-    "male": "Male",
-    "female": "Female",
-    "neutral": "Neutral",
+    "male": "Man",
+    "female": "Woman",
+    "neutral": "Incognito",
     "generate": "Generate Random Name",
     "modifier": "Pick your modifier",
     "heroic": "Pick your heroic name",

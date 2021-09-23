@@ -1,12 +1,34 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import locale from '../Data/language.json';
+import './EnterName.scss';
 
 const EnterName = (props) => {
-  const { language, handleFirstName, handleLastName } = props;
-  const [currentFirstName, setCurrentFirstName] = React.useState('');
-  const [currentLastName, setCurrentLastName] = React.useState('');
+  const { 
+    language, 
+    handleFirstName, 
+    handleLastName, 
+    firstName, 
+    lastName,
+    progress,
+    setProgress,
+    setPrevProgress 
+  } = props;
+  const [currentFirstName, setCurrentFirstName] = React.useState(firstName);
+  const [currentLastName, setCurrentLastName] = React.useState(lastName);
   const isNextLinkVisible = currentFirstName !== '' || currentLastName !== '';
+  React.useEffect(
+    () => {
+      if (progress[4]) {
+        setProgress([true, true, true, true, false]);
+        setPrevProgress(4);
+      }
+      if (!progress[3]) {
+        setProgress([true, true, true, true, false]);
+        setPrevProgress(2);
+      }
+    }
+  );
   const saveCurrentFirstName = (e) => {
     setCurrentFirstName(e.target.value);
   };
@@ -19,24 +41,21 @@ const EnterName = (props) => {
   };
   
   return (
-    <div>
-      <div onChange={saveCurrentFirstName}>
+    <div className="name-container">
+      <div>
         <label htmlFor="firstName">{locale[language].firstName}</label>
-        <input type="text" id="firstName" value={currentFirstName}/>
+        <input type="text" id="firstName" value={currentFirstName} onChange={saveCurrentFirstName}/>
       </div>
-      <div onChange={saveCurrentLastName}>
+      <div>
         <label htmlFor="lastName">{locale[language].lastName}</label>
-        <input type="text" id="lastName" value={currentLastName}/>
+        <input type="text" id="lastName" value={currentLastName} onChange={saveCurrentLastName}/>
       </div>
-      <Link to="/gender">
-        Something's wrong.<br/>Go Back!
-      </Link>
       <Link 
-        to="/hero-name" 
+        to="/code-name" 
         onClick={saveNames} 
         className={isNextLinkVisible ? '' : 'invisible'}
       >
-        Next
+        Chapter 4: Rebirth
       </Link>
     </div>
   );

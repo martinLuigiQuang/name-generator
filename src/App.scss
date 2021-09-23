@@ -1,4 +1,8 @@
 .App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
   text-align: center;
   &.modal-open:after {
     position: absolute;

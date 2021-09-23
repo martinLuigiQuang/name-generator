@@ -2,11 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    .progress_20,
-    .progress_40,
-    .progress_60,
-    .progress_80,
-    .progress_100 {
+    height: 100%;
+    .progress {
         content: '';
         height: 20px;
         background-color: cadetblue;
@@ -14,41 +11,12 @@
         margin-left: calc(50vw - 125px);
         border-radius: 10px;
     }
-    .progress_20 {
-        animation: progress_20 1.5s linear;
-    }
-    .progress_40 {
-        animation: progress_40 1.5s linear;
-    }
-    .progress_60 {
-        animation: progress_60 1.5s linear;
-    }
-    .progress_80 {
-        animation: progress_80 1.5s linear;
-    }
-    .progress_100 {
-        width: 250px;
-        animation: progress_100 1.2s linear;
+    .progress {
+        animation: progress 5s linear;
     }
 }
 
-@keyframes progress_20 {
+@keyframes progress {
     0% { width: 0px; }
-    100% { width: 50px; }
-}
-@keyframes progress_40 {
-    0% { width: 50px; }
-    100% { width: 100px; }
-}
-@keyframes progress_60 {
-    0% { width: 100px; }
-    100% { width: 150px; }
-}
-@keyframes progress_80 {
-    0% { width: 150px; }
-    100% { width: 200px; }
-}
-@keyframes progress_100 {
-    0% { width: 200px; }
     100% { width: 250px; }
 }
