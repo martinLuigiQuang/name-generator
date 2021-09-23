@@ -3,9 +3,20 @@ import { Link } from 'react-router-dom';
 import locale from '../Data/language.json';
 
 const GenderSelector = (props) => {
-  const { language, gender, handleGenderSelection } = props;
+  const { language, gender, handleGenderSelection, progress, setProgress, setPrevProgress } = props;
   const isNextLinkVisible = gender !== '';
-
+  React.useEffect(
+    () => {
+      if (progress[3]) {
+        setProgress([true, true, true, false, false]);
+        setPrevProgress(3);
+      }
+      if (!progress[2]) {
+        setProgress([true, true, true, false, false]);
+        setPrevProgress(1);
+      }
+    }
+  );
   return (
     <>
       <div onChange={handleGenderSelection}>
@@ -17,8 +28,8 @@ const GenderSelector = (props) => {
         <label htmlFor="neutral">{locale[language].neutral}</label>
         <input type="radio" id="neutral" name="gender" value="N" checked={gender === 'N'}/>
       </div>
-      <Link to="/name" className={isNextLinkVisible ? '' : 'invisible'}>
-        Next
+      <Link to="/secret-identity" className={isNextLinkVisible ? '' : 'invisible'}>
+        Chapter 3: Secret Identity
       </Link>
     </>
   );

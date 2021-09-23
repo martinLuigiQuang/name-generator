@@ -3,6 +3,7 @@ import firebase from './firebaseConfig/firebaseConfig';
 import { getDatabase, ref, push } from 'firebase/database';
 import axios from 'axios';
 import Header from './components/Header';
+import LandingPage from './components/LandingPage';
 import NameGenerator from './components/NameGenerator';
 import GenderSelector from './components/Gender';
 import LanguageSelector from './components/Languages';
@@ -21,6 +22,8 @@ function App() {
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [progress, setProgress] = React.useState([true, false, false, false, false])
+  const [prevProgress, setPrevProgress] = React.useState(0);
   
   const postData = (requestBody) => {
     push(DB_REF, requestBody);
@@ -86,28 +89,49 @@ function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div className={`App ${isModalOpen ? 'modal-open' : ''}`}>
-        <Header/>
-        <Route exact path="/" component={() =>
+        <Header 
+          progress={progress}
+          prevProgress={prevProgress}
+        />
+        <Route exact path="/" component={() => 
+          <LandingPage 
+            progress={progress}
+            setProgress={setProgress}
+            setPrevProgress={setPrevProgress}
+          />
+        }/>
+        <Route path="/origin" component={() =>
           <LanguageSelector
             language={language}
             handleLanguageSelector={handleLanguageSelector}
+            progress={progress}
+            setProgress={setProgress}
+            setPrevProgress={setPrevProgress}
           />
         }/>
-        <Route path="/gender" component={() =>
+        <Route path="/persona" component={() =>
           <GenderSelector 
             handleGenderSelection={handleGenderSelection} 
             language={language}
             gender={gender}
+            progress={progress}
+            setProgress={setProgress}
+            setPrevProgress={setPrevProgress}
           />
         }/>
-        <Route path="/name" component={() =>
+        <Route path="/secret-identity" component={() =>
           <EnterName 
             handleFirstName={handleFirstName} 
             handleLastName={handleLastName} 
             language={language}
+            firstName={firstName}
+            lastName={lastName}
+            progress={progress}
+            setProgress={setProgress}
+            setPrevProgress={setPrevProgress}
           />
         }/>
-        <Route path="/hero-name" component={() => 
+        <Route path="/code-name" component={() => 
           <NameGenerator 
             handleHeroName={handleHeroName}
             gender={gender} 
@@ -119,6 +143,9 @@ function App() {
             returnToHomePage={returnToHomePage}
             isModalOpen={isModalOpen}
             reset={reset}
+            progress={progress}
+            setProgress={setProgress}
+            setPrevProgress={setPrevProgress}
           />
         }/>
       </div>

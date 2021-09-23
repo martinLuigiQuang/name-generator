@@ -2,8 +2,19 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 const LanguageSelector = (props) => {
-  const { handleLanguageSelector, language } = props;
-
+  const { handleLanguageSelector, language, setProgress, progress, setPrevProgress } = props;
+  React.useEffect(
+    () => {
+      if (progress[2]) {
+        setProgress([true, true, false, false, false]);
+        setPrevProgress(2)
+      }
+      if (!progress[1]) {
+        setProgress([true, true, false, false, false]);
+        setPrevProgress(0);
+      }
+    }
+  );
   return (
     <>
       <div onChange={handleLanguageSelector}>
@@ -15,7 +26,7 @@ const LanguageSelector = (props) => {
         <label htmlFor="portuguese">Portuguese</label>
         <input type="radio" id="portuguese" name="language" value="portuguese" checked={language === 'portuguese'}/>
       </div>
-      <Link to="/gender">Next</Link>
+      <Link to="/persona">Chapter 2: Persona</Link>
     </>
   );
 };

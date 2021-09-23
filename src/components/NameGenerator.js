@@ -18,17 +18,16 @@ const NameGenerator = (props) => {
     handleSubmit, 
     returnToHomePage,
     isModalOpen,
-    reset
+    reset,
+    progress,
+    setProgress,
+    setPrevProgress
   } = props;
   const [ counter, setCounter ] = React.useState(-1);
   const [ displayText, setDisplayText ] = React.useState('');
   const isSubmitBtnDisabled = displayText !== '' || heroName === '' || (firstName === '' && lastName === '');
   const isGenerateBtnDisabled = counter > -1 || language === '' || gender === '';
   const superheroNamesArr = superheroNames[language];
-
-  if (superheroNames) {
-    console.log(superheroNames[language][12])
-  }
 
   React.useEffect(
     () => {
@@ -37,6 +36,15 @@ const NameGenerator = (props) => {
       }
     },
     [counter]
+  );
+
+  React.useEffect(
+    () => {
+      if (!progress[4]) {
+        setProgress([true, true, true, true, true]);
+        setPrevProgress(3);
+      }
+    }
   );
 
   const randomizer = () => {
@@ -60,7 +68,7 @@ const NameGenerator = (props) => {
         clearTimeout(timerOut);
         randomizer();
       },
-      7500
+      5000
     );
     if (counter < 3) {
       const timer = setInterval(
@@ -70,13 +78,10 @@ const NameGenerator = (props) => {
           }
           setCounter((counter) => counter + 1);
         },
-        1500
+        1000
       );
     };
   };
-
-
-  console.log(firstName, lastName);
 
   return (
     <div className="name-generator-container">
@@ -93,7 +98,7 @@ const NameGenerator = (props) => {
           (
             <>
               <h3>{displayText}</h3>
-              <div className={`progress_${(counter + 1) * 100 / 5}`}></div>
+              <div className="progress"></div>
             </>
           ) : 
           <h1>{heroName}</h1>
