@@ -9,10 +9,12 @@ import GenderSelector from './components/Gender';
 import LanguageSelector from './components/Languages';
 import EnterName from './components/EnterName';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import * as htmlToImage from 'html-to-image';
 import './App.scss';
 require('dotenv').config();
 
 const sheetsUrl = process.env.REACT_APP_SHEETSURL;
+// const download = require('downloadjs')
 
 function App() {
   const DB_REF = ref(getDatabase(firebase));
@@ -24,6 +26,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [progress, setProgress] = React.useState([true, false, false, false, false])
   const [prevProgress, setPrevProgress] = React.useState(0);
+  
   
   const postData = (requestBody) => {
     push(DB_REF, requestBody);
@@ -86,6 +89,15 @@ function App() {
     postData(requestBody);
   };
 
+  // const onCapture = (id) => {
+  //   htmlToImage.toPng(document.getElementById(id))
+  //     .then(function (dataUrl) {
+  //       download(dataUrl, 'my-superhero-name.png');
+  //     });
+
+  //     console.log(document.getElementById(id), 'element')
+  // }
+
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div className={`App ${isModalOpen ? 'modal-open' : ''}`}>
@@ -146,6 +158,7 @@ function App() {
             progress={progress}
             setProgress={setProgress}
             setPrevProgress={setPrevProgress}
+            // onCapture={onCapture}
           />
         }/>
       </div>

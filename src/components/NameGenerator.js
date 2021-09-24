@@ -21,7 +21,8 @@ const NameGenerator = (props) => {
     reset,
     progress,
     setProgress,
-    setPrevProgress
+    setPrevProgress,
+    // onCapture
   } = props;
   const [ counter, setCounter ] = React.useState(-1);
   const [ displayText, setDisplayText ] = React.useState('');
@@ -117,6 +118,7 @@ const NameGenerator = (props) => {
         lastName={lastName}
         heroName={heroName}
         reset={reset}
+        // onCapture={onCapture}
       />
     </div>
   );
