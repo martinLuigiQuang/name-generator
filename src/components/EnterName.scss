@@ -1,3 +1,64 @@
 .name-container {
+    position: absolute;
     height: 100%;
+    width: 100%;
+    background: url('../assets/city_background.png'), linear-gradient(#AA0061, #470A68), linear-gradient(355deg, #f5ff66c5, #58585873, #09005d);
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0% 70%;
+    .chapter-container {
+        text-decoration: underline;
+        font-size: 2rem;
+        color: #4000b6;
+        text-shadow: 1px 1px 0 black,
+                     1px -1px 0 black,
+                     -1px 1px 0 black,
+                     -1px -1px 0 black;
+    }
+    .outer-box {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        width: 40%;
+        min-width: 400px;
+        left: 5%;
+        top: 200px;
+        background-color: rgb(255, 255, 255);
+        border: 3px solid black;
+        .task {
+            position: relative;
+            background-color: blanchedalmond;
+            border: 3px solid black;
+            margin: 5px;
+            padding: 10px 0;
+            width: 100%;
+            h2 {
+                margin: 20px 0;
+            }
+            input {
+                border: none;
+                margin-right: 25px;
+                font-size: 1.7rem;
+                font-family: 'Komika';
+                border-bottom: 3px solid black;
+                background-color: blanchedalmond;
+                width: 200px;
+            }
+            a {
+                position: absolute;
+                bottom: 5px;
+                right: 5px;
+                text-decoration: none;
+                font-size: 1.5rem;
+                color: #AA0061;
+                animation: flash 1s infinite;
+            }
+        }
+    }
+}
+
+@keyframes flash {
+    0% { transform: translateX(5px); }
+    100% { transform: translateX(0px); }
 }

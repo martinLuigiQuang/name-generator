@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './Language.scss';
-import SpeechBubble from '../assets/speech_bubble_1.png';
+import SpeechBubble from './SpeechBubble';
+import Bubble from '../assets/speech_bubble_1.png';
 
 const LanguageSelector = (props) => {
   const { handleLanguageSelector, language, setProgress, progress, setPrevProgress } = props;
@@ -18,20 +19,29 @@ const LanguageSelector = (props) => {
   );
   return (
     <form className="language-container">
+      <div className="chapter-container">
+        <h1>Chapter 1: Origin</h1>
+      </div>
       <label htmlFor="english">
         <input type="radio" id="english" name="language" value="english" checked={language === 'english'} onChange={handleLanguageSelector}/>
-        <img src={SpeechBubble}/>
-        <h2>I speak English</h2>
+        <SpeechBubble 
+          text="I speak English"
+          imgSrc={Bubble}
+        />
       </label>
       <label htmlFor="spanish">
         <input type="radio" id="spanish" name="language" value="spanish" checked={language === 'spanish'} onChange={handleLanguageSelector}/>
-        <img src={SpeechBubble}/>
-        <h2>Hablo Español</h2>
+        <SpeechBubble 
+          text="Hablo Español"
+          imgSrc={Bubble}
+        />
       </label>
       <label htmlFor="portuguese">
         <input type="radio" id="portuguese" name="language" value="portuguese" checked={language === 'portuguese'} onChange={handleLanguageSelector}/>
-        <img src={SpeechBubble}/>
-        <h2>Eu falo Português</h2>
+        <SpeechBubble 
+          text="Eu falo Português"
+          imgSrc={Bubble}
+        />
       </label>
     </form>
   );

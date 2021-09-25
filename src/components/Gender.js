@@ -1,19 +1,23 @@
 import * as React from 'react';
 import locale from '../Data/language.json';
-import SpeechBubble from '../assets/speech_bubble_2.png';
+import SpeechBubble from './SpeechBubble';
+import Bubble1 from '../assets/speech_bubble_2.png';
+import Mask from '../assets/hero_mask.png';
+import { Link } from 'react-router-dom';
 import './Gender.scss';
 
 const GenderSelector = (props) => {
   const { language, gender, handleGenderSelection, progress, setProgress, setPrevProgress } = props;
+  const isNextLinkVisible = gender !== '';
   React.useEffect(
     () => {
-      if (progress[3]) {
-        setProgress([true, true, true, false, false]);
-        setPrevProgress(3);
+      if (progress[4]) {
+        setProgress([true, true, true, true, false]);
+        setPrevProgress(4);
       }
-      if (!progress[2]) {
-        setProgress([true, true, true, false, false]);
-        setPrevProgress(1);
+      if (!progress[3]) {
+        setProgress([true, true, true, true, false]);
+        setPrevProgress(2);
       }
     }
   );
@@ -36,19 +40,31 @@ const GenderSelector = (props) => {
               <h2>{locale[language].neutral}</h2>
             </label>
           </div>
+          <Link 
+            to="/code-name"
+            className={isNextLinkVisible ? '' : 'invisible'}
+          >
+            Next {`>`}
+          </Link>
         </div>
       </div>
+      <div className="chapter-container">
+        <SpeechBubble 
+          text="Chapter 3: Persona"
+          imgSrc={Mask}
+        />
+      </div>
       <div className="speech-1">
-        <img src={SpeechBubble}/>
-        <h2>I need a hero!</h2>
+        <SpeechBubble 
+          text="Help me!"
+          imgSrc={Bubble1}
+        />
       </div>
       <div className="speech-2">
-        <img src={SpeechBubble}/>
-        <h2>Help me!!!</h2>
-      </div>
-      <div className="speech-3">
-        <img src={SpeechBubble}/>
-        <h2>Aaaahhhhh!!</h2>
+        <SpeechBubble 
+          text="AAAAHHHHHH!!!"
+          imgSrc={Bubble1}
+        />
       </div>
     </div>
   );

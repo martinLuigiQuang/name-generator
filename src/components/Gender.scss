@@ -13,14 +13,25 @@
         width: 50%;
         left: -10px;
         top: 200px;
+        z-index: 90;
         background-color: rgb(255, 255, 255);
         border: 3px solid black;
         .task {
+            position: relative;
             background-color: blanchedalmond;
             border: 3px solid black;
             margin: 5px;
             padding: 10px 0;
             width: 100%;
+            a {
+                position: absolute;
+                bottom: 5px;
+                right: 5px;
+                text-decoration: none;
+                font-size: 1.5rem;
+                color: #AA0061;
+                animation: flash 1s infinite;
+            }
             h2 {
                 margin: 20px;
             }
@@ -53,37 +64,48 @@
             }
         }
     }
-    .speech-1 {
+    .chapter-container {
         position: absolute;
         left: 50px;
-        bottom: 50px;
+        bottom: 270px;
+        width: 500px;
+        z-index: 80;
         h2 {
-            position: absolute;
-            bottom: 220px;
-            left: 100px;
-            font-size: 50px;
+            width: 60%;
+            font-size: 3.5rem;
+            text-decoration: underline;
+            color: rgb(0, 0, 0);
+            text-shadow: 1px 1px 0 white,
+                     1px -1px 0 white,
+                     -1px 1px 0 white,
+                     -1px -1px 0 white;
+        }
+        img {
+            background: radial-gradient(#6d12ff, #00000000 70%);
+            border-radius: 50%;
+        }
+    }
+    .speech-1 {
+        position: absolute;
+        right: 50px;
+        bottom: 250px;
+        width: 400px;
+        h2 {
+            font-size: 2rem;
         }
     }
     .speech-2 {
         position: absolute;
-        right: 250px;
-        bottom: 50px;
+        right: 100px;
+        bottom: 750px;
+        width: 500px;
         h2 {
-            position: absolute;
-            bottom: 220px;
-            left: 160px;
-            font-size: 50px;
+            font-size: 2rem;
         }
     }
-    .speech-3 {
-        position: absolute;
-        right: 50px;
-        top: 100px;
-        h2 {
-            position: absolute;
-            bottom: 220px;
-            left: 150px;
-            font-size: 50px;
-        }
-    }
+}
+
+@keyframes flash {
+    0% { transform: translateX(5px); }
+    100% { transform: translateX(0px); }
 }

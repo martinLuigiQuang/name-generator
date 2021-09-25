@@ -104,6 +104,9 @@ function App() {
         <Header 
           progress={progress}
           prevProgress={prevProgress}
+          firstName={firstName}
+          lastName={lastName}
+          gender={gender}
         />
         <Route exact path="/" component={() => 
           <LandingPage 
