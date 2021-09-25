@@ -1,63 +1,70 @@
 .language-container {
-    flex-grow: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/superhero_3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: space-around;
+    h1 {
+        width: 320px;
+    }
+    .chapter-container {
+        position: absolute;
+        left: 100px;
+        top: 150px;
+        font-size: 2rem;
+        text-decoration: underline;
+        color: #FFFFFF;
+        text-shadow: 1px 1px 0 black,
+                     1px -1px 0 black,
+                     -1px 1px 0 black,
+                     -1px -1px 0 black;
+    }
     label {
         position: relative;
-        &[for="english"],
-        &[for="portuguese"] {
+        transform: rotate(180deg);
+        top: -250px;
+        h2 {
             transform: rotate(180deg);
-            top: -300px;
-            h2 {
-                transform: rotate(180deg);
-            }
         }
-        &[for="english"] img {
+        &[for="english"] .speech-bubble img {
             transform: rotateY(180deg);
         }
-        &[for="spanish"] {
-            img:hover {
-                background: radial-gradient(#030097 20%, #00000000 70%);
-            }
-            input:checked ~ img {
-                background: radial-gradient(#030097 20%, #00000000 70%);
-            }
+        &[for="portuguese"] {
+            right: 100px;
         }
-        img {
-            position: absolute;
-            content: url("../assets/speech_bubble_1.png");
-            top: -150px;
-            left: calc(50% - 250px);
-            &:hover {
-                border-radius: 50%;
-                background: radial-gradient(#AA0061 20%, #00000000 70%);
-            }
-            &:hover ~ h2 {
-                color: #AA0061;
+        .speech-bubble {
+            width: 400px;
+            img {
+                top: -100px;
+                &:hover {
+                    background: radial-gradient(#AA0061 20%, #00000000 70%);
+                }
+                &:hover ~ h2 {
+                    color: #AA0061;
+                }
             }
         }
         h2 {
-            position: absolute;
-            z-index: 1;
-            top: -50px;
-            left: calc(50% - 100px);
-            width: 200px;
-            font-size: 36px;
+            font-size: 2rem;
             &:hover {
                 color: #AA0061;
             }
         }
         input {
             position: absolute;
-            width: 500px;
-            height: 500px;
+            width: 400px;
+            height: 400px;
             appearance: none;                                   
             top: -150px;
             left: calc(50% - 250px);
-            &:checked ~ h2 {
+            &:checked ~ .speech-bubble h2 {
                 color: #009231;
             }
-            &:checked ~ img {
+            &:checked ~ .speech-bubble img {
                 border-radius: 50%;
                 background: radial-gradient(#AA0061 20%, #00000000 70%);
             }

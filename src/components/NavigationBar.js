@@ -2,11 +2,13 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import './NavigationBar.scss';
 
-const LINKS = ['/', '/origin', '/persona', '/secret-identity', '/code-name'];
+const LINKS = ['/', '/origin', '/secret-identity', '/persona', '/code-name'];
 const CHAPTERS = ['', '1', '2', '3', '4'];
 
 const NavigationBar = (props) => {
-    const { progress, prevProgress } = props;
+    const { progress, prevProgress, firstName, lastName, gender } = props;
+    const hasNames = firstName !== '' || lastName !== '';
+    const hasGender = gender !== '';
     const readingProgress = progress.reduce(
         (acc, cur) => {
             return acc += cur ? 1 : 0;
@@ -20,11 +22,19 @@ const NavigationBar = (props) => {
                 {
                     progress.map((isAtChapter, index) => {
                         return (
-                            <Link to={LINKS[index]} key={index}>
-                                <div className={isAtChapter ? 'visited' : 'remaining'}>
+                            (index === 4 && !hasGender) || (index === 3 && !hasNames) ?
+                            (
+                                <div className="remaining locked" key={index}>
                                     <p>{CHAPTERS[index]}</p>
                                 </div>
-                            </Link>
+                            ) :
+                            (
+                                <Link to={LINKS[index]} key={index}>
+                                    <div className={isAtChapter ? 'visited' : 'remaining'}>
+                                        <p>{CHAPTERS[index]}</p>
+                                    </div>
+                                </Link>
+                            )
                         );
                     })
                 }

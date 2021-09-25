@@ -19,13 +19,13 @@ const EnterName = (props) => {
   const isNextLinkVisible = currentFirstName !== '' || currentLastName !== '';
   React.useEffect(
     () => {
-      if (progress[4]) {
-        setProgress([true, true, true, true, false]);
-        setPrevProgress(4);
+      if (progress[3]) {
+        setProgress([true, true, true, false, false]);
+        setPrevProgress(3);
       }
-      if (!progress[3]) {
-        setProgress([true, true, true, true, false]);
-        setPrevProgress(2);
+      if (!progress[2]) {
+        setProgress([true, true, true, false, false]);
+        setPrevProgress(1);
       }
     }
   );
@@ -42,21 +42,28 @@ const EnterName = (props) => {
   
   return (
     <div className="name-container">
-      <div>
-        <label htmlFor="firstName">{locale[language].firstName}</label>
-        <input type="text" id="firstName" value={currentFirstName} onChange={saveCurrentFirstName}/>
+      <div className="chapter-container">
+        <h1>Chapter 2: Secret Identity</h1>
       </div>
-      <div>
-        <label htmlFor="lastName">{locale[language].lastName}</label>
-        <input type="text" id="lastName" value={currentLastName} onChange={saveCurrentLastName}/>
+      <div className="outer-box">
+        <div className="task">
+          <h2>No one knows that a civilian who goes by the name</h2>
+          <label htmlFor="firstName">
+            <input type="text" id="firstName" value={currentFirstName} onChange={saveCurrentFirstName} placeholder="first name"/>
+          </label>
+          <label htmlFor="lastName">
+            <input type="text" id="lastName" value={currentLastName} onChange={saveCurrentLastName} placeholder="last name"/>
+          </label>
+          <h2>is about to become the city's protector.</h2>
+          <Link 
+            to="/persona"
+            onClick={saveNames}
+            className={isNextLinkVisible ? '' : 'invisible'}
+          >
+            Next {`>`}
+          </Link>
+        </div>
       </div>
-      <Link 
-        to="/code-name" 
-        onClick={saveNames} 
-        className={isNextLinkVisible ? '' : 'invisible'}
-      >
-        Chapter 4: Rebirth
-      </Link>
     </div>
   );
 };

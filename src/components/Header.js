@@ -5,7 +5,7 @@ import AbbottLogo from '../assets/abbott_logo.png';
 import EventiveLogo from '../assets/eventive_logo.jpg';
 
 const Header = (props) => {
-    const { progress, prevProgress, setPrevProgress } = props;
+    const { progress, prevProgress, setPrevProgress, firstName, lastName, gender } = props;
     return (
         <header>
             <div className="company-name">
@@ -16,6 +16,9 @@ const Header = (props) => {
                 progress={progress}
                 prevProgress={prevProgress}
                 setPrevProgress={setPrevProgress}
+                firstName={firstName}
+                lastName={lastName}
+                gender={gender}
             />
         </header>
     );
