@@ -60,7 +60,7 @@ const EnterName = (props) => {
             onClick={saveNames}
             className={isNextLinkVisible ? '' : 'invisible'}
           >
-            Next {`>`}
+            Unlock chapter 3 {`>`}
           </Link>
         </div>
       </div>

@@ -44,7 +44,7 @@ const GenderSelector = (props) => {
             to="/code-name"
             className={isNextLinkVisible ? '' : 'invisible'}
           >
-            Next {`>`}
+            Unlock chapter 4 {`>`}
           </Link>
         </div>
       </div>
