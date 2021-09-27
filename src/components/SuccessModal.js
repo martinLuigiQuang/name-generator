@@ -13,22 +13,22 @@ const SuccessModal = (props) => {
     })
 
     
-  const onCapture = () => {
-    console.log(superheroName.current, 'current');
-    htmlToImage.toPng(superheroName.current)
-      .then(function (dataUrl) {
-        download(dataUrl, 'my-superhero-name.png');
-      });
-
-    // console.log(document.getElementById('id'))
-  }
+    const onCapture = () => {
+      console.log(superheroName.current, 'current');
+      htmlToImage.toPng(superheroName.current)
+        .then(function (dataUrl) {
+          download(dataUrl, 'my-superhero-name.png');
+          console.log(dataUrl);
+        });
+    }
     
 
     return (
       <div className={`superheroName success-modal ${isModalOpen ? '' : 'invisible'}`}>
-
-            <h2 ref={superheroName} id="test">{firstName} {lastName}</h2>
+        <div ref={superheroName} className="heroNameDiv">
+            <h2>{firstName} {lastName}</h2>
             <h2>{heroName}</h2>
+        </div>
     
             <p>Your selections were successfully saved</p>
             <button onClick={()=> {onCapture(superheroName)}}>Save Superhero name</button>
