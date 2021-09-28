@@ -7,12 +7,11 @@ import GenderSelector from './components/Gender';
 import LanguageSelector from './components/Languages';
 import EnterName from './components/EnterName';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import * as htmlToImage from 'html-to-image';
+import SuccessModal from './components/SuccessModal';
 import './App.scss';
 require('dotenv').config();
 
 const sheetsUrl = process.env.REACT_APP_SHEETSURL;
-// const download = require('downloadjs')
 
 function App() {
   const DB_REF = ref(getDatabase(firebase));
@@ -75,7 +74,6 @@ function App() {
     if (!heroName || (!firstName && !lastName)) {
       return null;
     }
-    setIsModalOpen(true);
     const requestBody = {
       language,
       gender,
@@ -87,18 +85,9 @@ function App() {
     postData(requestBody);
   };
 
-  // const onCapture = (id) => {
-  //   htmlToImage.toPng(document.getElementById(id))
-  //     .then(function (dataUrl) {
-  //       download(dataUrl, 'my-superhero-name.png');
-  //     });
-
-  //     console.log(document.getElementById(id), 'element')
-  // }
-
   return (
     <Router basename={process.env.PUBLIC_URL}>
-      <div className={`App ${isModalOpen ? 'modal-open' : ''}`}>
+      <div className={'App'}>
         <Header 
           progress={progress}
           prevProgress={prevProgress}
@@ -137,6 +126,13 @@ function App() {
             handleSubmit={handleSubmit}
             handleHeroName={handleHeroName}
             // onCapture={onCapture}
+          />
+        }/>
+        <Route path="/superhero-name" component={() =>
+          <SuccessModal 
+            firstName={firstName}
+            lastName={lastName}
+            heroName={heroName}
           />
         }/>
       </div>

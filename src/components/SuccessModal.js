@@ -9,6 +9,7 @@ const SuccessModal = (props) => {
     const superheroName = useRef(null);
 
     useEffect(()=> {
+      console.log('hero', superheroName);
       console.log('heroname', superheroName.current);
     })
 
@@ -24,17 +25,17 @@ const SuccessModal = (props) => {
     
 
     return (
-      <div className={`superheroName success-modal ${isModalOpen ? '' : 'invisible'}`}>
+      <div className="superheroName success-modal">
         <div ref={superheroName} className="heroNameDiv">
-            <h2>{firstName} {lastName}</h2>
-            <h2>{heroName}</h2>
+          <h2>Jon Lyn</h2>
+          <p>as</p>
+          <h2>super man</h2>
         </div>
-    
-            <p>Your selections were successfully saved</p>
-            <button onClick={()=> {onCapture(superheroName)}}>Save Superhero name</button>
-            <button onClick={()=> {returnToHomePage(); reset()}}>
-                Return to homepage
-            </button>
+      
+          <button onClick={()=> {onCapture(superheroName)}}>Download</button>
+          <button onClick={()=> {returnToHomePage(); reset()}}>
+              Return to homepage
+          </button>
         </div>
     );
 };
