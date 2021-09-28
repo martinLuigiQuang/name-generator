@@ -42,38 +42,27 @@ const EnterName = (props) => {
   
   return (
     <div className="name-container">
-      {/* <div className="chapter-container">
-        <h1>Chapter 2: Secret Identity</h1>
-      </div> */}
       <div className="outer-box">
         <div className="task">
-          <h2>No one knows that a civilian who goes by the name</h2>
+          <h2>Hi</h2>
           <label htmlFor="firstName">
             <input type="text" id="firstName" value={currentFirstName} onChange={saveCurrentFirstName} placeholder="first name"/>
           </label>
           <label htmlFor="lastName">
             <input type="text" id="lastName" value={currentLastName} onChange={saveCurrentLastName} placeholder="last name"/>
           </label>
-          <h2>is about to become the city's protector.</h2>
-          <Link 
-            to="/persona"
-            onClick={saveNames}
-            className={isNextLinkVisible ? '' : 'invisible'}
-          >
-            Unlock chapter 3 {`>`}
-          </Link>
+          <NameGenerator 
+            language={language}
+            gender={gender}
+            firstName={firstName}
+            lastName={lastName}
+            heroName={heroName}
+            handleSubmit={handleSubmit}
+            handleHeroName={handleHeroName}
+            // onCapture={onCapture}
+          />
         </div>
       </div>
-      <NameGenerator 
-        language={language}
-        gender={gender}
-        firstName={firstName}
-        lastName={lastName}
-        heroName={heroName}
-        handleSubmit={handleSubmit}
-        handleHeroName={handleHeroName}
-        // onCapture={onCapture}
-      />
     </div>
   );
 };

@@ -40,9 +40,9 @@ const NameGenerator = (props) => {
     if (gender === 'N') {
       sex = randomNumber % 2 ? 'F' : 'M';
     }
-    const descriptor = superheroNamesArr[index1][`descriptor.${sex}`];
-    const title = superheroNamesArr[index2][`title.${sex}`];
-    handleHeroName(language === 'english' ? `${descriptor} ${title}` : `${title} ${descriptor}`);
+    const descriptor = superheroNamesArr[index1][`Descriptor.${sex}`];
+    const title = superheroNamesArr[index2][`Title.${sex}`];
+    handleHeroName(`${descriptor} ${title}`);
   };
 
   const displayProgress = () => {
@@ -70,7 +70,6 @@ const NameGenerator = (props) => {
 
   return (
     <div className="name-generator-container">
-      <h2>Hi {firstName} {lastName}!</h2>
       <h3>Let's get your hero name!</h3>
       <Button 
         onClick={displayProgress}

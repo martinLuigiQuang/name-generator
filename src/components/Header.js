@@ -9,8 +9,8 @@ const Header = (props) => {
     return (
         <header>
             <div className="company-name">
+                <h1>CALA Superhero Name Generator</h1>
                 <img src={AbbottLogo} alt="abbott logo"/>
-                <img src={EventiveLogo} alt="eventive_logo"/>
             </div>
             <NavigationBar 
                 progress={progress}

@@ -2,7 +2,8 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    background: url("../assets/persona.jpg");
+    top: 0;
+    background: url("../assets/Pg2_Select Gender.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -11,8 +12,10 @@
         justify-content: center;
         position: absolute;
         width: 50%;
-        left: -10px;
-        top: 200px;
+        max-width: 500px;
+        min-width: 360px;
+        left: 25%;
+        bottom: 200px;
         z-index: 90;
         background-color: rgb(255, 255, 255);
         border: 3px solid black;

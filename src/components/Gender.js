@@ -20,7 +20,6 @@ const GenderSelector = (props) => {
     <div className="gender-container">
       <div className="outer-box">
         <div className="task">
-          <h2>The city needs help. Time to put your mask on.</h2>
           <div className="selections-container">
             <label htmlFor="male">
               <input type="radio" id="male" name="gender" value="M" checked={gender === 'M'} onChange={handleGenderSelection}/>
@@ -42,24 +41,6 @@ const GenderSelector = (props) => {
             Unlock chapter 4 {`>`}
           </Link>
         </div>
-      </div>
-      <div className="chapter-container">
-        <SpeechBubble 
-          text="Chapter 3: Persona"
-          imgSrc={Mask}
-        />
-      </div>
-      <div className="speech-1">
-        <SpeechBubble 
-          text="Help me!"
-          imgSrc={Bubble1}
-        />
-      </div>
-      <div className="speech-2">
-        <SpeechBubble 
-          text="AAAAHHHHHH!!!"
-          imgSrc={Bubble1}
-        />
       </div>
     </div>
   );

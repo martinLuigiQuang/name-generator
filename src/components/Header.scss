@@ -6,6 +6,9 @@ header {
         display: flex;
         justify-content: space-between;
         margin: 35px;
+        h1 {
+            z-index: 99;
+        }
         img {
             width: 100px;
             align-self: center;
