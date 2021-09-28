@@ -1,31 +1,31 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import NameGenerator from './NameGenerator';
 import locale from '../Data/language.json';
 import './EnterName.scss';
 
 const EnterName = (props) => {
   const { 
-    language, 
+    language,
+    gender,
+    heroName,
+    handleHeroName,
+    handleSubmit, 
     handleFirstName, 
     handleLastName, 
     firstName, 
     lastName,
     progress,
     setProgress,
-    setPrevProgress 
+    // onCapture
   } = props;
   const [currentFirstName, setCurrentFirstName] = React.useState(firstName);
   const [currentLastName, setCurrentLastName] = React.useState(lastName);
   const isNextLinkVisible = currentFirstName !== '' || currentLastName !== '';
   React.useEffect(
     () => {
-      if (progress[3]) {
-        setProgress([true, true, true, false, false]);
-        setPrevProgress(3);
-      }
       if (!progress[2]) {
-        setProgress([true, true, true, false, false]);
-        setPrevProgress(1);
+        setProgress([true, true, true]);
       }
     }
   );
@@ -42,9 +42,9 @@ const EnterName = (props) => {
   
   return (
     <div className="name-container">
-      <div className="chapter-container">
+      {/* <div className="chapter-container">
         <h1>Chapter 2: Secret Identity</h1>
-      </div>
+      </div> */}
       <div className="outer-box">
         <div className="task">
           <h2>No one knows that a civilian who goes by the name</h2>
@@ -64,6 +64,16 @@ const EnterName = (props) => {
           </Link>
         </div>
       </div>
+      <NameGenerator 
+        language={language}
+        gender={gender}
+        firstName={firstName}
+        lastName={lastName}
+        heroName={heroName}
+        handleSubmit={handleSubmit}
+        handleHeroName={handleHeroName}
+        // onCapture={onCapture}
+      />
     </div>
   );
 };

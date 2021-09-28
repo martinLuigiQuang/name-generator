@@ -1,5 +1,4 @@
 import * as React from 'react';
-import SuccessModal from './SuccessModal';
 import Button from '@material-ui/core/Button';
 import superheroNames from '../Data/superhero_names.json';
 import locale from '../Data/language.json';
@@ -11,17 +10,11 @@ const NameGenerator = (props) => {
   const { 
     language, 
     gender, 
-    handleHeroName,
-    heroName, 
     firstName,
     lastName,
-    handleSubmit, 
-    returnToHomePage,
-    isModalOpen,
-    reset,
-    progress,
-    setProgress,
-    setPrevProgress,
+    heroName, 
+    handleSubmit,
+    handleHeroName,
     // onCapture
   } = props;
   const [ counter, setCounter ] = React.useState(-1);
@@ -37,15 +30,6 @@ const NameGenerator = (props) => {
       }
     },
     [counter]
-  );
-
-  React.useEffect(
-    () => {
-      if (!progress[4]) {
-        setProgress([true, true, true, true, true]);
-        setPrevProgress(3);
-      }
-    }
   );
 
   const randomizer = () => {
@@ -110,16 +94,6 @@ const NameGenerator = (props) => {
       >
         {locale[language].submit}
       </Button>
-      <SuccessModal 
-        isModalOpen={isModalOpen}
-        returnToHomePage={returnToHomePage}
-        language={language}
-        firstName={firstName}
-        lastName={lastName}
-        heroName={heroName}
-        reset={reset}
-        // onCapture={onCapture}
-      />
     </div>
   );
 };

@@ -1,19 +1,14 @@
 import * as React from 'react';
-import './Language.scss';
+import './Languages.scss';
 import SpeechBubble from './SpeechBubble';
 import Bubble from '../assets/speech_bubble_1.png';
 
 const LanguageSelector = (props) => {
-  const { handleLanguageSelector, language, setProgress, progress, setPrevProgress } = props;
+  const { handleLanguageSelector, language, setProgress, progress } = props;
   React.useEffect(
     () => {
-      if (progress[2]) {
-        setProgress([true, true, false, false, false]);
-        setPrevProgress(2)
-      }
-      if (!progress[1]) {
-        setProgress([true, true, false, false, false]);
-        setPrevProgress(0);
+      if (progress[1]) {
+        setProgress([true, false, false]);
       }
     }
   );

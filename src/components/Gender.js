@@ -7,17 +7,12 @@ import { Link } from 'react-router-dom';
 import './Gender.scss';
 
 const GenderSelector = (props) => {
-  const { language, gender, handleGenderSelection, progress, setProgress, setPrevProgress } = props;
+  const { language, gender, handleGenderSelection, progress, setProgress } = props;
   const isNextLinkVisible = gender !== '';
   React.useEffect(
     () => {
-      if (progress[4]) {
-        setProgress([true, true, true, true, false]);
-        setPrevProgress(4);
-      }
-      if (!progress[3]) {
-        setProgress([true, true, true, true, false]);
-        setPrevProgress(2);
+      if (progress[2] || !progress[1]) {
+        setProgress([true, true, false]);
       }
     }
   );
