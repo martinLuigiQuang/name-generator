@@ -18,29 +18,28 @@ const GenderSelector = (props) => {
   );
   return (
     <div className="gender-container">
-      <div className="outer-box">
-        <div className="task">
-          <div className="selections-container">
-            <label htmlFor="male">
-              <input type="radio" id="male" name="gender" value="M" checked={gender === 'M'} onChange={handleGenderSelection}/>
-              <h2>{locale[language].male}</h2>
-            </label>
-            <label htmlFor="female">
-              <input type="radio" id="female" name="gender" value="F" checked={gender === 'F'} onChange={handleGenderSelection}/>
-              <h2>{locale[language].female}</h2>
-            </label>
-            <label htmlFor="neutral">
-              <input type="radio" id="neutral" name="gender" value="N" checked={gender === 'N'} onChange={handleGenderSelection}/>
-              <h2>{locale[language].neutral}</h2>
-            </label>
-          </div>
-          <Link 
-            to="/code-name"
-            className={isNextLinkVisible ? '' : 'invisible'}
-          >
-            Unlock chapter 4 {`>`}
-          </Link>
-        </div>
+      <div className="selections-container">
+        <label htmlFor="male">
+          <input type="radio" id="male" name="gender" value="M" checked={gender === 'M'} onChange={handleGenderSelection}/>
+          <h2>{locale[language].male}</h2>
+        </label>
+        <label htmlFor="female">
+          <input type="radio" id="female" name="gender" value="F" checked={gender === 'F'} onChange={handleGenderSelection}/>
+          <h2>{locale[language].female}</h2>
+        </label>
+        <label htmlFor="neutral">
+          <input type="radio" id="neutral" name="gender" value="N" checked={gender === 'N'} onChange={handleGenderSelection}/>
+          <h2>{locale[language].neutral}</h2>
+        </label>
+      </div>
+      <div className="navigation-bar">
+        <Link to="/">{`<`} Back</Link>
+        <Link 
+          to="/secret-identity"
+          className={isNextLinkVisible ? '' : 'invisible'}
+        >
+          Next {`>`}
+        </Link>
       </div>
     </div>
   );

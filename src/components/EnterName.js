@@ -36,8 +36,8 @@ const EnterName = (props) => {
     setCurrentLastName(e.target.value);
   };
   const saveNames = () => {
-    handleFirstName(currentFirstName);
-    handleLastName(currentLastName);
+    handleFirstName(currentFirstName.toUpperCase());
+    handleLastName(currentLastName.toUpperCase());
   };
   
   return (
@@ -59,6 +59,7 @@ const EnterName = (props) => {
             heroName={heroName}
             handleSubmit={handleSubmit}
             handleHeroName={handleHeroName}
+            saveNames={saveNames}
             // onCapture={onCapture}
           />
         </div>
