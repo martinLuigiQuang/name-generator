@@ -1,5 +1,4 @@
 import * as React from 'react';
-import SuccessModal from './SuccessModal';
 import Button from '@material-ui/core/Button';
 import superheroNames from '../Data/superhero_names.json';
 import locale from '../Data/language.json';
@@ -11,17 +10,11 @@ const NameGenerator = (props) => {
   const { 
     language, 
     gender, 
-    handleHeroName,
-    heroName, 
     firstName,
     lastName,
-    handleSubmit, 
-    returnToHomePage,
-    isModalOpen,
-    reset,
-    progress,
-    setProgress,
-    setPrevProgress,
+    heroName, 
+    handleSubmit,
+    handleHeroName,
     // onCapture
   } = props;
   const [ counter, setCounter ] = React.useState(-1);
@@ -39,15 +32,6 @@ const NameGenerator = (props) => {
     [counter]
   );
 
-  React.useEffect(
-    () => {
-      if (!progress[4]) {
-        setProgress([true, true, true, true, true]);
-        setPrevProgress(3);
-      }
-    }
-  );
-
   const randomizer = () => {
     const index1 = Math.floor(Math.random() * superheroNamesArr.length);
     const index2 = Math.floor(Math.random() * superheroNamesArr.length);
@@ -56,9 +40,9 @@ const NameGenerator = (props) => {
     if (gender === 'N') {
       sex = randomNumber % 2 ? 'F' : 'M';
     }
-    const descriptor = superheroNamesArr[index1][`descriptor.${sex}`];
-    const title = superheroNamesArr[index2][`title.${sex}`];
-    handleHeroName(language === 'english' ? `${descriptor} ${title}` : `${title} ${descriptor}`);
+    const descriptor = superheroNamesArr[index1][`Descriptor.${sex}`];
+    const title = superheroNamesArr[index2][`Title.${sex}`];
+    handleHeroName(`${descriptor} ${title}`);
   };
 
   const displayProgress = () => {
@@ -86,7 +70,6 @@ const NameGenerator = (props) => {
 
   return (
     <div className="name-generator-container">
-      <h2>Hi {firstName} {lastName}!</h2>
       <h3>Let's get your hero name!</h3>
       <Button 
         onClick={displayProgress}
@@ -110,16 +93,6 @@ const NameGenerator = (props) => {
       >
         {locale[language].submit}
       </Button>
-      <SuccessModal 
-        isModalOpen={isModalOpen}
-        returnToHomePage={returnToHomePage}
-        language={language}
-        firstName={firstName}
-        lastName={lastName}
-        heroName={heroName}
-        reset={reset}
-        // onCapture={onCapture}
-      />
     </div>
   );
 };

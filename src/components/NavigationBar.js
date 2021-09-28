@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import './NavigationBar.scss';
 
-const LINKS = ['/', '/origin', '/secret-identity', '/persona', '/code-name'];
-const CHAPTERS = ['', '1', '2', '3', '4'];
+const LINKS = ['/', '/persona', '/secret-identity'];
+const CHAPTERS = ['1', '2', '3'];
 
 const NavigationBar = (props) => {
-    const { progress, prevProgress, firstName, lastName, gender } = props;
+    const { progress, firstName, lastName, gender } = props;
     const hasNames = firstName !== '' || lastName !== '';
     const hasGender = gender !== '';
     const readingProgress = progress.reduce(
@@ -17,7 +17,7 @@ const NavigationBar = (props) => {
     );
     return (
         <>
-            <div className={`progress-bar progress-${readingProgress}${prevProgress === readingProgress ? '-back' : ''}`}></div>
+            <div className={`progress-bar progress-${readingProgress}`}></div>
             <div className="chapters-container">
                 {
                     progress.map((isAtChapter, index) => {

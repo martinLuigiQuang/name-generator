@@ -12,11 +12,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
   font-family: 'Komika';
-  background: url("./assets/heroes_bakground.jpg"), linear-gradient(0deg, #470A68 40%, #AA0061 85%), linear-gradient(355deg, #000000c5, #ffffffc5, #000000c5);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-blend-mode: overlay;
 }
 
 code {
