@@ -9,16 +9,16 @@ import Invincible from '../assets/Invincible Word Mark.png';
 const download = require('downloadjs')
 
 const SuccessModal = (props) => {
-    const { returnToHomePage, language, firstName, lastName, heroName } = props;
+    const { returnToHomePage, language, firstName, lastName, heroName, handleSubmit } = props;
     const superheroName = useRef(null);
 
     const capture = () => {
+      handleSubmit();
       superheroName.current.setAttribute('style', 'width: 1000px');
-      htmlToImage.toPng(superheroName.current)
-        .then(function (dataUrl) {
-          superheroName.current.setAttribute('style', 'width: 0px');
-          download(dataUrl, 'my-superhero-name.png');
-        });
+      htmlToImage.toPng(superheroName.current).then(function (dataUrl) {
+        superheroName.current.setAttribute('style', 'width: 0px');
+        download(dataUrl, 'my-superhero-name.png');
+      });
     }
     
     return (
@@ -28,14 +28,14 @@ const SuccessModal = (props) => {
           <SpeechBubble 
             imgSrc={Bubble} 
             text={`${firstName} ${lastName}`} 
-            text2={locale[language].aka}
+            text2={language && locale[language].aka}
             text3={heroName}/> 
         </div>
         <Button onClick={capture}>
-          {locale[language].download}
+          {language && locale[language].download}
         </Button>
         <Button onClick={returnToHomePage}>
-            {locale[language].returnToHomePage}
+            {language && locale[language].returnToHomePage}
         </Button>
       </div>
     );

@@ -13,7 +13,12 @@
     "submit": "Submit",
     "download": "download",
     "returnToHomePage": "return to home page",
-    "aka": "aka"
+    "aka": "aka",
+    "loadingMessage1": "opening einstein-rosen bridge",
+    "loadingMessage2": "wormhole stabilized",
+    "loadingMessage3": "analyzing results from alternate realities",
+    "loadingMessage4": "resolving time-travel paradox",
+    "loadingMessage5": "and your superhero name is ..."
   },
 
   "spanish": {
@@ -30,7 +35,12 @@
     "submit": "Submit SP",
     "download": "download SP",
     "returnToHomePage": "return to home page SP",
-    "aka": "aka SP"
+    "aka": "aka SP",
+    "loadingMessage1": "opening einstein-rosen bridge SP",
+    "loadingMessage2": "wormhole stabilized SP",
+    "loadingMessage3": "analyzing results from alternate realities SP",
+    "loadingMessage4": "resolving time-travel paradox SP",
+    "loadingMessage5": "and your superhero name is ... SP"
   },
 
   "portuguese": {
@@ -47,6 +57,11 @@
     "submit": "Submit PO",
     "download": "download PO",
     "returnToHomePage": "return to home page PO",
-    "aka": "aka PO"
+    "aka": "aka PO",
+    "loadingMessage1": "opening einstein-rosen bridge PO",
+    "loadingMessage2": "wormhole stabilized PO",
+    "loadingMessage3": "analyzing results from alternate realities PO",
+    "loadingMessage4": "resolving time-travel paradox PO",
+    "loadingMessage5": "and your superhero name is ... PO"
   }
 }

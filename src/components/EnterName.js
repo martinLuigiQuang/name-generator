@@ -9,7 +9,6 @@ const EnterName = (props) => {
     gender,
     heroName,
     handleHeroName,
-    handleSubmit, 
     handleFirstName, 
     handleLastName, 
     firstName, 
@@ -48,7 +47,6 @@ const EnterName = (props) => {
             heroName={heroName}
             currentFirstName={currentFirstName}
             currentLastName={currentLastName}
-            handleSubmit={handleSubmit}
             handleHeroName={handleHeroName}
             saveNames={saveNames}
           />

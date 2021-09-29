@@ -5,7 +5,7 @@ import locale from '../Data/language.json';
 import { Link } from 'react-router-dom';
 import './NameGenerator.scss';
 
-const WAITING_MESSAGES = ['OPENING EINSTEIN-ROSEN BRIDGE', 'WORMHOLE STABILIZED', 'ANALYSING RESULTS FROM ALTERNATE REALITIES', 'RESOLVING TIME TRAVEL PARADOXES', 'AND YOUR HERO NAME IS ...'];
+const WAITING_MESSAGES = ['loadingMessage1', 'loadingMessage2', 'loadingMessage3', 'loadingMessage4', 'loadingMessage5'];
 
 const NameGenerator = (props) => {
   const { 
@@ -14,7 +14,6 @@ const NameGenerator = (props) => {
     heroName, 
     currentFirstName,
     currentLastName,
-    handleSubmit,
     handleHeroName,
     saveNames
   } = props;
@@ -75,7 +74,6 @@ const NameGenerator = (props) => {
   const handleLink = async () => {
     await saveNames();
     await handleHeroName(currentHeroName.toUpperCase());
-    handleSubmit();
   };
 
   return (
@@ -91,7 +89,7 @@ const NameGenerator = (props) => {
           displayText ? 
           (
             <>
-              <h3>{displayText}</h3>
+              <h3>{locale[language][displayText]}</h3>
               <div className="progress"></div>
             </>
           ) 
@@ -111,7 +109,7 @@ const NameGenerator = (props) => {
           )
         }
       <div className="navigation-bar">
-        <Link to="/persona">{`<`} Back</Link>
+        <Link to="/persona">{`< ${locale[language].back}`}</Link>
         {
           isSubmitBtnDisabled ? null :
           (

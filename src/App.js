@@ -20,22 +20,26 @@ function App() {
   const [language, setLanguage] = React.useState('english');
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [progress, setProgress] = React.useState([true, false, false])
-  const [prevProgress, setPrevProgress] = React.useState(0);
-  
-  
+
   const postData = (requestBody) => {
-    push(DB_REF, requestBody);
-    axios({
-      url: sheetsUrl,
-      method: 'POST',
-      data: requestBody,
-    }).then(result => {
-      console.log(result);
-    }).catch(error => {
-      console.log(error);
-    });
+    try {
+      push(DB_REF, requestBody);
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      axios({
+        url: sheetsUrl,
+        method: 'POST',
+        data: requestBody,
+      }).then(result => {
+        console.log(result);
+      }).catch(error => {
+        console.log(error);
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleHeroName = (name) => {
@@ -63,15 +67,14 @@ function App() {
     setLastName('');
     setHeroName('');
     setGender('');
-    setIsModalOpen(false);
   };
 
   const returnToHomePage = () => {
+    reset();
     window.location.href = '/';
   };
   
   const handleSubmit = () => {
-    
     if (!heroName || (!firstName && !lastName)) {
       return null;
     }
@@ -84,7 +87,6 @@ function App() {
       timeStamp: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
     };
     postData(requestBody);
-    console.log('here');
   };
 
   return (
@@ -95,8 +97,6 @@ function App() {
           <LanguageSelector
             language={language}
             handleLanguageSelector={handleLanguageSelector}
-            progress={progress}
-            setProgress={setProgress}
           />
         }/>
         <Route path="/persona" component={() =>
@@ -104,22 +104,17 @@ function App() {
             handleGenderSelection={handleGenderSelection} 
             language={language}
             gender={gender}
-            progress={progress}
-            setProgress={setProgress}
           />
         }/>
         <Route path="/secret-identity" component={() =>
           <EnterName 
-            handleFirstName={handleFirstName} 
-            handleLastName={handleLastName} 
             language={language}
             gender={gender} 
             firstName={firstName}
             lastName={lastName}
             heroName={heroName}
-            progress={progress}
-            setProgress={setProgress}
-            handleSubmit={handleSubmit}
+            handleFirstName={handleFirstName} 
+            handleLastName={handleLastName} 
             handleHeroName={handleHeroName}
           />
         }/>
@@ -128,8 +123,9 @@ function App() {
             firstName={firstName}
             lastName={lastName}
             heroName={heroName}
+            language={language}
             returnToHomePage={returnToHomePage}
-            reset={reset}
+            handleSubmit={handleSubmit}
           />
         }/>
       </div>
