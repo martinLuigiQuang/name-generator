@@ -1,13 +1,21 @@
 header {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 30px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #000;
+  width: 1280px;
+  color: #fff;
+  justify-content: center;
+  padding: 15px 0;
     .company-name {
         display: flex;
         justify-content: space-between;
-        margin: 35px;
+        margin: 0 35px;
+        align-items: center;
         h1 {
             z-index: 99;
+            margin: 0;
+            padding: 0;
         }
         img {
             width: 100px;

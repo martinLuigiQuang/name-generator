@@ -8,15 +8,34 @@
         height: 20px;
         background-color: cadetblue;
         align-self: flex-start;
-        margin-left: calc(50vw - 125px);
         border-radius: 10px;
+        margin-left: 125px;
+        
     }
     .progress {
         animation: progress 5s linear;
     }
     .navigation-bar {
         position: absolute;
-        bottom: 50px;
+        bottom: -80px;
+        .MuiButtonBase-root {
+
+          color: #fff;
+        }
+    }
+    #heroName {
+      width: 100%;
+      border: none;
+      margin: 0 auto;
+      font-size: 1.7rem;
+      font-family: 'Komika';
+      border-bottom: 3px solid black;
+      background-color: blanchedalmond;
+      text-align: center;
+    }
+    .MuiButtonBase-root {
+      font-family: 'Komika';
+      font-size: 1.7rem;
     }
 }
 

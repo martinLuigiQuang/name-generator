@@ -1,15 +1,16 @@
 .language-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    background: url('../assets/Pg1_Select Language.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  margin: 0 auto;
+  width: 1280px;
+  height: calc(100vh - 144px);
+  min-height: 600px;
+  background: url('../assets/Pg1_Select Language.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
     label {
         position: relative;
         width: 30%;

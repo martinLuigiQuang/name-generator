@@ -69,8 +69,13 @@ function App() {
   const returnToHomePage = () => {
     window.location.href = '/';
   };
+
+  const toSuccessModal = () => {
+    window.location.href = '/superhero-name';
+  };
   
   const handleSubmit = () => {
+    
     if (!heroName || (!firstName && !lastName)) {
       return null;
     }
@@ -83,18 +88,13 @@ function App() {
       timeStamp: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
     };
     postData(requestBody);
+    toSuccessModal();
   };
 
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div className={'App'}>
-        <Header 
-          progress={progress}
-          prevProgress={prevProgress}
-          firstName={firstName}
-          lastName={lastName}
-          gender={gender}
-        />
+        <Header />
         <Route exact path="/" component={() =>
           <LanguageSelector
             language={language}

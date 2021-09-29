@@ -1,12 +1,15 @@
 .gender-container {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
+    margin: 0 auto;
+    width: 1280px;
+    height: calc(100vh - 148px);
+    min-height: 600px;
     background: url("../assets/Pg2_Select Gender.jpg");
+    flex-grow: 1;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    border: 2px solid white;
+    position: relative;
     .navigation-bar {
         position: absolute;
         width: calc(100% - 100px);
@@ -26,7 +29,7 @@
     .selections-container {
         position: absolute;
         bottom: 100px;
-        width: 100%;
+        width: 1280px;
         display: flex;
         justify-content: center;
         label {

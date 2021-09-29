@@ -44,7 +44,6 @@ const EnterName = (props) => {
     <div className="name-container">
       <div className="outer-box">
         <div className="task">
-          <h2>Hi</h2>
           <label htmlFor="firstName">
             <input type="text" id="firstName" value={currentFirstName} onChange={saveCurrentFirstName} placeholder="first name"/>
           </label>
@@ -64,6 +63,7 @@ const EnterName = (props) => {
           />
         </div>
       </div>
+          <Link to="/persona">{`<`} Back</Link>
     </div>
   );
 };

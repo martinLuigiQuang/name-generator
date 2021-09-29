@@ -1,7 +1,11 @@
 import { React, useRef, useEffect } from 'react';
-import * as htmlToImage from 'html-to-image';
+import Button from '@material-ui/core/Button';
+import * as htmlToImage from 
+'html-to-image';
 import locale from '../Data/language.json';
 import './SuccessModal.scss';
+import SpeechBubble from './SpeechBubble';
+import Bubble from '../assets/speech_bubble_2.png';
 const download = require('downloadjs')
 
 const SuccessModal = (props) => {
@@ -27,15 +31,13 @@ const SuccessModal = (props) => {
     return (
       <div className="superheroName success-modal">
         <div ref={superheroName} className="heroNameDiv">
-          <h2>Jon Lyn</h2>
-          <p>as</p>
-          <h2>super man</h2>
+          <SpeechBubble imgSrc={Bubble} text="Jon Lyn" text2="aka" text3="super man"/> 
         </div>
       
-          <button onClick={()=> {onCapture(superheroName)}}>Download</button>
-          <button onClick={()=> {returnToHomePage(); reset()}}>
+          <Button onClick={()=> {onCapture(superheroName)}}>Download</Button>
+          <Button onClick={()=> {returnToHomePage(); reset()}}>
               Return to homepage
-          </button>
+          </Button>
         </div>
     );
 };

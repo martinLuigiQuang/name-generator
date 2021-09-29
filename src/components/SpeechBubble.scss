@@ -1,3 +1,5 @@
+
+
 .speech-bubble {
     position: relative;
     display: flex;
@@ -7,7 +9,8 @@
         width: 100%;
         position: absolute;
     }
-    h2 {
+    h2,
+    p {
         z-index: 1;
         width: 50%;
         margin: 0;

@@ -93,18 +93,21 @@ const NameGenerator = (props) => {
           (
             <label htmlFor="heroName">
               <input 
+                placeholder="or create your own"
                 type="text" 
                 value={currentHeroName} 
                 id="heroName" 
                 name="heroName"
                 onChange={e => setCurrentHeroName(e.target.value)}
-                onBlur={() => handleHeroName(currentHeroName.toUpperCase())}
+                onBlur={() => {
+                  saveNames();
+                  handleHeroName(currentHeroName.toUpperCase())}
+                }
               />
             </label>
           )
         }
       <div className="navigation-bar">
-        <Link to="/secret-identity">{`<`} Back</Link>
         <Button 
           onClick={handleSubmit}
           disabled={isSubmitBtnDisabled}
