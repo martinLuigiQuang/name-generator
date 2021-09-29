@@ -1,12 +1,11 @@
 {
   "english": {
-    "gender": "Gender",
     "male": "Male",
     "female": "Female",
     "neutral": "Gender Neutral",
+    "heroNameMessage": "let's uncover your superhero identity!",
     "generate": "Click to generate name",
-    "modifier": "Pick your modifier",
-    "heroic": "Pick your heroic name",
+    "createHeroName": "or enter here to create your own",
     "firstName": "First name",
     "lastName": "Last name",
     "submit": "Submit"

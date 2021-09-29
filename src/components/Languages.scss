@@ -1,16 +1,14 @@
 .language-container {
-  margin: 0 auto;
-  width: 1280px;
-  height: calc(100vh - 144px);
-  min-height: 827px;
-  background: url('../assets/Pg1_Select Language.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  position: relative;
+    margin: 0 auto;
+    height: 720px;
+    background: url('../assets/Pg1_Select Language.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
     label {
         position: relative;
         width: 30%;
@@ -29,15 +27,15 @@
             }
         }
         h2 {
-            font-size: 2rem;
+            font-size: var(--big-font-size);
             &:hover {
                 color: #AA0061;
             }
         }
         input {
             position: absolute;
-            width: 400px;
-            height: 400px;
+            width: 30%;
+            height: 30%;
             appearance: none;                                   
             top: -150px;
             left: calc(50% - 250px);
@@ -50,19 +48,56 @@
             }
         }
     }
-    a {
+    .navigation-bar {
         position: absolute;
-        right: 50px;
-        bottom: 50px;
+        top: 0;
+        right: 0;
         z-index: 99;
-        font-size: 2rem;
-        text-decoration: none;
-        animation: flash 1s infinite;
-        color: #470A68;
+        padding: 20px;
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        background: linear-gradient(90deg, #00000000,rgba(255, 255, 0, 0.623) 90%);
+        a {
+            font-size: var(--big-font-size);
+            text-decoration: none;
+            animation: flash 1s infinite;
+            color: #470A68;
+        }
     }
 }
 
 @keyframes flash {
     0% { transform: translateX(5px); }
     100% { transform: translateX(0px); }
+}
+
+@media screen and (max-width: 1420px) {
+    .language-container {
+        height: 50vw;
+    }
+}
+
+@media screen and (max-width: 1170px) {
+    .language-container {
+        label h2,
+        .navigation-bar a {
+            font-size: var(--medium-font-size);
+        }
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .language-container {
+        height: 600px;
+        flex-direction: column;
+        label {
+            width: 50%;
+        }
+        .navigation-bar {
+            width: auto;
+            height: calc(100% - 40px);
+            background: none;
+        }
+    }
 }

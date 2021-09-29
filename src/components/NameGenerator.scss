@@ -6,42 +6,74 @@
     .progress {
         content: '';
         height: 20px;
-        background-color: cadetblue;
+        background-color: darkorchid;
         align-self: flex-start;
         border-radius: 10px;
-        margin-left: 125px;
-        
-    }
-    .progress {
+        margin-left: calc(50% - 125px);
         animation: progress 5s linear;
+        position: relative;
+        &:after {
+          content: '';
+          height: 100%;
+          width: 250px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          border-radius: 10px;
+          outline: 2px solid darkorchid;
+          outline-offset: 2px;
+        }
     }
     .navigation-bar {
         position: absolute;
-        bottom: -70px;
+        display: flex;
+        width: 500px;
+        justify-content: space-between;
+        bottom: 5px;
+        a {
+          text-decoration: none;
+          font-size: var(--big-font-size);
+          color: #000;
+        }
         #submit {
           position: relative;
-          color: #fff;
           left: 0;
           bottom: 0;
+          color: #AA0061;
+          animation: flash 1s infinite;
         }
     }
     #heroName {
       width: 100%;
       border: none;
       margin: 0 auto;
-      font-size: 1.7rem;
+      font-size: var(--big-font-size);
       font-family: 'Komika';
       border-bottom: 3px solid black;
       background-color: blanchedalmond;
       text-align: center;
+      width: 500px;
+      color: #AA0061;
+      font-weight: bold;
+      &::placeholder {
+        color: black;
+      }
+      &:disabled::placeholder {
+        color: rgba(0, 0, 0, 0.26);
+      }
     }
     .MuiButtonBase-root {
       font-family: 'Komika';
-      font-size: 1.7rem;
+      font-size: var(--big-font-size);
     }
 }
 
 @keyframes progress {
     0% { width: 0px; }
     100% { width: 250px; }
+}
+
+@keyframes flash {
+  0% { transform: translateX(5px); }
+  100% { transform: translateX(0px); }
 }

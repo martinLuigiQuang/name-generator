@@ -81,7 +81,7 @@ const NameGenerator = (props) => {
 
   return (
     <div className="name-generator-container">
-      <h3>Let's get your hero name!</h3>
+      <h2>{locale[language].heroNameMessage}</h2>
       <Button 
         onClick={displayProgress}
         disabled={isGenerateBtnDisabled}
@@ -100,17 +100,19 @@ const NameGenerator = (props) => {
           (
             <label htmlFor="heroName">
               <input 
-                placeholder="or create your own"
+                placeholder={locale[language].createHeroName}
                 type="text" 
                 value={currentHeroName} 
                 id="heroName" 
                 name="heroName"
+                disabled={isGenerateBtnDisabled}
                 onChange={e => setCurrentHeroName(e.target.value)}
               />
             </label>
           )
         }
       <div className="navigation-bar">
+        <Link to="/persona">{`<`} Back</Link>
         {
           isSubmitBtnDisabled ? null :
           (
@@ -120,7 +122,7 @@ const NameGenerator = (props) => {
               onClick={handleLink}
               disabled={isSubmitBtnDisabled}
             >
-              {locale[language].submit}
+              {`${locale[language].submit} >`}
             </Link>
           )
         }

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import NameGenerator from './NameGenerator';
 import locale from '../Data/language.json';
 import './EnterName.scss';
@@ -64,7 +63,6 @@ const EnterName = (props) => {
           />
         </div>
       </div>
-          <Link to="/persona">{`<`} Back</Link>
     </div>
   );
 };

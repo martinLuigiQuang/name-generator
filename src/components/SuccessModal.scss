@@ -5,49 +5,58 @@
 
 .success-modal {
   margin: 0 auto;
-  width: 1280px;
-  height: calc(100vh - 144px);
-  min-height: 827px;
+  height: 720px;
+  min-width: 400px;
   background-image: url('../assets/Pg2_Select Gender.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center top;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid #fff;
+  border-top: 2px solid #fff;
 
-    .heroNameDiv {
-    height: 600px;
-    width: 1280px;
-    display: flex;
-    justify-content: center;
-
-      .speech-bubble {
-        flex-direction: column;
-        width: 600px;
-        h2:nth-child(4) {
-          font-family: 'Best-Friends';
-          font-size: 4.5rem;
-          letter-spacing: 4px;
-          color: yellow;
-          text-shadow: 10px 10px 0 black, -2px 2px 0 black, 2px -2px 0 black, -2px -2px 0 black;
-          width: 1280px;
-        }
+  .heroNameDiv {
+  height: 720px;
+  width: 0;
+  display: flex;
+  justify-content: center;
+  background: url('../assets/Pg1_Select Language.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  position: relative;
+    img#invincible {
+      width: 30%;
+      object-fit: contain;
+      position: absolute;
+      top: 40px;
+      left: 40px;
+    }
+    .speech-bubble {
+      flex-direction: column;
+      width: 600px;
+      h2:nth-child(4) {
+        font-family: 'Best-Friends';
+        font-size: var(--huge-font-size);
+        letter-spacing: 4px;
+        color: yellow;
+        text-shadow: 10px 10px 0 black, -2px 2px 0 black, 2px -2px 0 black, -2px -2px 0 black;
+        width: 1280px;
       }
       img {
         width: 600px;
       }
+    }
 
-    }
-    button {
-      width: 350px;
-      max-width: 350px;
-      font-family: 'Komika';
-      color: #fff;
-      font-size: 25px;
-    }
+  }
+  button {
+    width: 350px;
+    max-width: 350px;
+    font-family: 'Komika';
+    color: #fff;
+    font-size: var(--big-font-size);
+  }
 }
 
 

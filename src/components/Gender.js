@@ -1,8 +1,5 @@
 import * as React from 'react';
 import locale from '../Data/language.json';
-import SpeechBubble from './SpeechBubble';
-import Bubble1 from '../assets/speech_bubble_2.png';
-import Mask from '../assets/hero_mask.png';
 import { Link } from 'react-router-dom';
 import './Gender.scss';
 

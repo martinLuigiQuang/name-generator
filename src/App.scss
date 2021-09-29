@@ -1,16 +1,10 @@
 .App {
   text-align: center;
-  &.modal-open:after {
-    position: absolute;
-    content: "";
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    background-color: #D8D8D8D8;
-  }
+  width: 90vw;
+  max-width: 1280px;
+  min-width: 400px;
 }
 
 .invisible {
-    display: none !important;
+  display: none !important;
 }

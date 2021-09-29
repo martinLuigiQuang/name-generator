@@ -37,7 +37,9 @@ const LanguageSelector = (props) => {
             imgSrc={Bubble}
           />
         </label>
-        <Link to="/persona">Next {`>`}</Link>
+        <div className="navigation-bar">
+          <Link to="/persona">Next {`>`}</Link> 
+        </div>
       </form>
     </>
   );

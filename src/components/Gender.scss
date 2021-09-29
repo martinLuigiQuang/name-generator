@@ -1,14 +1,13 @@
 .gender-container {
     margin: 0 auto;
-    width: 1280px;
-    height: calc(100vh - 148px);
-    min-height: 827px;
+    height: 720px;
+    min-width: 400px;
     background: url("../assets/Pg2_Select Gender.jpg");
     flex-grow: 1;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
-    border: 2px solid white;
+    background-position: center top;
+    border-top: 2px solid white;
     position: relative;
     .navigation-bar {
         position: absolute;
@@ -19,7 +18,7 @@
         justify-content: space-between;
         a {
             text-decoration: none;
-            font-size: 2rem;
+            font-size: var(--big-font-size);
             color: #AA0061;
             &:nth-child(2) {
                 animation: flash 1s infinite;
@@ -29,7 +28,7 @@
     .selections-container {
         position: absolute;
         bottom: 100px;
-        width: 1280px;
+        width: 100%;
         display: flex;
         justify-content: center;
         label {
@@ -37,7 +36,7 @@
             width: 30%;
             h2 {
                 color: #FFF;
-                font-size: 2rem;
+                font-size: var(--big-font-size);
                 height: 100px;
                 display: flex;
                 align-items: center;
@@ -67,48 +66,37 @@
             }
         }
     }
-    .chapter-container {
-        position: absolute;
-        left: 50px;
-        bottom: 270px;
-        width: 500px;
-        z-index: 80;
-        h2 {
-            width: 60%;
-            font-size: 3.5rem;
-            text-decoration: underline;
-            color: rgb(0, 0, 0);
-            text-shadow: 1px 1px 0 white,
-                     1px -1px 0 white,
-                     -1px 1px 0 white,
-                     -1px -1px 0 white;
-        }
-        img {
-            background: radial-gradient(#6d12ff, #00000000 70%);
-            border-radius: 50%;
-        }
-    }
-    .speech-1 {
-        position: absolute;
-        right: 50px;
-        bottom: 250px;
-        width: 400px;
-        h2 {
-            font-size: 2rem;
-        }
-    }
-    .speech-2 {
-        position: absolute;
-        right: 100px;
-        bottom: 750px;
-        width: 500px;
-        h2 {
-            font-size: 2rem;
-        }
-    }
 }
 
 @keyframes flash {
     0% { transform: translateX(5px); }
     100% { transform: translateX(0px); }
+}
+
+@media screen and (max-width: 1420px) {
+    .gender-container {
+        height: 50vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .gender-container {
+        height: calc(50vw + 140px);
+        min-height: 350px;
+        background-size: contain;
+        .navigation-bar {
+            bottom: 140px;
+            a {
+                font-size: var(--medium-font-size);
+            }
+        }
+        .selections-container {
+            height: auto;
+            bottom: 0;
+            background-color: black;
+            label h2 {
+                font-size: var(--medium-font-size);
+            }
+        }
+    }
 }
