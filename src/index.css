@@ -29,3 +29,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@media screen and (max-height: 1005px) {
+  body {
+    height: auto;
+    min-height: 0;
+  }
+}
