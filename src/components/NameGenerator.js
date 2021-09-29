@@ -2,6 +2,7 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import superheroNames from '../Data/superhero_names.json';
 import locale from '../Data/language.json';
+import { Link } from 'react-router-dom';
 import './NameGenerator.scss';
 
 const WAITING_MESSAGES = ['OPENING EINSTEIN-ROSEN BRIDGE', 'WORMHOLE STABILIZED', 'ANALYSING RESULTS FROM ALTERNATE REALITIES', 'RESOLVING TIME TRAVEL PARADOXES', 'AND YOUR HERO NAME IS ...'];
@@ -15,10 +16,12 @@ const NameGenerator = (props) => {
     heroName, 
     handleSubmit,
     handleHeroName,
+    saveNames,
     // onCapture
   } = props;
   const [ counter, setCounter ] = React.useState(-1);
   const [ displayText, setDisplayText ] = React.useState('');
+  const [ currentHeroName, setCurrentHeroName ] = React.useState(heroName);
   const isSubmitBtnDisabled = displayText !== '' || heroName === '' || (firstName === '' && lastName === '');
   const isGenerateBtnDisabled = counter > -1 || language === '' || gender === '';
   const superheroNamesArr = superheroNames[language];
@@ -42,7 +45,8 @@ const NameGenerator = (props) => {
     }
     const descriptor = superheroNamesArr[index1][`Descriptor.${sex}`];
     const title = superheroNamesArr[index2][`Title.${sex}`];
-    handleHeroName(`${descriptor} ${title}`);
+    saveNames();
+    handleHeroName(`${descriptor} ${title}`.toUpperCase());
   };
 
   const displayProgress = () => {
@@ -84,15 +88,30 @@ const NameGenerator = (props) => {
               <h3>{displayText}</h3>
               <div className="progress"></div>
             </>
-          ) : 
-          <h1>{heroName}</h1>
+          ) 
+          :
+          (
+            <label htmlFor="heroName">
+              <input 
+                type="text" 
+                value={currentHeroName} 
+                id="heroName" 
+                name="heroName"
+                onChange={e => setCurrentHeroName(e.target.value)}
+                onBlur={() => handleHeroName(currentHeroName.toUpperCase())}
+              />
+            </label>
+          )
         }
-      <Button 
-        onClick={handleSubmit}
-        disabled={isSubmitBtnDisabled}
-      >
-        {locale[language].submit}
-      </Button>
+      <div className="navigation-bar">
+        <Link to="/secret-identity">{`<`} Back</Link>
+        <Button 
+          onClick={handleSubmit}
+          disabled={isSubmitBtnDisabled}
+        >
+          {locale[language].submit}
+        </Button>
+      </div>
     </div>
   );
 };

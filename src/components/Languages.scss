@@ -49,4 +49,19 @@
             }
         }
     }
+    a {
+        position: absolute;
+        right: 50px;
+        bottom: 50px;
+        z-index: 99;
+        font-size: 2rem;
+        text-decoration: none;
+        animation: flash 1s infinite;
+        color: #470A68;
+    }
+}
+
+@keyframes flash {
+    0% { transform: translateX(5px); }
+    100% { transform: translateX(0px); }
 }
