@@ -9,7 +9,7 @@ const LanguageSelector = (props) => {
   const { handleLanguageSelector, language } = props;
 
   return (
-    <form className="language-container">
+    <div className="language-container">
       <label htmlFor="english">
         <input type="radio" id="english" name="language" value="english" checked={language === 'english'} onChange={handleLanguageSelector}/>
         <SpeechBubble text="English" imgSrc={Bubble}/>
@@ -25,7 +25,7 @@ const LanguageSelector = (props) => {
       <div className="navigation-bar">
         <Link to="/persona">{`${locale[language].next} >`}</Link> 
       </div>
-    </form>
+    </div>
   );
 };
 

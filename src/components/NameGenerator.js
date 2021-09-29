@@ -17,6 +17,7 @@ const NameGenerator = (props) => {
     handleHeroName,
     saveNames
   } = props;
+  
   const [ counter, setCounter ] = React.useState(-1);
   const [ displayText, setDisplayText ] = React.useState('');
   const [ currentHeroName, setCurrentHeroName ] = React.useState(heroName);
