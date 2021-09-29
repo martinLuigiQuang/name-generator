@@ -22,7 +22,7 @@ const NameGenerator = (props) => {
   const [ counter, setCounter ] = React.useState(-1);
   const [ displayText, setDisplayText ] = React.useState('');
   const [ currentHeroName, setCurrentHeroName ] = React.useState(heroName);
-  const isSubmitBtnDisabled = displayText !== '' || heroName === '' || (firstName === '' && lastName === '');
+  const isSubmitBtnDisabled = displayText !== '' || heroName === '' || gender === '' || (firstName === '' && lastName === '');
   const isGenerateBtnDisabled = counter > -1 || language === '' || gender === '';
   const superheroNamesArr = superheroNames[language];
 
@@ -72,6 +72,12 @@ const NameGenerator = (props) => {
     };
   };
 
+  const handleLink = async () => {
+    await saveNames();
+    await handleHeroName(currentHeroName.toUpperCase());
+    handleSubmit();
+  };
+
   return (
     <div className="name-generator-container">
       <h3>Let's get your hero name!</h3>
@@ -99,22 +105,24 @@ const NameGenerator = (props) => {
                 id="heroName" 
                 name="heroName"
                 onChange={e => setCurrentHeroName(e.target.value)}
-                onBlur={() => {
-                  saveNames();
-                  handleHeroName(currentHeroName.toUpperCase())}
-                }
               />
             </label>
           )
         }
       <div className="navigation-bar">
-        <Link to='/superhero-name'
-          id='submit'
-          onClick={handleSubmit}
-          disabled={isSubmitBtnDisabled}
-        >
-          {locale[language].submit}
-        </Link>
+        {
+          isSubmitBtnDisabled ? null :
+          (
+            <Link 
+              to='/superhero-name'
+              id='submit'
+              onClick={handleLink}
+              disabled={isSubmitBtnDisabled}
+            >
+              {locale[language].submit}
+            </Link>
+          )
+        }
       </div>
     </div>
   );
