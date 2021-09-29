@@ -69,10 +69,6 @@ function App() {
   const returnToHomePage = () => {
     window.location.href = '/';
   };
-
-  const toSuccessModal = () => {
-    window.location.href = '/superhero-name';
-  };
   
   const handleSubmit = () => {
     
@@ -132,6 +128,8 @@ function App() {
             firstName={firstName}
             lastName={lastName}
             heroName={heroName}
+            returnToHomePage={returnToHomePage}
+            reset={reset}
           />
         }/>
       </div>

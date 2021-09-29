@@ -20,7 +20,9 @@
 
     .heroNameDiv {
     height: 600px;
+    width: 1280px;
     display: flex;
+    justify-content: center;
 
       .speech-bubble {
         flex-direction: column;
@@ -40,9 +42,11 @@
 
     }
     button {
-      width: 250px;
-      max-width: 250px;
+      width: 350px;
+      max-width: 350px;
       font-family: 'Komika';
+      color: #fff;
+      font-size: 25px;
     }
 }
 

@@ -59,7 +59,8 @@ const EnterName = (props) => {
             handleSubmit={handleSubmit}
             handleHeroName={handleHeroName}
             saveNames={saveNames}
-            // onCapture={onCapture}
+            currentFirstName={currentFirstName}
+            currentLastName={currentLastName}
           />
         </div>
       </div>

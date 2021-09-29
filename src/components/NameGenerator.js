@@ -17,12 +17,13 @@ const NameGenerator = (props) => {
     handleSubmit,
     handleHeroName,
     saveNames,
-    // onCapture
+    currentFirstName,
+    currentLastName
   } = props;
   const [ counter, setCounter ] = React.useState(-1);
   const [ displayText, setDisplayText ] = React.useState('');
   const [ currentHeroName, setCurrentHeroName ] = React.useState(heroName);
-  const isSubmitBtnDisabled = displayText !== '' || heroName === '' || gender === '' || (firstName === '' && lastName === '');
+  const isSubmitBtnDisabled = displayText !== '' || currentHeroName === '' || gender === '' || (currentFirstName === '' && currentLastName === '');
   const isGenerateBtnDisabled = counter > -1 || language === '' || gender === '';
   const superheroNamesArr = superheroNames[language];
 
