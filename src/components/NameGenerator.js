@@ -10,20 +10,19 @@ const WAITING_MESSAGES = ['OPENING EINSTEIN-ROSEN BRIDGE', 'WORMHOLE STABILIZED'
 const NameGenerator = (props) => {
   const { 
     language, 
-    gender, 
-    firstName,
-    lastName,
+    gender,
     heroName, 
+    currentFirstName,
+    currentLastName,
     handleSubmit,
     handleHeroName,
-    saveNames,
-    currentFirstName,
-    currentLastName
+    saveNames
   } = props;
   const [ counter, setCounter ] = React.useState(-1);
   const [ displayText, setDisplayText ] = React.useState('');
   const [ currentHeroName, setCurrentHeroName ] = React.useState(heroName);
-  const isSubmitBtnDisabled = displayText !== '' || currentHeroName === '' || gender === '' || (currentFirstName === '' && currentLastName === '');
+  const isSubmitBtnDisabled = displayText !== '' || currentHeroName === '' || gender === '' 
+                              || (currentFirstName === '' && currentLastName === '');
   const isGenerateBtnDisabled = counter > -1 || language === '' || gender === '';
   const superheroNamesArr = superheroNames[language];
 
