@@ -17,10 +17,12 @@
     }
     .navigation-bar {
         position: absolute;
-        bottom: -80px;
-        .MuiButtonBase-root {
-
+        bottom: -70px;
+        #submit {
+          position: relative;
           color: #fff;
+          left: 0;
+          bottom: 0;
         }
     }
     #heroName {

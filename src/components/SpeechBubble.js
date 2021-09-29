@@ -7,8 +7,8 @@ const SpeechBubble = (props) => {
         <div className="speech-bubble">
             <img src={imgSrc} alt="speech bubble"/>
             <h2>{text}</h2>
-            <p>{text2}</p>
-            <h2>{text3}</h2>
+            {text2 ? <p>{text2}</p> : null}
+            {text3 ? <h2>{text3}</h2> : null}  
         </div>
     );
 };

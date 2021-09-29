@@ -88,7 +88,7 @@ function App() {
       timeStamp: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
     };
     postData(requestBody);
-    toSuccessModal();
+    console.log('here');
   };
 
   return (
@@ -125,7 +125,6 @@ function App() {
             setProgress={setProgress}
             handleSubmit={handleSubmit}
             handleHeroName={handleHeroName}
-            // onCapture={onCapture}
           />
         }/>
         <Route path="/superhero-name" component={() =>

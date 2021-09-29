@@ -108,12 +108,13 @@ const NameGenerator = (props) => {
           )
         }
       <div className="navigation-bar">
-        <Button 
+        <Link to='/superhero-name'
+          id='submit'
           onClick={handleSubmit}
           disabled={isSubmitBtnDisabled}
         >
           {locale[language].submit}
-        </Button>
+        </Link>
       </div>
     </div>
   );
