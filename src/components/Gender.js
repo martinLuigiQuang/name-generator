@@ -1,21 +1,12 @@
 import * as React from 'react';
 import locale from '../Data/language.json';
-import SpeechBubble from './SpeechBubble';
-import Bubble1 from '../assets/speech_bubble_2.png';
-import Mask from '../assets/hero_mask.png';
 import { Link } from 'react-router-dom';
 import './Gender.scss';
 
 const GenderSelector = (props) => {
-  const { language, gender, handleGenderSelection, progress, setProgress } = props;
+  const { language, gender, handleGenderSelection } = props;
   const isNextLinkVisible = gender !== '';
-  React.useEffect(
-    () => {
-      if (progress[2] || !progress[1]) {
-        setProgress([true, true, false]);
-      }
-    }
-  );
+
   return (
     <div className="gender-container">
       <div className="selections-container">
@@ -33,12 +24,12 @@ const GenderSelector = (props) => {
         </label>
       </div>
       <div className="navigation-bar">
-        <Link to="/">{`<`} Back</Link>
+        <Link to="/">{`< ${locale[language].back}`}</Link>
         <Link 
           to="/secret-identity"
           className={isNextLinkVisible ? '' : 'invisible'}
         >
-          Next {`>`}
+          {`${locale[language].next} >`}
         </Link>
       </div>
     </div>

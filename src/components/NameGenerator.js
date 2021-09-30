@@ -5,25 +5,24 @@ import locale from '../Data/language.json';
 import { Link } from 'react-router-dom';
 import './NameGenerator.scss';
 
-const WAITING_MESSAGES = ['OPENING EINSTEIN-ROSEN BRIDGE', 'WORMHOLE STABILIZED', 'ANALYSING RESULTS FROM ALTERNATE REALITIES', 'RESOLVING TIME TRAVEL PARADOXES', 'AND YOUR HERO NAME IS ...'];
+const WAITING_MESSAGES = ['loadingMessage1', 'loadingMessage2', 'loadingMessage3', 'loadingMessage4', 'loadingMessage5'];
 
 const NameGenerator = (props) => {
   const { 
     language, 
-    gender, 
-    firstName,
-    lastName,
+    gender,
     heroName, 
-    handleSubmit,
-    handleHeroName,
-    saveNames,
     currentFirstName,
-    currentLastName
+    currentLastName,
+    handleHeroName,
+    saveNames
   } = props;
+  
   const [ counter, setCounter ] = React.useState(-1);
   const [ displayText, setDisplayText ] = React.useState('');
   const [ currentHeroName, setCurrentHeroName ] = React.useState(heroName);
-  const isSubmitBtnDisabled = displayText !== '' || currentHeroName === '' || gender === '' || (currentFirstName === '' && currentLastName === '');
+  const isSubmitBtnDisabled = displayText !== '' || currentHeroName === '' || gender === '' 
+                              || (currentFirstName === '' && currentLastName === '');
   const isGenerateBtnDisabled = counter > -1 || language === '' || gender === '';
   const superheroNamesArr = superheroNames[language];
 
@@ -76,12 +75,11 @@ const NameGenerator = (props) => {
   const handleLink = async () => {
     await saveNames();
     await handleHeroName(currentHeroName.toUpperCase());
-    handleSubmit();
   };
 
   return (
     <div className="name-generator-container">
-      <h3>Let's get your hero name!</h3>
+      <h2>{locale[language].heroNameMessage}</h2>
       <Button 
         onClick={displayProgress}
         disabled={isGenerateBtnDisabled}
@@ -92,7 +90,7 @@ const NameGenerator = (props) => {
           displayText ? 
           (
             <>
-              <h3>{displayText}</h3>
+              <h3>{locale[language][displayText]}</h3>
               <div className="progress"></div>
             </>
           ) 
@@ -100,17 +98,19 @@ const NameGenerator = (props) => {
           (
             <label htmlFor="heroName">
               <input 
-                placeholder="or create your own"
+                placeholder={locale[language].createHeroName}
                 type="text" 
                 value={currentHeroName} 
                 id="heroName" 
                 name="heroName"
+                disabled={isGenerateBtnDisabled}
                 onChange={e => setCurrentHeroName(e.target.value)}
               />
             </label>
           )
         }
       <div className="navigation-bar">
+        <Link to="/persona">{`< ${locale[language].back}`}</Link>
         {
           isSubmitBtnDisabled ? null :
           (
@@ -120,7 +120,7 @@ const NameGenerator = (props) => {
               onClick={handleLink}
               disabled={isSubmitBtnDisabled}
             >
-              {locale[language].submit}
+              {`${locale[language].submit} >`}
             </Link>
           )
         }

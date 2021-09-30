@@ -1,8 +1,6 @@
 import * as React from 'react';
-import NavigationBar from './NavigationBar';
 import './Header.scss';
 import AbbottLogo from '../assets/abbott_logo.png';
-import EventiveLogo from '../assets/eventive_logo.jpg';
 
 const Header = () => {
     return (
