@@ -1,13 +1,13 @@
 import * as React from 'react';
 import './Header.scss';
-import AbbottLogo from '../assets/abbott_logo.png';
+import AbbottLogo from '../assets/Invincible Word Mark.png';
 
 const Header = () => {
     return (
         <header>
             <div className="company-name">
-                <h1>CALA Superhero Name Generator</h1>
                 <img src={AbbottLogo} alt="abbott logo"/>
+                <h1>CALA Superhero Name Generator</h1>
             </div>
         </header>
     );
