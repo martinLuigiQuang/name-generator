@@ -1,4 +1,4 @@
-import { React, useRef } from 'react';
+import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import * as htmlToImage from 'html-to-image';
 import locale from '../Data/language.json';
@@ -10,10 +10,14 @@ const download = require('downloadjs')
 
 const SuccessModal = (props) => {
     const { returnToHomePage, language, firstName, lastName, heroName, handleSubmit } = props;
-    const superheroName = useRef(null);
+    const [ isFirstSubmit, setIsFirstSubmit ] = React.useState(true);
+    const superheroName = React.useRef(null);
 
     const capture = () => {
-      handleSubmit();
+      if (isFirstSubmit) {
+        setIsFirstSubmit(false);
+        handleSubmit();
+      }
       superheroName.current.setAttribute('style', 'width: 1000px');
       htmlToImage.toPng(superheroName.current).then(function (dataUrl) {
         superheroName.current.setAttribute('style', 'width: 0px');
