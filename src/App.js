@@ -20,26 +20,20 @@ function App() {
   const [language, setLanguage] = React.useState('english');
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
-
+  
   const postData = (requestBody) => {
     try {
       push(DB_REF, requestBody);
     } catch (e) {
       console.log(e);
     }
-    try {
-      axios({
-        url: sheetsUrl,
-        method: 'POST',
-        data: requestBody,
-      }).then(result => {
-        console.log(result);
-      }).catch(error => {
-        console.log(error);
-      });
-    } catch (e) {
-      console.log(e);
-    }
+    axios({
+      url: sheetsUrl,
+      method: 'POST',
+      data: requestBody,
+    }).catch(error => {
+      console.log(error);
+    });
   };
 
   const handleHeroName = (name) => {
@@ -92,7 +86,7 @@ function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div className={'App'}>
-        <Header />
+        <Header language={language}/>
         <Route exact path="/" component={() =>
           <LanguageSelector
             language={language}
@@ -109,10 +103,10 @@ function App() {
         <Route path="/secret-identity" component={() =>
           <EnterName 
             language={language}
-            gender={gender} 
+            gender={gender}
+            heroName={heroName}
             firstName={firstName}
             lastName={lastName}
-            heroName={heroName}
             handleFirstName={handleFirstName} 
             handleLastName={handleLastName} 
             handleHeroName={handleHeroName}

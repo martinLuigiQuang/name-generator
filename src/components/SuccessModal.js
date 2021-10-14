@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import * as htmlToImage from 'html-to-image';
-import locale from '../Data/language.json';
+import locale from '../Data/locales.json';
 import './SuccessModal.scss';
 import SpeechBubble from './SpeechBubble';
 import Bubble from '../assets/speech_bubble_2.png';
@@ -24,7 +24,6 @@ const SuccessModal = (props) => {
         download(dataUrl, 'my-superhero-name.png');
       });
     }
-    
     return (
       <div className="superheroName success-modal">
         <div ref={superheroName} className="heroNameDiv">
@@ -32,14 +31,14 @@ const SuccessModal = (props) => {
           <SpeechBubble 
             imgSrc={Bubble} 
             text={`${firstName} ${lastName}`} 
-            text2={language && locale[language].aka}
+            text2="AKA"
             text3={heroName}/> 
         </div>
         <Button onClick={capture}>
-          {language && locale[language].download}
+          {locale[language]['DOWNLOAD']}
         </Button>
         <Button onClick={returnToHomePage}>
-            {language && locale[language].returnToHomePage}
+          {locale[language]['RETURN TO HOMEPAGE']}
         </Button>
       </div>
     );
