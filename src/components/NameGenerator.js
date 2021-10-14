@@ -10,16 +10,17 @@ const NameGenerator = (props) => {
     language, 
     gender,
     heroName, 
-    handleSubmit,
-    handleHeroName,
-    saveNames,
     currentFirstName,
-    currentLastName
+    currentLastName,
+    handleHeroName,
+    saveNames
   } = props;
+  
   const [ counter, setCounter ] = React.useState(-1);
   const [ displayText, setDisplayText ] = React.useState('');
   const [ currentHeroName, setCurrentHeroName ] = React.useState(heroName);
-  const isSubmitBtnDisabled = displayText !== '' || currentHeroName === '' || gender === '' || (currentFirstName === '' && currentLastName === '');
+  const isSubmitBtnDisabled = displayText !== '' || currentHeroName === '' || gender === '' 
+                              || (currentFirstName === '' && currentLastName === '');
   const isGenerateBtnDisabled = counter > -1 || language === '' || gender === '';
   const superheroNamesArr = superheroNames[language];
 
@@ -79,7 +80,6 @@ const NameGenerator = (props) => {
   const handleLink = async () => {
     await saveNames();
     await handleHeroName(currentHeroName.toUpperCase());
-    handleSubmit();
   };
 
   return (

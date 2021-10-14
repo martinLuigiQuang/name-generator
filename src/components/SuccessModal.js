@@ -1,4 +1,4 @@
-import { React, useRef } from 'react';
+import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import * as htmlToImage from 'html-to-image';
 import locale from '../Data/locales.json';
@@ -9,18 +9,21 @@ import Invincible from '../assets/Invincible Word Mark.png';
 const download = require('downloadjs')
 
 const SuccessModal = (props) => {
-    const { returnToHomePage, language, firstName, lastName, heroName, reset } = props;
-    const superheroName = useRef(null);
-    
-    const onCapture = () => {
-      superheroName.current.setAttribute('style', 'width: 1000px');
-      htmlToImage.toPng(superheroName.current)
-        .then(function (dataUrl) {
-          superheroName.current.setAttribute('style', 'width: 0px');
-          download(dataUrl, 'my-superhero-name.png');
-        });
-    }
+    const { returnToHomePage, language, firstName, lastName, heroName, handleSubmit } = props;
+    const [ isFirstSubmit, setIsFirstSubmit ] = React.useState(true);
+    const superheroName = React.useRef(null);
 
+    const capture = () => {
+      if (isFirstSubmit) {
+        setIsFirstSubmit(false);
+        handleSubmit();
+      }
+      superheroName.current.setAttribute('style', 'width: 1000px');
+      htmlToImage.toPng(superheroName.current).then(function (dataUrl) {
+        superheroName.current.setAttribute('style', 'width: 0px');
+        download(dataUrl, 'my-superhero-name.png');
+      });
+    }
     return (
       <div className="superheroName success-modal">
         <div ref={superheroName} className="heroNameDiv">
@@ -28,16 +31,13 @@ const SuccessModal = (props) => {
           <SpeechBubble 
             imgSrc={Bubble} 
             text={`${firstName} ${lastName}`} 
-            text2="aka" 
+            text2="AKA"
             text3={heroName}/> 
         </div>
-        <Button onClick={onCapture}>
+        <Button onClick={capture}>
           {locale[language]['DOWNLOAD']}
         </Button>
-        <Button onClick={()=> {
-          returnToHomePage(); 
-          reset()
-        }}>
+        <Button onClick={returnToHomePage}>
           {locale[language]['RETURN TO HOMEPAGE']}
         </Button>
       </div>

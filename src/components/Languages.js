@@ -6,14 +6,8 @@ import locale from '../Data/locales.json';
 import './Languages.scss';
 
 const LanguageSelector = (props) => {
-  const { handleLanguageSelector, language, setProgress, progress } = props;
-  React.useEffect(
-    () => {
-      if (progress[1]) {
-        setProgress([true, false, false]);
-      }
-    }
-  );
+  const { handleLanguageSelector, language } = props;
+
   return (
     <>
       <form className="language-container">

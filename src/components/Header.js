@@ -8,8 +8,8 @@ const Header = (props) => {
     return (
         <header>
             <div className="company-name">
-                <h1>{locale[language]['CALA SUPERHERO NAME GENERATOR']}</h1>
                 <img src={AbbottLogo} alt="abbott logo"/>
+                <h1>{locale[language]['CALA SUPERHERO NAME GENERATOR']}</h1>
             </div>
         </header>
     );

@@ -4,15 +4,9 @@ import { Link } from 'react-router-dom';
 import './Gender.scss';
 
 const GenderSelector = (props) => {
-  const { language, gender, handleGenderSelection, progress, setProgress } = props;
+  const { language, gender, handleGenderSelection } = props;
   const isNextLinkVisible = gender !== '';
-  React.useEffect(
-    () => {
-      if (progress[2] || !progress[1]) {
-        setProgress([true, true, false]);
-      }
-    }
-  );
+
   return (
     <div className="gender-container">
       <div className="selections-container">

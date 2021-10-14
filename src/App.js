@@ -20,10 +20,13 @@ function App() {
   const [language, setLanguage] = React.useState('english');
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
-  const [progress, setProgress] = React.useState([true, false, false]);
   
   const postData = (requestBody) => {
-    push(DB_REF, requestBody);
+    try {
+      push(DB_REF, requestBody);
+    } catch (e) {
+      console.log(e);
+    }
     axios({
       url: sheetsUrl,
       method: 'POST',
@@ -61,6 +64,7 @@ function App() {
   };
 
   const returnToHomePage = () => {
+    reset();
     window.location.href = '/';
   };
   
@@ -87,8 +91,6 @@ function App() {
           <LanguageSelector
             language={language}
             handleLanguageSelector={handleLanguageSelector}
-            progress={progress}
-            setProgress={setProgress}
           />
         }/>
         <Route path="/persona" component={() =>
@@ -96,20 +98,17 @@ function App() {
             handleGenderSelection={handleGenderSelection} 
             language={language}
             gender={gender}
-            progress={progress}
-            setProgress={setProgress}
           />
         }/>
         <Route path="/secret-identity" component={() =>
           <EnterName 
-            handleFirstName={handleFirstName} 
-            handleLastName={handleLastName} 
             language={language}
             gender={gender}
             heroName={heroName}
-            progress={progress}
-            setProgress={setProgress}
-            handleSubmit={handleSubmit}
+            firstName={firstName}
+            lastName={lastName}
+            handleFirstName={handleFirstName} 
+            handleLastName={handleLastName} 
             handleHeroName={handleHeroName}
           />
         }/>
@@ -120,7 +119,7 @@ function App() {
             heroName={heroName}
             language={language}
             returnToHomePage={returnToHomePage}
-            reset={reset}
+            handleSubmit={handleSubmit}
           />
         }/>
       </div>

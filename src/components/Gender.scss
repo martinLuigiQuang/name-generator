@@ -27,7 +27,7 @@
     }
     .selections-container {
         position: absolute;
-        bottom: 100px;
+        bottom: 200px;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -79,7 +79,7 @@
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 875px) {
     .gender-container {
         height: calc(50vw + 140px);
         min-height: 350px;
