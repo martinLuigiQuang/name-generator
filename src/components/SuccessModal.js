@@ -1,7 +1,7 @@
-import { React, useRef, useEffect } from 'react';
+import { React, useRef } from 'react';
 import Button from '@material-ui/core/Button';
 import * as htmlToImage from 'html-to-image';
-import locale from '../Data/language.json';
+import locale from '../Data/locales.json';
 import './SuccessModal.scss';
 import SpeechBubble from './SpeechBubble';
 import Bubble from '../assets/speech_bubble_2.png';
@@ -11,12 +11,6 @@ const download = require('downloadjs')
 const SuccessModal = (props) => {
     const { returnToHomePage, language, firstName, lastName, heroName, reset } = props;
     const superheroName = useRef(null);
-
-    useEffect(()=> {
-      console.log('hero', superheroName);
-      console.log('heroname', superheroName.current);
-    })
-
     
     const onCapture = () => {
       superheroName.current.setAttribute('style', 'width: 1000px');
@@ -26,8 +20,6 @@ const SuccessModal = (props) => {
           download(dataUrl, 'my-superhero-name.png');
         });
     }
-    
-   
 
     return (
       <div className="superheroName success-modal">
@@ -39,9 +31,14 @@ const SuccessModal = (props) => {
             text2="aka" 
             text3={heroName}/> 
         </div>
-        <Button onClick={()=> {onCapture(superheroName)}}>Download</Button>
-        <Button onClick={()=> {returnToHomePage(); reset()}}>
-            Return to homepage
+        <Button onClick={onCapture}>
+          {locale[language]['DOWNLOAD']}
+        </Button>
+        <Button onClick={()=> {
+          returnToHomePage(); 
+          reset()
+        }}>
+          {locale[language]['RETURN TO HOMEPAGE']}
         </Button>
       </div>
     );

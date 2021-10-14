@@ -1,18 +1,14 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import superheroNames from '../Data/superhero_names.json';
-import locale from '../Data/language.json';
+import locale from '../Data/locales.json';
 import { Link } from 'react-router-dom';
 import './NameGenerator.scss';
-
-const WAITING_MESSAGES = ['OPENING EINSTEIN-ROSEN BRIDGE', 'WORMHOLE STABILIZED', 'ANALYSING RESULTS FROM ALTERNATE REALITIES', 'RESOLVING TIME TRAVEL PARADOXES', 'AND YOUR HERO NAME IS ...'];
 
 const NameGenerator = (props) => {
   const { 
     language, 
-    gender, 
-    firstName,
-    lastName,
+    gender,
     heroName, 
     handleSubmit,
     handleHeroName,
@@ -26,6 +22,13 @@ const NameGenerator = (props) => {
   const isSubmitBtnDisabled = displayText !== '' || currentHeroName === '' || gender === '' || (currentFirstName === '' && currentLastName === '');
   const isGenerateBtnDisabled = counter > -1 || language === '' || gender === '';
   const superheroNamesArr = superheroNames[language];
+
+  const WAITING_MESSAGES = [
+    locale[language]['ACCESSING SUPERFORCE DATABASE'],
+    locale[language]['ANALYZING RESULTS FROM ALTERNATE REALITIES'],
+    locale[language]['INFUSING INVINCIBILITY'],
+    locale[language]['YOUR SUPERHERO NAME IS']
+  ];
 
   React.useEffect(
     () => {
@@ -58,7 +61,7 @@ const NameGenerator = (props) => {
         clearTimeout(timerOut);
         randomizer();
       },
-      5000
+      6000
     );
     if (counter < 3) {
       const timer = setInterval(
@@ -68,7 +71,7 @@ const NameGenerator = (props) => {
           }
           setCounter((counter) => counter + 1);
         },
-        1000
+        1500
       );
     };
   };
@@ -81,12 +84,12 @@ const NameGenerator = (props) => {
 
   return (
     <div className="name-generator-container">
-      <h2>{locale[language].heroNameMessage}</h2>
+      <h2>{locale[language]['LET\'S UNCOVER YOUR SUPERHERO IDENTITY!']}</h2>
       <Button 
         onClick={displayProgress}
         disabled={isGenerateBtnDisabled}
       >
-        {locale[language].generate}
+        {locale[language]['CLICK TO GENERATE NAME']}
       </Button>
         {
           displayText ? 
@@ -100,7 +103,7 @@ const NameGenerator = (props) => {
           (
             <label htmlFor="heroName">
               <input 
-                placeholder={locale[language].createHeroName}
+                placeholder={locale[language]['OR ENTER HERE TO CREATE YOUR OWN']}
                 type="text" 
                 value={currentHeroName} 
                 id="heroName" 
@@ -112,7 +115,7 @@ const NameGenerator = (props) => {
           )
         }
       <div className="navigation-bar">
-        <Link to="/persona">{`<`} Back</Link>
+        <Link to="/persona">{`< ${locale[language]['BACK']}`}</Link>
         {
           isSubmitBtnDisabled ? null :
           (
@@ -122,7 +125,7 @@ const NameGenerator = (props) => {
               onClick={handleLink}
               disabled={isSubmitBtnDisabled}
             >
-              {`${locale[language].submit} >`}
+              {`${locale[language]['NEXT']} >`}
             </Link>
           )
         }

@@ -2,6 +2,7 @@ import * as React from 'react';
 import SpeechBubble from './SpeechBubble';
 import Bubble from '../assets/speech_bubble_2.png';
 import { Link } from 'react-router-dom';
+import locale from '../Data/locales.json';
 import './Languages.scss';
 
 const LanguageSelector = (props) => {
@@ -38,7 +39,7 @@ const LanguageSelector = (props) => {
           />
         </label>
         <div className="navigation-bar">
-          <Link to="/persona">Next {`>`}</Link> 
+          <Link to="/persona">{`${locale[language]['NEXT']} >`}</Link> 
         </div>
       </form>
     </>

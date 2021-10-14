@@ -1,6 +1,6 @@
 import * as React from 'react';
 import NameGenerator from './NameGenerator';
-import locale from '../Data/language.json';
+import locale from '../Data/locales.json';
 import './EnterName.scss';
 
 const EnterName = (props) => {
@@ -15,12 +15,10 @@ const EnterName = (props) => {
     firstName, 
     lastName,
     progress,
-    setProgress,
-    // onCapture
+    setProgress
   } = props;
   const [currentFirstName, setCurrentFirstName] = React.useState(firstName);
   const [currentLastName, setCurrentLastName] = React.useState(lastName);
-  const isNextLinkVisible = currentFirstName !== '' || currentLastName !== '';
   React.useEffect(
     () => {
       if (!progress[2]) {
@@ -44,10 +42,10 @@ const EnterName = (props) => {
       <div className="outer-box">
         <div className="task">
           <label htmlFor="firstName">
-            <input type="text" id="firstName" value={currentFirstName} onChange={saveCurrentFirstName} placeholder="first name"/>
+            <input type="text" id="firstName" value={currentFirstName} onChange={saveCurrentFirstName} placeholder={locale[language]['FIRST NAME']}/>
           </label>
           <label htmlFor="lastName">
-            <input type="text" id="lastName" value={currentLastName} onChange={saveCurrentLastName} placeholder="last name"/>
+            <input type="text" id="lastName" value={currentLastName} onChange={saveCurrentLastName} placeholder={locale[language]['LAST NAME']}/>
           </label>
           <NameGenerator 
             language={language}

@@ -20,10 +20,7 @@ function App() {
   const [language, setLanguage] = React.useState('english');
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [progress, setProgress] = React.useState([true, false, false])
-  const [prevProgress, setPrevProgress] = React.useState(0);
-  
+  const [progress, setProgress] = React.useState([true, false, false]);
   
   const postData = (requestBody) => {
     push(DB_REF, requestBody);
@@ -31,8 +28,6 @@ function App() {
       url: sheetsUrl,
       method: 'POST',
       data: requestBody,
-    }).then(result => {
-      console.log(result);
     }).catch(error => {
       console.log(error);
     });
@@ -63,7 +58,6 @@ function App() {
     setLastName('');
     setHeroName('');
     setGender('');
-    setIsModalOpen(false);
   };
 
   const returnToHomePage = () => {
@@ -71,7 +65,6 @@ function App() {
   };
   
   const handleSubmit = () => {
-    
     if (!heroName || (!firstName && !lastName)) {
       return null;
     }
@@ -84,13 +77,12 @@ function App() {
       timeStamp: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
     };
     postData(requestBody);
-    console.log('here');
   };
 
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div className={'App'}>
-        <Header />
+        <Header language={language}/>
         <Route exact path="/" component={() =>
           <LanguageSelector
             language={language}
@@ -113,9 +105,7 @@ function App() {
             handleFirstName={handleFirstName} 
             handleLastName={handleLastName} 
             language={language}
-            gender={gender} 
-            firstName={firstName}
-            lastName={lastName}
+            gender={gender}
             heroName={heroName}
             progress={progress}
             setProgress={setProgress}
@@ -128,6 +118,7 @@ function App() {
             firstName={firstName}
             lastName={lastName}
             heroName={heroName}
+            language={language}
             returnToHomePage={returnToHomePage}
             reset={reset}
           />
