@@ -31,6 +31,7 @@
         width: 100%;
         display: flex;
         justify-content: center;
+        z-index: 99;
         label {
             position: relative;
             width: 30%;
@@ -81,9 +82,10 @@
 
 @media screen and (max-width: 875px) {
     .gender-container {
-        height: calc(50vw + 140px);
+        // height: calc(50vw + 140px);
+        height: calc(100vh - 100px);
         min-height: 350px;
-        background-size: contain;
+        background-size: cover;
         .navigation-bar {
             bottom: 140px;
             a {
@@ -92,8 +94,8 @@
         }
         .selections-container {
             height: auto;
-            bottom: 0;
-            background-color: black;
+            bottom: 175px;
+            background-color:rgba(0,0,0,0.8);
             label h2 {
                 font-size: var(--medium-font-size);
             }
