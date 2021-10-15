@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './Header.scss';
-import AbbottLogo from '../assets/abbott_logo.png';
+import EventLogo from '../assets/Invincible Word Mark.png';
 import locale from '../Data/locales.json';
 
 const Header = (props) => {
@@ -8,7 +8,7 @@ const Header = (props) => {
     return (
         <header>
             <div className="company-name">
-                <img src={AbbottLogo} alt="abbott logo"/>
+                <img src={EventLogo} alt="Invincible event logo"/>
                 <h1>{locale[language]['CALA SUPERHERO NAME GENERATOR']}</h1>
             </div>
         </header>
