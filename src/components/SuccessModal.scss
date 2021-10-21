@@ -35,24 +35,28 @@
     }
     .speech-bubble {
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
       width: 600px;
+      h2:nth-child(2) {
+        font-size: 30px;
+        color: crimson;
+      }
       h2:nth-child(4) {
         font-family: 'Komika';
         font-size: var(--huge-font-size);
         letter-spacing: 4px;
         color: yellow;
         text-shadow: 5px 5px 0 black, 2px 2px 0 black, -2px 2px 0 black, 2px -2px 0 black, -2px -2px 0 black;
-        width: 1280px;
+        width: auto;
       }
       img {
-        width: 600px;
+        width: 800px;
       }
     }
 
   }
   button {
-    width: 350px;
-    max-width: 350px;
     font-family: 'Komika';
     color: #fff;
     font-size: var(--big-font-size);

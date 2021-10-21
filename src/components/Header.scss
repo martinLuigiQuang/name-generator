@@ -2,7 +2,10 @@ header {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  background-color: #000;
+  background-image: url('../assets/Pg1_Select\ Language.jpg');
+  background-position: center;
+  background-size: cover;
+  // background-color: #000;
   color: #fff;
   justify-content: center;
   padding: 15px 0;
@@ -17,7 +20,7 @@ header {
             padding: 0;
         }
         img {
-            width: 100px;
+            width: 175px;
             align-self: center;
             z-index: 99;
         }
@@ -27,5 +30,11 @@ header {
             min-width: 500px;
             width: 40%;
         }
+    }
+
+    @media screen and (max-width: 600px) {
+      .company-name h1 {
+        font-size: 25px;
+      }
     }
 }
