@@ -20,6 +20,7 @@ function App() {
   const [language, setLanguage] = React.useState('english');
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
+  const [isFirstPage, setIsFirstPage] = React.useState(true);
   
   const postData = (requestBody) => {
     try {
@@ -86,11 +87,15 @@ function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <div className={'App'}>
-        <Header language={language}/>
+        <Header 
+          language={language} 
+          isFirstPage={isFirstPage}
+        />
         <Route exact path="/" component={() =>
           <LanguageSelector
             language={language}
             handleLanguageSelector={handleLanguageSelector}
+            setIsFirstPage={setIsFirstPage}
           />
         }/>
         <Route path="/persona" component={() =>
@@ -98,6 +103,7 @@ function App() {
             handleGenderSelection={handleGenderSelection} 
             language={language}
             gender={gender}
+            setIsFirstPage={setIsFirstPage}
           />
         }/>
         <Route path="/secret-identity" component={() =>
@@ -110,6 +116,7 @@ function App() {
             handleFirstName={handleFirstName} 
             handleLastName={handleLastName} 
             handleHeroName={handleHeroName}
+            setIsFirstPage={setIsFirstPage}
           />
         }/>
         <Route path="/superhero-name" component={() =>
@@ -120,6 +127,7 @@ function App() {
             language={language}
             returnToHomePage={returnToHomePage}
             handleSubmit={handleSubmit}
+            setIsFirstPage={setIsFirstPage}
           />
         }/>
       </div>

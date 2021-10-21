@@ -6,14 +6,20 @@ import EventLogoPortuguese from '../assets/Invincible_PORT.png';
 import locale from '../Data/locales.json';
 
 const Header = (props) => {
-    const { language } = props;
-
-    console.log(language, 'lang');
+    const { language, isFirstPage } = props;
 
     return (
         <header>
             <div className="company-name">
-              {language === 'english' ? <img src={EventLogoEnglish} alt="Invincible event logo" /> : language === 'spanish' ? <img src={EventLogoSpanish} alt="Invincible event logo" /> : <img src={EventLogoPortuguese} alt="Invincible event logo"/>
+              {
+                !isFirstPage ?
+                (   language === 'english' ? 
+                        <img src={EventLogoEnglish} alt="Invincible event logo" /> : 
+                    language === 'spanish' ? 
+                        <img src={EventLogoSpanish} alt="Invincible event logo" /> : 
+                        <img src={EventLogoPortuguese} alt="Invincible event logo"/>
+                ) :
+                null
               }
               <h1>{locale[language]['CALA SUPERHERO NAME GENERATOR']}</h1>
             </div>

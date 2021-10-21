@@ -12,11 +12,15 @@ const EnterName = (props) => {
     handleFirstName, 
     handleLastName, 
     firstName, 
-    lastName
+    lastName,
+    setIsFirstPage
   } = props;
 
   const [currentFirstName, setCurrentFirstName] = React.useState(firstName);
   const [currentLastName, setCurrentLastName] = React.useState(lastName);
+
+  React.useEffect(() => setIsFirstPage(false), []);
+
   const saveCurrentFirstName = (e) => {
     setCurrentFirstName(e.target.value);
   };

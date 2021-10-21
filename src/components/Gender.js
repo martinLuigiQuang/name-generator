@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import './Gender.scss';
 
 const GenderSelector = (props) => {
-  const { language, gender, handleGenderSelection } = props;
+  const { language, gender, handleGenderSelection, setIsFirstPage } = props;
   const isNextLinkVisible = gender !== '';
+
+  React.useEffect(() => setIsFirstPage(false), []);
 
   return (
     <div className="gender-container">

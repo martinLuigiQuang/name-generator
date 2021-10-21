@@ -9,9 +9,11 @@ import Invincible from '../assets/Invincible Word Mark.png';
 const download = require('downloadjs')
 
 const SuccessModal = (props) => {
-    const { returnToHomePage, language, firstName, lastName, heroName, handleSubmit } = props;
+    const { returnToHomePage, language, firstName, lastName, heroName, handleSubmit, setIsFirstPage } = props;
     const [ isFirstSubmit, setIsFirstSubmit ] = React.useState(true);
     const superheroName = React.useRef(null);
+
+    React.useEffect(() => setIsFirstPage(false), []);
 
     const capture = () => {
       if (isFirstSubmit) {
