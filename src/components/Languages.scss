@@ -1,14 +1,28 @@
 .language-container {
     margin: 0 auto;
     height: 720px;
-    background: url('../assets/Pg1_Select Language.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
     display: flex;
     justify-content: space-around;
     align-items: center;
     position: relative;
+    &.english {
+        background: url("../assets/Pg1_english.jpg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+    &.spanish {
+        background: url("../assets/Pg1_spanish.jpg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+    &.portuguese {
+        background: url("../assets/Pg1_portuguese.jpg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
     label {
         position: relative;
         width: 30%;
