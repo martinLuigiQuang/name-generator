@@ -21,6 +21,7 @@ function App() {
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const [isFirstPage, setIsFirstPage] = React.useState(true);
+  const [isGenerateButtonClicked, setIsGenerateButtonClicked] = React.useState(false);
   
   const postData = (requestBody) => {
     try {
@@ -117,6 +118,8 @@ function App() {
             handleLastName={handleLastName} 
             handleHeroName={handleHeroName}
             setIsFirstPage={setIsFirstPage}
+            isGenerateButtonClicked={isGenerateButtonClicked}
+            setIsGenerateButtonClicked={setIsGenerateButtonClicked}
           />
         }/>
         <Route path="/superhero-name" component={() =>

@@ -7,7 +7,7 @@
   margin: 0 auto;
   height: 720px;
   min-width: 400px;
-  background-image: url('../assets/Pg2_Select Gender.jpg');
+  background-image: url('../assets/Pg2.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
@@ -54,11 +54,12 @@
         width: 800px;
       }
     }
-
   }
   button {
     font-family: 'Komika';
     color: #fff;
+    background-color: #000000b3;
     font-size: var(--big-font-size);
+    width: 400px;
   }
 }

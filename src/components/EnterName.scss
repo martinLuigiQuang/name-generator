@@ -1,20 +1,30 @@
 .name-container {
     margin: 0 auto;
     height: 720px;
-    background: url('../assets/Pg3_english.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
+    &.english {
+        background: url('../assets/Pg3_english.png');
+    }
+    &.spanish {
+        background: url('../assets/Pg3_spanish.jpg');
+    }
+    &.portuguese {
+        background: url('../assets/Pg3_portuguese.jpg');
+    }
+    &.english, &.spanish, &.portuguese {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center top;
+    }
     border-top: 2px solid white;
     position: relative;
     .outer-box {
         display: flex;
         justify-content: center;
         position: absolute;
-        width: 600px;
+        width: 650px;
         min-width: 393px;
-        height: 325px;
-        left: 25px;
+        height: 350px;
+        right: 25px;
         bottom: 35px;
         background-color: rgb(255, 255, 255);
         border: 3px solid black;
@@ -51,31 +61,30 @@
 @media screen and (max-width: 1420px) {
     .name-container {
         height: 50vw;
-        .outer-box {
-            left: auto;
-            right: 25px;
-        }
     }
 }
 
 @media screen and (max-width: 1170px) {
     .name-container {
         height: calc(50vw + 305px);
-        background-size: contain;
+        &.english, &.spanish, &.portuguese {
+            background-size: contain;
+        }
         .outer-box {
             width: calc(90vw - 6px);
             left: 0;
-            bottom: -4px;
+            bottom: -50px;
         }
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
     .name-container {
         height: calc(50vw + 320px);
         min-height: 554px;
         .outer-box {
-            height: 375px;
+            height: 450px;
+            bottom: -130px;
             .navigation-bar,
             #heroName {
                 width: 90%;

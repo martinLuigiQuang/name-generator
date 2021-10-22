@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './Header.scss';
-import EventLogoEnglish from '../assets/Invincible Word Mark.png';
-import EventLogoSpanish from '../assets/Invincible_SPANISH.png';
-import EventLogoPortuguese from '../assets/Invincible_PORT.png';
+import EventLogoEnglish from '../assets/Invincible_english.png';
+import EventLogoSpanish from '../assets/Invincible_spanish.png';
+import EventLogoPortuguese from '../assets/Invincible_portuguese.png';
 import locale from '../Data/locales.json';
 
 const Header = (props) => {
@@ -19,7 +19,7 @@ const Header = (props) => {
                         <img src={EventLogoSpanish} alt="Invincible event logo" /> : 
                         <img src={EventLogoPortuguese} alt="Invincible event logo"/>
                 ) :
-                null
+                <div></div>
               }
               <h1>{locale[language]['CALA SUPERHERO NAME GENERATOR']}</h1>
             </div>
