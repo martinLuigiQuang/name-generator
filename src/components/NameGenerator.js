@@ -13,7 +13,8 @@ const NameGenerator = (props) => {
     currentFirstName,
     currentLastName,
     handleHeroName,
-    saveNames
+    saveNames,
+    setIsGenerateButtonClicked
   } = props;
   
   const [ counter, setCounter ] = React.useState(-1);
@@ -61,6 +62,7 @@ const NameGenerator = (props) => {
       () => {
         clearTimeout(timerOut);
         randomizer();
+        setIsGenerateButtonClicked(true);
       },
       6000
     );
@@ -75,6 +77,7 @@ const NameGenerator = (props) => {
         1500
       );
     };
+    
   };
 
   const handleLink = async () => {

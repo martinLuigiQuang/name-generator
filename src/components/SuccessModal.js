@@ -5,13 +5,15 @@ import locale from '../Data/locales.json';
 import './SuccessModal.scss';
 import SpeechBubble from './SpeechBubble';
 import Bubble from '../assets/speech_bubble_2.png';
-import Invincible from '../assets/Invincible Word Mark.png';
+import Invincible from '../assets/Invincible_english.png';
 const download = require('downloadjs')
 
 const SuccessModal = (props) => {
-    const { returnToHomePage, language, firstName, lastName, heroName, handleSubmit } = props;
+    const { returnToHomePage, language, firstName, lastName, heroName, handleSubmit, setIsFirstPage } = props;
     const [ isFirstSubmit, setIsFirstSubmit ] = React.useState(true);
     const superheroName = React.useRef(null);
+
+    React.useEffect(() => setIsFirstPage(false), []);
 
     const capture = () => {
       if (isFirstSubmit) {

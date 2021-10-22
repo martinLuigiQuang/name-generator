@@ -12,11 +12,18 @@ const EnterName = (props) => {
     handleFirstName, 
     handleLastName, 
     firstName, 
-    lastName
+    lastName,
+    setIsFirstPage,
+    isGenerateButtonClicked,
+    setIsGenerateButtonClicked
   } = props;
 
   const [currentFirstName, setCurrentFirstName] = React.useState(firstName);
   const [currentLastName, setCurrentLastName] = React.useState(lastName);
+  const hasNoNames = !firstName && !lastName && !currentFirstName && !currentLastName;
+
+  React.useEffect(() => setIsFirstPage(false), []);
+
   const saveCurrentFirstName = (e) => {
     setCurrentFirstName(e.target.value);
   };
@@ -31,7 +38,7 @@ const EnterName = (props) => {
   };
   
   return (
-    <div className="name-container">
+    <div className={`name-container ${language}`}>
       <div className="outer-box">
         <div className="task">
           <label htmlFor="firstName">
@@ -40,6 +47,11 @@ const EnterName = (props) => {
           <label htmlFor="lastName">
             <input type="text" id="lastName" value={currentLastName} onChange={saveCurrentLastName} placeholder={locale[language]['LAST NAME']}/>
           </label>
+          {
+            isGenerateButtonClicked && hasNoNames ?
+              <p style={{color: 'red'}}>*Please enter your first and last name</p> :
+              <p style={{opacity: 0 }}>*Please enter your first and last name</p>
+          }
           <NameGenerator 
             language={language}
             gender={gender}
@@ -48,6 +60,7 @@ const EnterName = (props) => {
             currentLastName={currentLastName}
             handleHeroName={handleHeroName}
             saveNames={saveNames}
+            setIsGenerateButtonClicked={setIsGenerateButtonClicked}
           />
         </div>
       </div>

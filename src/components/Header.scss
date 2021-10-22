@@ -5,7 +5,6 @@ header {
   background-image: url('../assets/Pg1_Select\ Language.jpg');
   background-position: center;
   background-size: cover;
-  // background-color: #000;
   color: #fff;
   justify-content: center;
   padding: 15px 0;
@@ -34,7 +33,7 @@ header {
 
     @media screen and (max-width: 600px) {
       .company-name h1 {
-        font-size: 25px;
+        font-size: var(--big-font-size);
       }
     }
 }

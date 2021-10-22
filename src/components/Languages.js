@@ -6,10 +6,12 @@ import locale from '../Data/locales.json';
 import './Languages.scss';
 
 const LanguageSelector = (props) => {
-  const { handleLanguageSelector, language } = props;
+  const { handleLanguageSelector, language, setIsFirstPage } = props;
+  
+  React.useEffect(() => setIsFirstPage(true), []);
 
   return (
-    <>
+    <div className={`${language}`}>
       <form className="language-container">
         <label htmlFor="english">
           <input type="radio" id="english" name="language" value="english" checked={language === 'english'} onChange={handleLanguageSelector}/>
@@ -36,7 +38,7 @@ const LanguageSelector = (props) => {
           <Link to="/persona">{`${locale[language]['NEXT']} >`}</Link> 
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

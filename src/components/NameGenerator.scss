@@ -28,12 +28,12 @@
     .navigation-bar {
         position: absolute;
         display: flex;
-        width: 500px;
+        width: 625px;
         justify-content: space-between;
         bottom: 5px;
         a {
           text-decoration: none;
-          font-size: var(--big-font-size);
+          font-size: var(--very-big-font-size);
           color: #000;
         }
         #submit {
