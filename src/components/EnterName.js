@@ -20,7 +20,8 @@ const EnterName = (props) => {
 
   const [currentFirstName, setCurrentFirstName] = React.useState(firstName);
   const [currentLastName, setCurrentLastName] = React.useState(lastName);
-  const hasNoNames = !firstName && !lastName && !currentFirstName && !currentLastName;
+  const hasNoFirstName = !firstName && !currentFirstName;
+  const hasNoLastName = !lastName && !currentLastName;
 
   React.useEffect(() => setIsFirstPage(false), []);
 
@@ -42,15 +43,29 @@ const EnterName = (props) => {
       <div className="outer-box">
         <div className="task">
           <label htmlFor="firstName">
-            <input type="text" id="firstName" value={currentFirstName} onChange={saveCurrentFirstName} placeholder={locale[language]['FIRST NAME']}/>
+            <input 
+              type="text" 
+              id="firstName" 
+              value={currentFirstName} 
+              onChange={saveCurrentFirstName}
+              onBlur={saveNames} 
+              placeholder={locale[language]['FIRST NAME']}
+            />
           </label>
           <label htmlFor="lastName">
-            <input type="text" id="lastName" value={currentLastName} onChange={saveCurrentLastName} placeholder={locale[language]['LAST NAME']}/>
+            <input 
+              type="text" 
+              id="lastName" 
+              value={currentLastName} 
+              onChange={saveCurrentLastName}
+              onBlur={saveNames} 
+              placeholder={locale[language]['LAST NAME']}
+              />
           </label>
           {
-            isGenerateButtonClicked && hasNoNames ?
-              <p style={{color: 'red'}}>*Please enter your first and last name</p> :
-              <p style={{opacity: 0 }}>*Please enter your first and last name</p>
+            isGenerateButtonClicked && (hasNoFirstName || hasNoLastName) ?
+              <p style={{color: 'red'}}>{`*${locale[language]["PLEASE ENTER YOUR FIRST AND LAST NAME TO CONTINUE"]}`}</p> :
+              <p style={{opacity: 0 }}>{`*${locale[language]["PLEASE ENTER YOUR FIRST AND LAST NAME TO CONTINUE"]}`}</p>
           }
           <NameGenerator 
             language={language}
