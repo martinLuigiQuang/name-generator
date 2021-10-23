@@ -21,7 +21,7 @@ const NameGenerator = (props) => {
   const [ displayText, setDisplayText ] = React.useState('');
   const [ currentHeroName, setCurrentHeroName ] = React.useState(heroName);
   const isSubmitBtnDisabled = displayText !== '' || currentHeroName === '' || gender === '' 
-                              || (currentFirstName === '' && currentLastName === '');
+                              || currentFirstName === '' || currentLastName === '';
   const isGenerateBtnDisabled = counter > -1 || language === '' || gender === '';
   const superheroNamesArr = superheroNames[language];
 
@@ -51,6 +51,7 @@ const NameGenerator = (props) => {
     }
     const descriptor = superheroNamesArr[index1][`Descriptor.${sex}`];
     const title = superheroNamesArr[index2][`Title.${sex}`];
+    setIsGenerateButtonClicked(true);
     saveNames();
     handleHeroName(`${descriptor} ${title}`.toUpperCase());
   };
@@ -62,7 +63,6 @@ const NameGenerator = (props) => {
       () => {
         clearTimeout(timerOut);
         randomizer();
-        setIsGenerateButtonClicked(true);
       },
       6000
     );
@@ -83,6 +83,11 @@ const NameGenerator = (props) => {
   const handleLink = async () => {
     await saveNames();
     await handleHeroName(currentHeroName.toUpperCase());
+  };
+
+  const handleOnBlur = () => {
+    handleHeroName(currentHeroName.toUpperCase());
+    setIsGenerateButtonClicked(true);
   };
 
   return (
@@ -112,6 +117,7 @@ const NameGenerator = (props) => {
                 id="heroName" 
                 name="heroName"
                 disabled={isGenerateBtnDisabled}
+                onBlur={handleOnBlur}
                 onChange={e => setCurrentHeroName(e.target.value)}
               />
             </label>
