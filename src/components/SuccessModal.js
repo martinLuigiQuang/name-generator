@@ -5,11 +5,23 @@ import locale from '../Data/locales.json';
 import './SuccessModal.scss';
 import SpeechBubble from './SpeechBubble';
 import Bubble from '../assets/speech_bubble_2.png';
-import Invincible from '../assets/Invincible_english.png';
-const download = require('downloadjs')
+import InvincibleEnglish from '../assets/Invincible_english.png';
+import InvincibleSpanish from '../assets/Invincible_spanish.png';
+import InvinciblePortuguese from '../assets/Invincible_portuguese.png';
+const download = require('downloadjs');
+
+const IMAGE = {
+    english: InvincibleEnglish,
+    spanish: InvincibleSpanish,
+    portuguese: InvinciblePortuguese
+};
+
+const getImage = (language) => {
+    return IMAGE[language];
+};
 
 const SuccessModal = (props) => {
-    const { returnToHomePage, language, firstName, lastName, heroName, handleSubmit, setIsFirstPage } = props;
+    const { returnToHomePage, language, firstName, lastName, descriptor, heroName, handleSubmit, setIsFirstPage } = props;
     const [ isFirstSubmit, setIsFirstSubmit ] = React.useState(true);
     const superheroName = React.useRef(null);
 
@@ -25,16 +37,18 @@ const SuccessModal = (props) => {
         superheroName.current.setAttribute('style', 'width: 0px');
         download(dataUrl, 'my-superhero-name.png');
       });
-    }
+    };
+
     return (
       <div className="superheroName success-modal">
         <div ref={superheroName} className="heroNameDiv">
-          <img src={Invincible} alt="invincible" id="invincible"/>
+          <img src={getImage(language)} alt="invincible" id="invincible"/>
           <SpeechBubble 
             imgSrc={Bubble} 
             text={`${firstName} ${lastName}`} 
             text2="AKA"
-            text3={heroName}/> 
+            text3={descriptor}
+            text4={heroName}/> 
         </div>
         <Button onClick={capture}>
           {locale[language]['DOWNLOAD']}

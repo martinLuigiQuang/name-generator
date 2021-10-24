@@ -3,15 +3,18 @@ import Button from '@material-ui/core/Button';
 import superheroNames from '../Data/superhero_names.json';
 import locale from '../Data/locales.json';
 import { Link } from 'react-router-dom';
+import { getEnteredDescriptorAndHeroName } from './NameGeneratorHelper';
 import './NameGenerator.scss';
 
 const NameGenerator = (props) => {
   const { 
     language, 
     gender,
+    descriptor,
     heroName, 
     currentFirstName,
     currentLastName,
+    handleDescriptor,
     handleHeroName,
     saveNames,
     setIsGenerateButtonClicked
@@ -20,8 +23,11 @@ const NameGenerator = (props) => {
   const [ counter, setCounter ] = React.useState(-1);
   const [ displayText, setDisplayText ] = React.useState('');
   const [ currentHeroName, setCurrentHeroName ] = React.useState(heroName);
-  const isSubmitBtnDisabled = displayText !== '' || currentHeroName === '' || gender === '' 
-                              || currentFirstName === '' || currentLastName === '';
+  const [ currentDescriptor, setCurrentDescriptor ] = React.useState(descriptor);
+  const [ hasChangedHeroName, setHasChangedHeroName ] = React.useState(false);
+
+  const isSubmitBtnDisabled = displayText !== '' || gender === '' || currentHeroName === '' ||
+                              currentFirstName === '' || currentLastName === '';
   const isGenerateBtnDisabled = counter > -1 || language === '' || gender === '';
   const superheroNamesArr = superheroNames[language];
 
@@ -49,11 +55,12 @@ const NameGenerator = (props) => {
     if (gender === 'N') {
       sex = randomNumber % 2 ? 'F' : 'M';
     }
-    const descriptor = superheroNamesArr[index1][`Descriptor.${sex}`];
-    const title = superheroNamesArr[index2][`Title.${sex}`];
+    const listedDescriptor = superheroNamesArr[index1][`Descriptor.${sex}`];
+    const listedHeroName = superheroNamesArr[index2][`Title.${sex}`];
     setIsGenerateButtonClicked(true);
     saveNames();
-    handleHeroName(`${descriptor} ${title}`.toUpperCase());
+    handleDescriptor(`${listedDescriptor.toUpperCase()}`)
+    handleHeroName(`${listedHeroName}`.toUpperCase());
   };
 
   const displayProgress = () => {
@@ -82,12 +89,37 @@ const NameGenerator = (props) => {
 
   const handleLink = async () => {
     await saveNames();
-    await handleHeroName(currentHeroName.toUpperCase());
+    if (hasChangedHeroName) {
+      handleHeroName(currentHeroName.trim().toUpperCase());
+      handleDescriptor('');
+    }
   };
 
-  const handleOnBlur = () => {
-    handleHeroName(currentHeroName.toUpperCase());
+  const handleOnBlur = async (e) => {
+    const enteredName = e.target.value.trim();
+    if (currentFirstName || currentLastName) {
+      await saveNames();
+    }
+    const { enteredDescriptor, enteredHeroName } = getEnteredDescriptorAndHeroName(enteredName);
+    setCurrentDescriptor(enteredDescriptor);
+    setCurrentHeroName(enteredHeroName);
+    await handleDescriptor(enteredDescriptor.toUpperCase());
+    await handleHeroName(enteredHeroName.toUpperCase());
     setIsGenerateButtonClicked(true);
+  };
+
+  const handleChangeHeroName = (e) => {
+    setCurrentHeroName(e.target.value);
+    if (e.target.value.trim() != `${descriptor} ${heroName}`) {
+      setHasChangedHeroName(true);
+    } else {
+      setHasChangedHeroName(false);
+    }
+  };
+
+  const handleOnFocus = (e) => {
+    setCurrentHeroName(e.target.value.trim());
+    setCurrentDescriptor('');
   };
 
   return (
@@ -113,12 +145,13 @@ const NameGenerator = (props) => {
               <input 
                 placeholder={locale[language]['OR ENTER HERE TO CREATE YOUR OWN']}
                 type="text" 
-                value={currentHeroName} 
+                value={`${currentDescriptor}${currentDescriptor ? ' ' : ''}${currentHeroName}`} 
                 id="heroName" 
                 name="heroName"
                 disabled={isGenerateBtnDisabled}
+                onFocus={handleOnFocus}
                 onBlur={handleOnBlur}
-                onChange={e => setCurrentHeroName(e.target.value)}
+                onChange={handleChangeHeroName}
               />
             </label>
           )

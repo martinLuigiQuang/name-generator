@@ -16,13 +16,13 @@ const sheetsUrl = process.env.REACT_APP_SHEETSURL;
 function App() {
   const DB_REF = ref(getDatabase(firebase));
   const [gender, setGender] = React.useState('');
+  const [descriptor, setDescriptor] = React.useState('');
   const [heroName, setHeroName] = React.useState('');
   const [language, setLanguage] = React.useState('english');
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const [isFirstPage, setIsFirstPage] = React.useState(true);
   const [isGenerateButtonClicked, setIsGenerateButtonClicked] = React.useState(false);
-  
   const postData = (requestBody) => {
     try {
       push(DB_REF, requestBody);
@@ -36,6 +36,10 @@ function App() {
     }).catch(error => {
       console.log(error);
     });
+  };
+
+  const handleDescriptor = (descriptor) => {
+    setDescriptor(descriptor);
   };
 
   const handleHeroName = (name) => {
@@ -79,6 +83,7 @@ function App() {
       gender,
       firstName,
       lastName,
+      descriptor,
       heroName,
       timeStamp: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
     };
@@ -111,11 +116,13 @@ function App() {
           <EnterName 
             language={language}
             gender={gender}
+            descriptor={descriptor}
             heroName={heroName}
             firstName={firstName}
             lastName={lastName}
             handleFirstName={handleFirstName} 
-            handleLastName={handleLastName} 
+            handleLastName={handleLastName}
+            handleDescriptor={handleDescriptor} 
             handleHeroName={handleHeroName}
             setIsFirstPage={setIsFirstPage}
             isGenerateButtonClicked={isGenerateButtonClicked}
@@ -126,6 +133,7 @@ function App() {
           <SuccessModal 
             firstName={firstName}
             lastName={lastName}
+            descriptor={descriptor}
             heroName={heroName}
             language={language}
             returnToHomePage={returnToHomePage}
