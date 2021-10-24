@@ -53,6 +53,87 @@
     }
 }
 
+.name-generator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    .progress {
+        content: '';
+        height: 20px;
+        background-color: darkorchid;
+        align-self: flex-start;
+        border-radius: 10px;
+        margin-left: calc(50% - 125px);
+        animation: progress 6s linear;
+        position: relative;
+        &:after {
+          content: '';
+          height: 24px;
+          width: 252px;
+          position: absolute;
+          top: -4px;
+          left: -4px;
+          border-radius: 12px;
+          border: 2px solid darkorchid;
+          // outline: 2px solid darkorchid;
+          // outline-offset: 2px;
+        }
+    }
+    .navigation-bar {
+        position: absolute;
+        display: flex;
+        width: 625px;
+        justify-content: space-between;
+        bottom: 5px;
+        a {
+          text-decoration: none;
+          font-size: var(--very-big-font-size);
+          color: #000;
+        }
+        #submit {
+          position: relative;
+          left: 0;
+          bottom: 0;
+          color: #AA0061;
+          animation: flash 1s infinite;
+        }
+    }
+    #heroName {
+      width: 100%;
+      border: none;
+      margin: 0 auto;
+      font-size: var(--big-font-size);
+      font-family: 'Komika';
+      border-bottom: 3px solid black;
+      background-color: blanchedalmond;
+      text-align: center;
+      width: 500px;
+      color: #AA0061;
+      font-weight: bold;
+      &::placeholder {
+        color: black;
+      }
+      &:disabled::placeholder {
+        color: rgba(0, 0, 0, 0.26);
+      }
+    }
+    .MuiButtonBase-root {
+      font-family: 'Komika';
+      font-size: var(--big-font-size);
+    }
+}
+
+@keyframes progress {
+    0% { width: 0px; }
+    100% { width: 250px; }
+}
+
+@keyframes flash {
+  0% { transform: translateX(5px); }
+  100% { transform: translateX(0px); }
+}
+
 @keyframes flash {
     0% { transform: translateX(5px); }
     100% { transform: translateX(0px); }
