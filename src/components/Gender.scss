@@ -9,17 +9,22 @@
     background-position: center top;
     border-top: 2px solid white;
     position: relative;
+    display: flex;
+    justify-content: center;
     .navigation-bar {
         position: absolute;
-        width: calc(100% - 100px);
-        top: 50px;
-        margin: 0 50px;
+        width: calc(100% - 450px);
+        top: 310px;
+        margin: 0 auto;
         display: flex;
         justify-content: space-between;
         a {
             text-decoration: none;
             font-size: var(--very-big-font-size);
-            color: black;
+            color: #fff;
+            background-color: #000000b7;
+            padding: 10px 20px;
+            border-radius: 10px;
             &:nth-child(2) {
                 animation: flash 1s infinite;
             }
@@ -30,7 +35,7 @@
         bottom: 200px;
         width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         z-index: 99;
         label {
             position: relative;
@@ -87,7 +92,9 @@
         min-height: 350px;
         background-size: cover;
         .navigation-bar {
-            bottom: 140px;
+            width: calc(100% - 100px);
+            height: 50px;
+            top: 5px;
             a {
                 font-size: var(--medium-font-size);
             }
