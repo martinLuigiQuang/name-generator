@@ -1,6 +1,6 @@
 .english {
     height: 720px;
-    background: url("../assets/Pg1_english.png");
+    background: url("../assets/download_english.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -9,7 +9,7 @@
 }
 .spanish {
     height: 720px;
-    background: url("../assets/Pg1_spanish.png");
+    background: url("../assets/download_spanish.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -18,7 +18,7 @@
 }
 .portuguese {
     height: 720px;
-    background: url("../assets/Pg1_portuguese.png");
+    background: url("../assets/download_portuguese.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -27,7 +27,7 @@
 }
 .language-container {
     margin: 0 auto;
-    height: 90%;
+    height: 115%;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -68,7 +68,7 @@
     }
     .navigation-bar {
         position: absolute;
-        bottom: 30px;
+        bottom: 85px;
         z-index: 99;
         padding: 20px;
         display: flex;
