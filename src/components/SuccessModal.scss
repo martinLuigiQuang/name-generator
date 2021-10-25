@@ -52,7 +52,8 @@
         width: 1000px;
       }
       img {
-        width: 800px;
+        width: 875px;
+        top: 90px;
       }
     }
   }
@@ -62,6 +63,7 @@
     background-color: #000000b3;
     font-size: var(--big-font-size);
     width: 400px;
+    margin-top: 15px;
     &.MuiButton-root:hover {
       background-color: red;
     }
@@ -74,5 +76,8 @@
     h2:nth-child(4) {
       width: 80%;
     }
+    // img {
+    //   right: 0;
+    // }
   }
 }

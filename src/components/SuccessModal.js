@@ -4,7 +4,7 @@ import * as htmlToImage from 'html-to-image';
 import locale from '../Data/locales.json';
 import './SuccessModal.scss';
 import SpeechBubble from './SpeechBubble';
-import Bubble from '../assets/speech_bubble_2.png';
+import Bubble from '../assets/speech_bubble_4.png';
 import Invincible from '../assets/Invincible_english.png';
 const download = require('downloadjs')
 
