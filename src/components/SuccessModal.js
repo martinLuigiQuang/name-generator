@@ -5,7 +5,6 @@ import locale from '../Data/locales.json';
 import './SuccessModal.scss';
 import SpeechBubble from './SpeechBubble';
 import Bubble from '../assets/speech_bubble_4.png';
-// import Invincible from '../assets/Invincible_english.png';
 import InvincibleEnglish from '../assets/Invincible_english.png';
 import InvincibleSpanish from '../assets/Invincible_spanish.png';
 import InvinciblePortuguese from '../assets/Invincible_portuguese.png';
@@ -26,38 +25,41 @@ const SuccessModal = (props) => {
     const [ isFirstSubmit, setIsFirstSubmit ] = React.useState(true);
     const superheroName = React.useRef(null);
 
-    React.useEffect(() => setIsFirstPage(false), []);
+    React.useEffect(() => setIsFirstPage(true), []);
 
     const capture = () => {
       if (isFirstSubmit) {
         setIsFirstSubmit(false);
         handleSubmit();
       }
-      superheroName.current.setAttribute('style', 'width: 1000px');
       htmlToImage.toPng(superheroName.current).then(function (dataUrl) {
-        superheroName.current.setAttribute('style', 'width: 0px');
-        download(dataUrl, 'my-superhero-name.png');
+        download(dataUrl, 'my-superhero-name.jpeg');
       });
     };
 
     return (
-      <div className="superheroName success-modal">
-        <div ref={superheroName} className="heroNameDiv">
-          <img src={getImage(language)} alt="invincible" id="invincible"/>
-          <SpeechBubble 
-            imgSrc={Bubble} 
-            text={`${firstName} ${lastName}`} 
-            text2="AKA"
-            text3={descriptor}
-            text4={heroName}/> 
+      <>
+        <div ref={superheroName} className="superheroName success-modal">
+          <div className="heroNameDiv">
+            <img src={getImage(language)} alt="invincible" id="invincible"/>
+            <SpeechBubble 
+              imgSrc={Bubble} 
+              text={`${firstName} ${lastName}`} 
+              text2="AKA"
+              text3={descriptor}
+              text4={heroName}
+            /> 
+          </div>
         </div>
-        <Button onClick={capture}>
-          {locale[language]['DOWNLOAD']}
-        </Button>
-        <Button onClick={returnToHomePage}>
-          {locale[language]['RETURN TO HOMEPAGE']}
-        </Button>
-      </div>
+        <div className="buttons-container">
+          <Button onClick={capture} className="page4-button">
+            {locale[language]['DOWNLOAD']}
+          </Button>
+          <Button onClick={returnToHomePage} className="page4-button">
+            {locale[language]['RETURN TO HOMEPAGE']}
+          </Button> 
+        </div>
+      </>
     );
 };
 
