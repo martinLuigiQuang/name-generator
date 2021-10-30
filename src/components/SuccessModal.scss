@@ -43,7 +43,8 @@
         color: crimson;
         width: 1000px;
       }
-      h2:nth-child(4) {
+      h2:nth-child(4),
+      h2:nth-child(5) {
         font-family: 'Komika';
         font-size: var(--huge-font-size);
         letter-spacing: 4px;
@@ -52,7 +53,9 @@
         width: 1000px;
       }
       img {
-        width: 800px;
+        width: 950px;
+        top: 55px;
+        height: 575px;
       }
     }
   }
@@ -62,6 +65,7 @@
     background-color: #000000b3;
     font-size: var(--big-font-size);
     width: 400px;
+    margin-top: 15px;
     &.MuiButton-root:hover {
       background-color: red;
     }
@@ -71,8 +75,12 @@
 @media screen and (max-width: 1000px) {
   .success-modal .heroNameDiv .speech-bubble {
     h2:nth-child(2),
-    h2:nth-child(4) {
+    h2:nth-child(4),
+    h2:nth-child(5) {
       width: 80%;
     }
+    // img {
+    //   right: 0;
+    // }
   }
 }

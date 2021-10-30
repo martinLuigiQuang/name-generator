@@ -7,7 +7,9 @@ const EnterName = (props) => {
   const { 
     language,
     gender,
+    descriptor,
     heroName,
+    handleDescriptor,
     handleHeroName,
     handleFirstName, 
     handleLastName, 
@@ -20,8 +22,8 @@ const EnterName = (props) => {
 
   const [currentFirstName, setCurrentFirstName] = React.useState(firstName);
   const [currentLastName, setCurrentLastName] = React.useState(lastName);
-  const hasNoFirstName = !firstName && !currentFirstName;
-  const hasNoLastName = !lastName && !currentLastName;
+  const hasNoFirstName = !currentFirstName;
+  const hasNoLastName = !currentLastName;
 
   React.useEffect(() => setIsFirstPage(false), []);
 
@@ -48,7 +50,6 @@ const EnterName = (props) => {
               id="firstName" 
               value={currentFirstName} 
               onChange={saveCurrentFirstName}
-              onBlur={saveNames} 
               placeholder={locale[language]['FIRST NAME']}
             />
           </label>
@@ -58,7 +59,6 @@ const EnterName = (props) => {
               id="lastName" 
               value={currentLastName} 
               onChange={saveCurrentLastName}
-              onBlur={saveNames} 
               placeholder={locale[language]['LAST NAME']}
               />
           </label>
@@ -70,7 +70,9 @@ const EnterName = (props) => {
           <NameGenerator 
             language={language}
             gender={gender}
+            descriptor={descriptor}
             heroName={heroName}
+            handleDescriptor={handleDescriptor}
             currentFirstName={currentFirstName}
             currentLastName={currentLastName}
             handleHeroName={handleHeroName}

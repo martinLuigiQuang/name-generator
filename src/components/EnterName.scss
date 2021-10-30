@@ -5,10 +5,10 @@
         background: url('../assets/Pg3_english.png');
     }
     &.spanish {
-        background: url('../assets/Pg3_spanish.jpg');
+        background: url('../assets/Pg3_spanish.png');
     }
     &.portuguese {
-        background: url('../assets/Pg3_portuguese.jpg');
+        background: url('../assets/Pg3_portuguese.png');
     }
     &.english, &.spanish, &.portuguese {
         background-repeat: no-repeat;
@@ -26,18 +26,19 @@
         height: 350px;
         right: 10px;
         bottom: 10px;
-        background-color: rgb(255, 255, 255);
+        // background-color: rgb(255, 255, 255);
         border: 3px solid black;
         .task {
             position: relative;
-            background-color: blanchedalmond;
+            background-color: rgba(255,235,205,0.7);
             border: 3px solid black;
             margin: 5px;
             padding: 10px 0;
             width: 100%;
             h2 {
                 margin: 20px 0;
-                font-size: var(--big-font-size);
+                // font-size: var(--big-font-size);
+                font-weight: normal;
             }
             #firstName,
             #lastName {
@@ -46,11 +47,106 @@
                 font-size: var(--big-font-size);
                 font-family: 'Komika';
                 border-bottom: 3px solid black;
-                background-color: blanchedalmond;
+                background-color: rgba(255,235,205,0.7);
                 width: 200px;
             }
         }
     }
+}
+
+.outer-box::before {
+    content: " ";
+    position: absolute;
+
+    top: -1px;
+    left: -1px;
+    right: 0px;
+    bottom: -0.5px;
+    border: 6px solid white;
+}
+
+.name-generator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    .progress {
+        content: '';
+        height: 20px;
+        background-color: darkorchid;
+        align-self: flex-start;
+        border-radius: 10px;
+        margin-left: calc(50% - 125px);
+        animation: progress 6s linear;
+        position: relative;
+        &:after {
+          content: '';
+          height: 24px;
+          width: 252px;
+          position: absolute;
+          top: -4px;
+          left: -4px;
+          border-radius: 12px;
+          border: 2px solid darkorchid;
+          // outline: 2px solid darkorchid;
+          // outline-offset: 2px;
+        }
+    }
+    .navigation-bar {
+        position: absolute;
+        display: flex;
+        width: 625px;
+        justify-content: space-between;
+        bottom: 5px;
+        a {
+          text-decoration: none;
+          font-size: var(--very-big-font-size);
+          color: #000;
+        }
+        #submit {
+          position: relative;
+          left: 0;
+          bottom: 0;
+          color: #AA0061;
+          animation: flash 1s infinite;
+        }
+    }
+    #heroName {
+      width: 100%;
+      border: none;
+      margin: 0 auto;
+      font-size: var(--big-font-size);
+      font-family: 'Komika';
+      border-bottom: 3px solid black;
+      background-color: rgba(255,235,205,0.6);
+      text-align: center;
+      width: 500px;
+      color: #AA0061;
+      font-weight: normal;
+      &::placeholder {
+        color: black;
+      }
+      &:disabled::placeholder {
+        color: rgba(0, 0, 0, 0.26);
+      }
+    }
+    .MuiButtonBase-root {
+      font-family: 'Komika';
+      font-size: var(--big-font-size);
+      font-weight: bold;
+      color: #AA0061;
+      
+    }
+}
+
+@keyframes progress {
+    0% { width: 0px; }
+    100% { width: 250px; }
+}
+
+@keyframes flash {
+  0% { transform: translateX(5px); }
+  100% { transform: translateX(0px); }
 }
 
 @keyframes flash {
@@ -74,6 +170,7 @@
             width: calc(90vw - 6px);
             left: 0;
             bottom: -50px;
+            background-color: rgb(255, 255, 255);
         }
     }
 }
