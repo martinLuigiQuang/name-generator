@@ -20,9 +20,7 @@ const SuccessModal = (props) => {
         setIsFirstSubmit(false);
         handleSubmit();
       }
-      superheroName.current.setAttribute('style', 'width: 1000px');
       htmlToImage.toPng(superheroName.current).then(function (dataUrl) {
-        superheroName.current.setAttribute('style', 'width: 0px');
         download(dataUrl, 'my-superhero-name.png');
       });
     }
