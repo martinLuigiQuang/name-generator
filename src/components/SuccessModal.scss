@@ -60,6 +60,11 @@
 }
 
 .buttons-container {
+  position: absolute;
+  bottom: -50px;
+  left: calc(50% - 402px);
+  width: 804px;
+  min-width: 400px;
   display: flex;
   button.page4-button {
     font-family: 'Komika';
@@ -88,5 +93,9 @@
     // img {
     //   right: 0;
     // }
+  }
+  .buttons-container {
+    flex-direction: column;
+    left: calc(50% - 201px);
   }
 }
