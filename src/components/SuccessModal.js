@@ -32,13 +32,13 @@ const SuccessModal = (props) => {
         setIsFirstSubmit(false);
         handleSubmit();
       }
-      htmlToImage.toPng(superheroName.current).then(function (dataUrl) {
+      htmlToImage.toJpeg(superheroName.current).then(function (dataUrl) {
         download(dataUrl, 'my-superhero-name.jpeg');
       });
     };
 
     return (
-      <>
+      <div className="success-modal-container">
         <div ref={superheroName} className="superheroName success-modal">
           <div className="heroNameDiv">
             <img src={getImage(language)} alt="invincible" id="invincible"/>
@@ -59,7 +59,7 @@ const SuccessModal = (props) => {
             {locale[language]['RETURN TO HOMEPAGE']}
           </Button> 
         </div>
-      </>
+      </div>
     );
 };
 

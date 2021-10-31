@@ -3,6 +3,10 @@
     src: url("../fonts/Best\ Friends\ Font.otf");
 }
 
+.success-modal-container {
+  position: relative;
+}
+
 .success-modal {
   margin: 0 auto;
   height: 720px;
@@ -60,9 +64,9 @@
 
 .buttons-container {
   position: absolute;
-  bottom: -50px;
+  bottom: 10px;
   left: calc(50% - 402px);
-  width: 804px;
+  width: 810px;
   min-width: 400px;
   display: flex;
   button.page4-button {
@@ -70,10 +74,9 @@
     color: #fff;
     background-color: #000000b3;
     font-size: var(--big-font-size);
-    width: calc(50% - 2px);
-    margin-top: 4px;
+    width: calc(50% - 5px);
     &:first-child {
-      margin-right: 4px;
+      margin-right: 10px;
     }
     &.MuiButton-root:hover {
       background-color: red;
