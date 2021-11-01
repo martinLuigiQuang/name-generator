@@ -142,7 +142,6 @@ function App() {
             setIsFirstPage={setIsFirstPage}
           />
         }/>
-        <p>{navigator.userAgentData.platform}</p>
       </div>
     </Router>
   );
