@@ -33,7 +33,7 @@ const SuccessModal = (props) => {
         handleSubmit();
       }
       htmlToImage.toPng(superheroName.current).then(function (dataUrl) {
-        download(dataUrl, 'my-superhero-name.png');
+        download(dataUrl, 'my-superhero-name.jpeg');
       });
     };
 
