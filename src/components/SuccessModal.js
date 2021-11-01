@@ -32,7 +32,7 @@ const SuccessModal = (props) => {
         setIsFirstSubmit(false);
         handleSubmit();
       }
-      htmlToImage.toSvg(superheroName.current).then(function (dataUrl) {
+      htmlToImage.toJpeg(superheroName.current).then(function (dataUrl) {
         download(dataUrl, 'my-superhero-name');
       });
     };

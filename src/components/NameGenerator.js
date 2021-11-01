@@ -65,7 +65,7 @@ const NameGenerator = (props) => {
       }
     }
     const title = listedHeroName.split(' ').length === 2 ? listedHeroName.split(' ')[1] : listedHeroName.split(' ')[0];
-    const descriptor = listedDescriptor.split(' ') > 2 ? listedDescriptor :
+    const descriptor = listedDescriptor.split(' ').length > 2 ? listedDescriptor :
                        listedDescriptor.split(' ').length === 2 ? listedDescriptor.split(' ')[1] : listedDescriptor.split(' ')[0];
     if (wordOrder === 'reverse') {
       handleDescriptor(`${article} ${title}`.toUpperCase())
