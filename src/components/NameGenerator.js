@@ -38,6 +38,8 @@ const NameGenerator = (props) => {
     locale[language]['YOUR SUPERHERO NAME IS']
   ];
 
+  const WAITING_TIME = 1000; // milliseconds
+
   React.useEffect(
     () => {
       if (counter > 0) {
@@ -47,20 +49,48 @@ const NameGenerator = (props) => {
     [counter]
   );
 
+  const saveHeroName = (wordOrder, sex, language, listedDescriptor, listedHeroName) => {
+    const hasArticle = listedDescriptor.split(' ').length === 2 || listedHeroName.split(' ').length === 2;
+    let article = '';
+    if (hasArticle) {
+      switch (language) {
+        case 'spanish':
+          article = sex === 'M' ? 'el' : 'la';
+          break;
+        case 'portuguese':
+          article = sex === 'M' ? 'o' : 'a';
+          break;
+        default:
+          article = 'the';
+      }
+    }
+    const title = listedHeroName.split(' ').length === 2 ? listedHeroName.split(' ')[1] : listedHeroName.split(' ')[0];
+    const descriptor = listedDescriptor.split(' ') > 2 ? listedDescriptor :
+                       listedDescriptor.split(' ').length === 2 ? listedDescriptor.split(' ')[1] : listedDescriptor.split(' ')[0];
+    console.log(article, listedDescriptor, listedHeroName, descriptor, title)
+    if (wordOrder === 'reverse') {
+      handleDescriptor(`${article} ${title}`.toUpperCase())
+      handleHeroName(`${descriptor}`.toUpperCase());
+    } else {
+      handleDescriptor(`${article} ${descriptor}`.toUpperCase())
+      handleHeroName(`${title}`.toUpperCase());
+    }
+  }
+
   const randomizer = () => {
-    const index1 = Math.floor(Math.random() * superheroNamesArr.length);
-    const index2 = Math.floor(Math.random() * superheroNamesArr.length);
     const randomNumber = Math.floor(Math.random() * 100);
     let sex = gender;
     if (gender === 'N') {
       sex = randomNumber % 2 ? 'F' : 'M';
     }
-    const listedDescriptor = superheroNamesArr[index1][`Descriptor.${sex}`];
-    const listedHeroName = superheroNamesArr[index2][`Title.${sex}`];
+    const index1 = Math.floor(Math.random() * superheroNamesArr.length);
+    const listedDescriptor = superheroNamesArr[index1][`Descriptor.${sex}`].trim();
+    const wordOrder = superheroNamesArr[index1].WordOrder;
+    const index2 = Math.floor(Math.random() * superheroNamesArr.length);
+    const listedHeroName = superheroNamesArr[index2][`Title.${sex}`].trim();
     setIsGenerateButtonClicked(true);
     saveNames();
-    handleDescriptor(`${listedDescriptor.toUpperCase()}`)
-    handleHeroName(`${listedHeroName}`.toUpperCase());
+    saveHeroName(wordOrder, sex, language, listedDescriptor, listedHeroName)
   };
 
   const displayProgress = () => {
@@ -71,7 +101,7 @@ const NameGenerator = (props) => {
         clearTimeout(timerOut);
         randomizer();
       },
-      6000
+      WAITING_TIME
     );
     if (counter < 3) {
       const timer = setInterval(
@@ -81,7 +111,7 @@ const NameGenerator = (props) => {
           }
           setCounter((counter) => counter + 1);
         },
-        1500
+        WAITING_TIME / WAITING_MESSAGES.length
       );
     };
     

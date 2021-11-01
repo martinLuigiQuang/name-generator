@@ -23,6 +23,7 @@ function App() {
   const [lastName, setLastName] = React.useState('');
   const [isFirstPage, setIsFirstPage] = React.useState(true);
   const [isGenerateButtonClicked, setIsGenerateButtonClicked] = React.useState(false);
+
   const postData = (requestBody) => {
     try {
       push(DB_REF, requestBody);
@@ -141,6 +142,7 @@ function App() {
             setIsFirstPage={setIsFirstPage}
           />
         }/>
+        <p>{navigator.userAgentData.platform}</p>
       </div>
     </Router>
   );
