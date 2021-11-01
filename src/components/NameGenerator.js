@@ -38,7 +38,7 @@ const NameGenerator = (props) => {
     locale[language]['YOUR SUPERHERO NAME IS']
   ];
 
-  const WAITING_TIME = 1000; // milliseconds
+  const WAITING_TIME = 6000; // milliseconds
 
   React.useEffect(
     () => {
@@ -67,7 +67,6 @@ const NameGenerator = (props) => {
     const title = listedHeroName.split(' ').length === 2 ? listedHeroName.split(' ')[1] : listedHeroName.split(' ')[0];
     const descriptor = listedDescriptor.split(' ') > 2 ? listedDescriptor :
                        listedDescriptor.split(' ').length === 2 ? listedDescriptor.split(' ')[1] : listedDescriptor.split(' ')[0];
-    console.log(article, listedDescriptor, listedHeroName, descriptor, title)
     if (wordOrder === 'reverse') {
       handleDescriptor(`${article} ${title}`.toUpperCase())
       handleHeroName(`${descriptor}`.toUpperCase());
