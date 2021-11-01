@@ -38,7 +38,7 @@ const SuccessModal = (props) => {
     };
 
     return (
-      <>
+      <div className="success-modal-container">
         <div ref={superheroName} className="superheroName success-modal">
           <div className="heroNameDiv">
             <img src={getImage(language)} alt="invincible" id="invincible"/>
@@ -59,7 +59,7 @@ const SuccessModal = (props) => {
             {locale[language]['RETURN TO HOMEPAGE']}
           </Button> 
         </div>
-      </>
+      </div>
     );
 };
 
